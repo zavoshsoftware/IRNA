@@ -1,0 +1,180 @@
+:root {
+    --bgc-primary: #151f30;
+    --bgc-primary-accent: #1c2c46;
+    --bgc-main: #131720;
+    --bgc-secondary: #e100d2;
+    --bgc-filler: rgb(114, 206, 134);
+    --text-color: #7085aa;
+  }
+  .user-dashboard {
+    display: flex;
+    align-items: center;
+    margin-block: 1rem;
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+  }
+  hr {
+    color: var(--text-color);
+    width: calc(100% - 2rem);
+    margin-block-start: 0;
+    margin-inline: auto;
+  }
+  .user-dashboard .bi {
+    color: whitesmoke;
+    background-color: var(--bgc-secondary);
+    width: 5rem;
+    height: 5rem;
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    font-size: 5rem;
+  }
+  .user-dashboard .user-info {
+    display: flex;
+    flex-direction: column;
+    margin-inline-start: 1rem;
+  }
+  .user-info span {
+    color: whitesmoke;
+  }
+  .categories {
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+    margin-block-end: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .categories .btn {
+    background-color: var(--bgc-primary);
+    color: whitesmoke;
+    width: calc(50% - 0.5rem);
+    border-radius: 0.7rem;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .categories .btn .bi {
+    margin-inline-end: 0.5rem;
+  }
+  .categories .btn:hover,
+  .categories .btn:focus {
+    background-color: var(--bgc-secondary);
+  }
+ .complete-purchase{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     width: calc(100% - 2rem);
+     margin-inline: auto;
+     background-color: var(--bgc-primary-accent);
+     border-radius: 1rem;
+     padding-block: 2rem;
+     padding-inline: 1rem;
+ }
+ .complete-purchase h2{
+     color: whitesmoke;
+     align-self: flex-start;
+     font-size: 0.9rem;
+     margin-block-end: 1rem;
+ }
+ .discount h2{
+    margin-block-start: 1rem;
+ }
+ .discount p{
+     color: var(--text-color);
+     font-size: 0.7rem;
+ }
+ .discount .discount-input-container{
+     position: relative;
+     display: flex;
+     padding: 0.5rem;
+     background-color: whitesmoke;
+     border-radius: 1rem;
+ }
+ .discount-input-container input{
+     border: none;
+     background-color: transparent;
+     outline: none;
+     flex-grow: 1;
+ }
+ .discount-input-container .btn{
+     background-color: var(--bgc-secondary);
+     border-radius: 0.7rem;
+     color: whitesmoke;
+     padding-inline: 2rem;
+ }
+ .service-info{
+     display: flex;
+     flex-direction: column;
+     background-color: whitesmoke;
+     width: 100%;
+     padding: 1rem;
+     border-radius: 1rem;
+ }
+ .service-info p{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin-block: 0.35rem;
+ }
+ .chose-portal{
+     display: flex;
+     justify-content: space-between;
+     width: 100%;    
+      margin-block: 1rem;
+ }
+ .chose-portal label{
+     width: 30%;     
+     aspect-ratio: 1;
+     background-color: whitesmoke;
+     border-radius: 0.7rem;
+ }
+ .chose-portal label input{
+     display: none;
+ }
+ .chose-portal label img{
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 0.7rem;
+}
+ .chose-portal label input:checked + img {
+     border: 2px solid var(--bgc-secondary);
+ }
+ .total-price{
+     display: flex;
+     justify-content: space-between;
+     width: 100%;
+     color: whitesmoke;
+ }
+ .purchase-btn{
+     width: 100%;
+     background-color: var(--bgc-secondary)
+     ;
+     color: whitesmoke;
+     border-radius: 0.7rem;
+ }
+  @media (min-width: 992px) {
+    .user-dashboard-container {
+      width: calc(100% - 6rem);
+      margin-inline: auto;
+    }
+    .categories {
+      flex-direction: column;
+      width: 20%;
+      margin-block-start: 1rem;
+      margin-inline-start: 1rem;
+    }
+    .categories .btn {
+      width: 100%;
+    }
+    .big-padding{
+      padding-inline: 5rem;
+    }
+    .complete-purchase{
+        width: 40%;
+        margin-block-start: 1rem;
+    }
+    .discount{width: 100%;}
+  }
+  

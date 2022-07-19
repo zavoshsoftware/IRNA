@@ -1,0 +1,171 @@
+:root {
+    --bgc-primary: #151f30;
+    --bgc-primary-accent: #1c2c46;
+    --bgc-main: #131720;
+    --bgc-secondary: #e100d2;
+    --bgc-filler: rgb(114, 206, 134);
+    --text-color: #7085aa;
+  }
+  .user-dashboard {
+    display: flex;
+    align-items: center;
+    margin-block: 1rem;
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+  }
+  hr {
+    color: var(--text-color);
+    width: calc(100% - 2rem);
+    margin-block-start: 0;
+    margin-inline: auto;
+  }
+  .user-dashboard .bi {
+    color: whitesmoke;
+    background-color: var(--bgc-secondary);
+    width: 5rem;
+    height: 5rem;
+    aspect-ratio: 1;
+    border-radius: 1rem;
+    font-size: 5rem;
+  }
+  .user-dashboard .user-info {
+    display: flex;
+    flex-direction: column;
+    margin-inline-start: 1rem;
+  }
+  .user-info span {
+    color: whitesmoke;
+  }
+  .categories {
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+    margin-block-end: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .categories .btn {
+    background-color: var(--bgc-primary);
+    color: whitesmoke;
+    width: calc(50% - 0.5rem);
+    border-radius: 0.7rem;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .categories .btn .bi {
+    margin-inline-end: 0.5rem;
+  }
+  .categories .btn:hover,
+  .categories .btn:focus {
+    background-color: var(--bgc-secondary);
+  }
+  .buy-subscribtion{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+    background-color: var(--bgc-primary);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-block-end: 1rem;
+  }
+  .buy-subscribtion h2{
+    font-size: 0.9rem;
+    color: whitesmoke;
+  }
+  .buy-subscribtion p:first-of-type,.buy-subscribtion p:last-of-type{
+    font-size: 0.7rem;
+    color: var(--text-color);
+  }
+  .buy-subscribtion .subscribtion-card{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: whitesmoke;
+    border-radius: 1rem;
+    font-size: 0.7rem;
+    padding-inline: 1rem;
+    padding-block: 0.7rem;
+    margin-block-end: 0.7rem;
+  }
+  .subscribtion-card .price{
+    display: flex;
+    flex-direction: column;
+  }
+  .price .orginal-price{
+    position: relative;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  .subscribtion-card .subscribtion-type{
+    font-size: 0.8rem;
+    font-weight: bolder;
+  }
+  .price .orginal-price::after{
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 1px;
+    background-color: var(--bgc-secondary);
+    left: 0;    
+    bottom: 0.6rem;
+    transform: rotate(-15deg);
+  }
+  .subscribtion-card .btn{
+    background-color: var(--bgc-secondary);
+    font-size: 0.7rem;
+    border-radius: 0.7rem;
+    color: whitesmoke;
+  }
+  .limitaion{
+    padding-inline-start:2rem ;
+    padding-inline-end:1rem ;
+    color: whitesmoke;
+    font-size: 0.7rem;
+    line-height: 1.2rem;
+    margin-block-end: 1rem;
+  }
+  .message{
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+    background-color: var(--bgc-primary);
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-block-end: 1rem;
+  }
+  .message h4{
+    font-size: 0.9rem;
+    color: whitesmoke;
+  }
+  .message p{
+    font-size: 0.7rem;
+    color: var(--text-color);
+  }
+  @media (min-width: 992px) {
+    .user-dashboard-container {
+      width: calc(100% - 6rem);
+      margin-inline: auto;
+    }
+    .categories {
+      flex-direction: column;
+      width: 20%;
+      margin-block-start: 1rem;
+      margin-inline-start: 1rem;
+    }
+    .categories .btn {
+      width: 100%;
+    }
+    .big-padding{
+      padding-inline: 5rem;
+    }
+    .buy-subscribtion-container{
+      width: 40%;
+      margin-inline: auto;
+      margin-block-start: 1rem;
+    }
+  }
+  

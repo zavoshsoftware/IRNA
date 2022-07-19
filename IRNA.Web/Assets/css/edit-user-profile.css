@@ -1,0 +1,206 @@
+:root {
+  --bgc-primary: #151f30;
+  --bgc-primary-accent: #1c2c46;
+  --bgc-main: #131720;
+  --bgc-secondary: #e100d2;
+  --bgc-filler: rgb(114, 206, 134);
+  --text-color: #7085aa;
+}
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+.user-dashboard {
+  display: flex;
+  align-items: center;
+  margin-block: 1rem;
+  width: calc(100% - 2rem);
+  margin-inline: auto;
+}
+hr {
+  color: var(--text-color);
+  width: calc(100% - 2rem);
+  margin-block-start: 0;
+  margin-inline: auto;
+}
+.user-dashboard .bi {
+  color: whitesmoke;
+  background-color: var(--bgc-secondary);
+  width: 5rem;
+  height: 5rem;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  font-size: 5rem;
+}
+.user-dashboard .user-info {
+  display: flex;
+  flex-direction: column;
+  margin-inline-start: 1rem;
+}
+.user-info span {
+  color: whitesmoke;
+}
+.categories {
+  width: calc(100% - 2rem);
+  margin-inline: auto;
+  margin-block-end: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.categories .btn {
+  background-color: var(--bgc-primary);
+  color: whitesmoke;
+  width: calc(50% - 0.5rem);
+  border-radius: 0.7rem;
+  font-size: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.categories .btn .bi {
+  margin-inline-end: 0.5rem;
+}
+.categories .btn:hover,
+.categories .btn:focus {
+  background-color: var(--bgc-secondary);
+}
+.user-dashboard-container .filter {
+  margin-block-start: 2rem;
+  margin-block-end: 1rem;
+  display: flex;
+}
+.user-dashboard-container .filter .btn {
+  background-color: var(--bgc-main);
+}
+.user-dashboard-container .filter .btn:hover,
+.user-dashboard-container .filter .btn:focus {
+  background-color: var(--bgc-secondary);
+}
+.user-dashboard-container .filter .btn:first-of-type {
+  border-start-start-radius: 0.7rem;
+  border-end-start-radius: 0.7rem;
+}
+.user-dashboard-container .filter .btn:last-of-type {
+  border-start-end-radius: 0.7rem;
+  border-end-end-radius: 0.7rem;
+}
+.user-profile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 2rem);
+  margin-block-start: 2.5rem;
+  margin-inline: auto;
+  border-radius: 1rem;
+  background-color: var(--bgc-primary);
+  padding: 1rem;
+}
+.user-profile form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.user-profile .bi-person-fill {
+  position: relative;
+  font-size: 5rem;
+  width: 5rem;
+  height: 5rem;
+  margin-block-start: -2.5rem;
+  color: whitesmoke;
+  background-color: var(--bgc-primary-accent);
+  border-radius: 1rem;
+}
+.user-profile .edit-picture {
+  padding: 0.5rem;
+  margin-block-start: 1rem;
+  font-size: 0.7rem;
+  color: rgba(245, 245, 245, 0.5);
+  border: none;
+  background-color: transparent;
+}
+.user-profile .edit-picture:focus,
+.user-profile .edit-picture:hover {
+  color: whitesmoke;
+}
+.user-profile input[type="text"],
+.user-profile input[type="email"],
+.user-profile input[type="tel"],
+.user-profile input[type="date"],
+.user-profile select {
+  border: none;
+  border-block-end: 1px solid var(--text-color);
+  padding-block: 0.5rem;
+  padding-inline-start: 0.5rem;
+  padding-inline-end: unset;
+  direction: rtl;
+  background-color: transparent;
+  color: var(--text-color);
+  width: 100%;
+}
+.user-profile input[type="text"]::placeholder,
+.user-profile input[type="email"]::placeholder,
+.user-profile input[type="tel"]::placeholder,
+.user-profile input[type="date"]::placeholder {
+  color: var(--text-color);
+  text-align: start;
+  font-size: 0.7rem;
+}
+.user-profile select {
+  font-size: 0.7rem;
+  color: var(--text-color);
+}
+.user-profile select option {
+  background-color: var(--bgc-primary);
+  color: rgba(245, 245, 245, 0.5);
+}
+.user-profile select option:hover,.user-profile select option:focus,.user-profile select option {
+  background-color: var(--bgc-main);
+  color: whitesmoke;
+}
+.user-profile .btn {
+  background-color: var(--bgc-secondary);
+  color: whitesmoke;
+  font-size: 0.7rem;
+  border-radius: 0.7rem;
+  margin-block-start: 1rem;
+  width: 100%;
+}
+@media (min-width: 992px) {
+  .user-dashboard-container {
+    width: calc(100% - 6rem);
+    margin-inline: auto;
+  }
+  .categories {
+    flex-direction: column;
+    width: 20%;
+    margin-block-start: 1rem;
+  }
+  .categories .btn {
+    width: 100%;
+  }
+  .big-padding {
+    padding-inline: 5rem;
+  }
+  .user-profile {
+    flex-grow: 1;
+    margin-inline: 5rem;
+    margin-block-end: 2rem;
+    padding-block-end: 2.5rem;
+  }
+  .user-profile input[type="text"],
+  .user-profile input[type="email"],
+  .user-profile input[type="tel"],
+  .user-profile input[type="date"],
+  .user-profile select {
+    width: calc(50% - 0.5rem);
+    display: flex;
+  }
+  .user-profile .btn{
+      position: relative;
+      width: 20%;
+      margin-block-end: -3.5rem;
+  }
+}

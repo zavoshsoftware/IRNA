@@ -1,0 +1,70 @@
+:root {
+  --bgc-primary: #151f30;
+  --bgc-primary-accent: #1c2c46;
+  --bgc-main: #131720;
+  --bgc-secondary: #e100d2;
+  --bgc-acordian-body:#7085AA;
+  --bgc-filler: rgb(114, 206, 134);
+}
+
+.faq {
+  display: flex;
+  flex-direction: column;
+}
+.faq .title {
+  font-size: 1rem;
+  text-align: center;
+  color: whitesmoke;
+  margin-block-start: -5rem;
+  margin-block-end: 2rem;
+}
+
+.accordion {
+  width: calc(100% - 2rem);
+  margin-inline: auto;
+}
+.accordion-item{
+    background-color: transparent;
+    margin-block-end: 0.9rem;;
+}
+.accordion-button {
+  background-color: var(--bgc-primary);
+  color: whitesmoke;
+  border-radius:1rem ;
+}
+.accordion-button:not(.collapsed){
+  background-color: var(--bgc-primary);
+  color: whitesmoke;
+}
+.accordion-item:first-of-type .accordion-button,.accordion-item:last-of-type .accordion-button.collapsed{
+    border-radius:1rem ;
+}
+.accordion-button:hover,
+.accordion-button:focus {
+  background-color: var(--bgc-main);
+  color: whitesmoke;
+}
+.accordion-button::after{
+    background-color: var(--bgc-secondary);    
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='whitesmoke'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.accordion-button:not(.collapsed)::after{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='whitesmoke'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.accordion-body{
+    background-color: var(--bgc-acordian-body);
+    width: calc(100% - 1.5rem);
+    margin-inline: auto;
+    border-end-start-radius: 1rem;
+    border-end-end-radius: 1rem;
+}
+@media(min-width:992px){
+    .faq .title{
+        margin-block-start: -20rem;
+        margin-block-end: 5rem;
+    }
+    .accordion {
+        width: calc(70% - 2rem);        
+      }
+}

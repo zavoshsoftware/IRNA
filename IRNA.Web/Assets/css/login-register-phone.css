@@ -1,0 +1,61 @@
+:root {
+    --bgc-primary: #151f30;
+    --bgc-primary-accent: #1c2c46;
+    --bgc-main: #131720;
+    --bgc-secondary: #e100d2;
+    --bgc-filler: rgb(114, 206, 134);
+    --text-color:#7085AA;
+  }
+  .login-register{
+      width: calc((100% - 2rem));
+      margin-inline: auto;
+      padding: 3rem 1.5rem ;
+      background-color: var(--bgc-primary);
+      border-radius: 1rem;
+      margin-block: 2rem;
+  }
+  .login-register h2{
+      font-size: 1rem;
+      color: whitesmoke;
+      margin-block-end: 1rem;
+  }
+  .login-register p{
+      color: var(--text-color);
+      font-size: 0.7rem;
+      margin-block-end: 2rem;
+  }
+  .login-register .input-group{
+      margin-block-end: 1rem;
+  }
+  .login-register .btn{
+    background-color: var(--bgc-secondary);
+    color: whitesmoke;
+      border-radius: 0.7rem; 
+      width: 100%;   
+      margin-block-end: 2rem;  
+}
+.login-register h4{
+    color: whitesmoke;
+    font-size: 0.7rem;
+    text-align: center;
+}
+  .login-register .input-group > .form-select{
+      flex: 0.15 1 auto;
+  }
+  .login-register .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu), .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3){
+      border-start-start-radius: 0.7rem;
+      border-end-start-radius: 0.7rem;
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+  }
+  .login-register .input-group > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+    border-start-start-radius: 0rem;
+    border-end-start-radius: 0rem;
+    border-start-end-radius: 0.7rem;
+      border-end-end-radius: 0.7rem;
+  }
+  @media(min-width:992px){
+      .login-register{
+        width: 33%;
+      }
+  }

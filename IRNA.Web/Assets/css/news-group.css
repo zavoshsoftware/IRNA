@@ -1,0 +1,31 @@
+:root {
+  --bgc-primary: #151f30;
+  --bgc-primary-accent: #1c2c46;
+  --bgc-main: #131720;
+  --bgc-secondary: #e100d2;
+  --bgc-filler: rgb(114, 206, 134);
+}
+
+.news-group-title {
+  font-size: 0.7rem;
+  padding-inline-start: 1rem;
+  margin-block-end: 2rem;
+  color: whitesmoke;
+}
+.news-groups {
+  width: calc(100%-2rem);
+  padding-inline: 1rem;
+  margin-block-end: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.news-groups a {
+  text-align: center;
+  color: whitesmoke;
+  width: calc(50% - 0.25rem);
+  padding-block: 0.7rem;
+  background-color: var(--bgc-primary);
+  text-decoration: none;
+  font-size: 0.7rem;
+}

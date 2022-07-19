@@ -1,0 +1,40 @@
+:root {
+    --bgc-primary: #151f30;
+    --bgc-primary-accent: #1c2c46;
+    --bgc-main: #131720;
+    --bgc-secondary: #e100d2;
+    --bgc-filler: rgb(114, 206, 134);
+  }
+.privacy{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.privacy h3{
+    position: relative;
+    margin-block-start: -5rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: whitesmoke;
+}
+.privacy .content{
+    position: relative;
+    
+    width: 80%;
+    border-radius:0.7rem ;
+    background-color: var(--bgc-primary);
+    margin-inline: auto;
+    padding:1rem ;
+    color: whitesmoke;
+    font-size: 0.7rem;
+    line-height: 0.8rem;
+    text-align: justify;
+    line-height: 1.4rem;
+    
+}
+@media (min-width:992px){
+    .privacy h3{
+        margin-block-start: -12rem;
+        margin-block-end: 2rem;
+    }
+}

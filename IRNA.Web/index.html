@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="/assets/node_modules/bootstrap/dist/css/bootstrap.rtl.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/node_modules/bootstrap-icons/font/bootstrap-icons.css"
+    />
+    <!-- Bootstrap CSS -->
+    <!-- swiper css -->
+    <link rel="stylesheet" href="/assets/node_modules/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/views/home/index.css" />
+
+    <title>Irna Web Media Store</title>
+  </head>
+  <body>
+    <!-- navbar section -->
+    <nav class="topnav">
+      <div class="nav-group ms-2">
+        <span
+          id="menu-btn"
+          class="bi bi-list text-light h3 m-0 d-inline-flex d-lg-none align-items-center"
+        ></span>
+        <a class="logo text-light nav-link" href="/">
+          <img src="/assets/images/logo.png" class="logo-img me-2" alt="" />
+          <span>ایرنا فیلم</span>
+        </a>
+        <div class="dropdown d-none d-lg-inline-flex">
+          <button
+            class="btn text-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            فیلم
+          </button>
+          <div class="dropdown-menu" style="border-radius: 0 0 1rem 1rem">
+            <ul class="mega-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">فیلم اکشن</a></li>
+              <li><a class="dropdown-item" href="#">فیلم عاشقانه</a></li>
+              <li><a class="dropdown-item" href="#">فیلم مستند</a></li>
+              <li><a class="dropdown-item" href="#">فیلم انیمیشن</a></li>
+              <li><a class="dropdown-item" href="#">فیلم علمی تخیلی</a></li>
+              <li><a class="dropdown-item" href="#">تاکشو</a></li>
+              <li><a class="dropdown-item" href="#">کنسرت</a></li>
+              <li><a class="dropdown-item" href="#">تاریخی | مذهبی</a></li>
+              <li><a class="dropdown-item" href="#">فیلم کوتاه</a></li>
+              <li><a class="dropdown-item" href="#">فیلم ترسناک</a></li>
+              <li><a class="dropdown-item" href="#">فیلم خانوادگی</a></li>
+              <li><a class="dropdown-item" href="#">فیلم کمدی</a></li>
+              <li><a class="dropdown-item" href="#">فیلم تئاتر</a></li>
+              <li><a class="dropdown-item" href="#">فیلم ورزشی</a></li>
+              <li><a class="dropdown-item" href="#">فیلم آموزشی</a></li>
+              <li style="margin-inline-start: auto">
+                <a href="dropdown-item">
+                  <img
+                    class="mega-menu-img"
+                    src="/assets/images/filmingclip.png"
+                    alt=""
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown d-none d-lg-inline-flex">
+          <button
+            class="btn text-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            خبر
+          </button>
+          <div class="dropdown-menu" style="border-radius: 0 0 1rem 1rem">
+            <ul class="mega-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">اقتصادی</a></li>
+              <li><a class="dropdown-item" href="#">سیاسی</a></li>
+              <li><a class="dropdown-item" href="#">فرهنگی</a></li>
+              <li><a class="dropdown-item" href="#">ورزشی</a></li>
+              <li><a class="dropdown-item" href="#">اجتماعی</a></li>
+              <li><a class="dropdown-item" href="#">علمی</a></li>
+              <li><a class="dropdown-item" href="#">آموزشی</a></li>
+              <li><a class="dropdown-item" href="#">استان ها</a></li>
+              <li><a class="dropdown-item" href="#">جهان</a></li>
+              <li><a class="dropdown-item" href="#">پژوهش</a></li>
+              <li><a class="dropdown-item" href="#">زندگی</a></li>
+              <li><a class="dropdown-item" href="#">ایرنا پلاس</a></li>
+              <li><a class="dropdown-item" href="#">تصاویر برتر</a></li>
+              <li><a class="dropdown-item" href="#">مقالات برتر</a></li>
+
+              <li style="margin-inline-start: auto">
+                <a href="dropdown-item">
+                  <img
+                    class="mega-menu-img"
+                    src="/assets/images/reportermenu.png"
+                    alt=""
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="dropdown d-none d-lg-inline-flex">
+          <button
+            class="btn text-light dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            مجموعه ها
+          </button>
+          <div class="dropdown-menu" style="border-radius: 0 0 1rem 1rem">
+            <ul class="mega-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a class="dropdown-item" href="#">مخصوص ناشنوایان</a></li>
+              <li><a class="dropdown-item" href="#">مخصوص نابینایان</a></li>
+              <li><a class="dropdown-item" href="#">جشنواره فجر</a></li>
+              <li><a class="dropdown-item" href="#">خلاصه فوتبال</a></li>
+              <li><a class="dropdown-item" href="#">اسکار 2021</a></li>
+              <li><a class="dropdown-item" href="#">اسکار 2022</a></li>
+              <li><a class="dropdown-item" href="#">250 فیلم برنتر IMDB</a></li>
+              <li><a class="dropdown-item" href="#">پرفروش های ایران</a></li>
+              <li><a class="dropdown-item" href="#">پرفروش های 2020</a></li>
+              <li><a class="dropdown-item" href="#">همه لیست ها</a></li>
+              <li style="margin-inline-start: auto">
+                <a href="dropdown-item">
+                  <img
+                    class="mega-menu-img"
+                    src="/assets/images/musicmenu.png"
+                    alt=""
+                  />
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <span
+          class="quick-watch-d text-light py-3 py-lg-2 rounded-pill ms-2 d-none d-lg-inline-flex"
+        >
+          <span class="px-2">پخش فوری</span>
+          <span class="me-4 ms-2 circle"></span>
+        </span>
+      </div>
+      <div class="mobile-menu">
+        <a href="#" class="nav-link text-light ms-2"> فیلم و سریال </a>
+        <a href="#" class="nav-link text-light ms-2"> خبر </a>
+        <a href="#" class="nav-link text-light ms-2"> مجموعه ها </a>
+        <a href="#" class="nav-link text-light ms-2"> پخش فوری </a>
+      </div>
+      <div class="nav-group ms-auto">
+        <input
+          type="search"
+          placeholder="جستجو"
+          data-visible="false"
+          class="form-control d-none d-lg-block"
+          name=""
+          id="searchd"
+        />
+        <input
+          type="search"
+          placeholder="جستجو"
+          data-visible="false"
+          class="form-control"
+          name=""
+          id="searchm"
+          style="display: none"
+        />
+        <span id="search-btn" class="bi bi-search search-icon ms-2"></span>
+        <span class="buy-sub-con">
+          <a href="#" class="nav-link text-light ms-2" id="buy-sub" data-open="false">
+            خرید اشتراک            
+          </a>
+          <div class="buy-sub">
+            <h4>اشتراک دارید</h4>
+            <span>اینتـرنت شمــا بصـورت نیم بها محاسبه می شود </span>
+            <a href="#">75 روز مانـده </a>
+          </div>
+        </span>
+        <a href="#" class="nav-link text-light ms-2">ورود</a>
+        <a href="#" class="nav-link text-light ms-2">ثبت نام</a>
+        <button
+          class="btn rounded-pill text-light download-app ms-2 d-lg-none d-xl-flex"
+        >
+          دانلود اپلیکیشن
+        </button>
+      </div>
+    </nav>
+    <!-- navbar section end -->
+    <!-- main section -->
+    <main class="wraper py-3">
+      <!-- main slider -->
+      <div class="main-slider-container">
+        <div class="swiper main-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide fake-slide">
+              <img
+                src="/assets/images/hamrafigh.jpg"
+                class="d-none d-lg-block"
+                alt="hamrafigh"
+              />
+              <img
+                src="/assets/images/hamrafighm.jpg"
+                class="d-block d-lg-none img-m"
+                alt="hamrafigh"
+              />
+              <span
+                class="quick-watch text-light py-3 rounded-pill rounded-end"
+              >
+                <span class="px-2">پخش فوری</span>
+                <span class="me-4 ms-2 circle"></span>
+              </span>
+              <button
+                class="watch-video text-light btn rounded-pill position-absolute translate-middle"
+              >
+                پخش فیلم
+              </button>
+            </div>
+            <div class="swiper-slide fake-slide">
+              <img
+                src="/assets/images/hamrafigh.jpg"
+                class="d-none d-lg-block"
+                alt="hamrafigh"
+              />
+              <img
+                src="/assets/images/hamrafighm.jpg"
+                class="d-block d-lg-none img-m"
+                alt="hamrafigh"
+              />
+              <span
+                class="quick-watch text-light py-3 rounded-pill rounded-end"
+              >
+                <span class="px-2">پخش فوری</span>
+                <span class="me-4 ms-2 circle"></span>
+              </span>
+              <button
+                class="watch-video text-light btn rounded-pill position-absolute translate-middle"
+              >
+                پخش فیلم
+              </button>
+            </div>
+            <div class="swiper-slide fake-slide">
+              <img
+                src="/assets/images/hamrafigh.jpg"
+                class="d-none d-lg-block"
+                alt="hamrafigh"
+              />
+              <img
+                src="/assets/images/hamrafighm.jpg"
+                class="d-block d-lg-none img-m"
+                alt="hamrafigh"
+              />
+              <span
+                class="quick-watch text-light py-3 rounded-pill rounded-end"
+              >
+                <span class="px-2">پخش فوری</span>
+                <span class="me-4 ms-2 circle"></span>
+              </span>
+              <button
+                class="watch-video text-light btn rounded-pill position-absolute translate-middle"
+              >
+                پخش فیلم
+              </button>
+            </div>
+          </div>
+          <div class="swiper-button-next d-none d-lg-inline-flex"></div>
+          <div class="swiper-button-prev d-none d-lg-inline-flex"></div>
+          <div class="swiper-pagination d-lg-none"></div>
+        </div>
+      </div>
+      <!-- main slider -->
+      <!-- irna-24 slider -->
+      <div class="irna-24">
+        <div class="headshaprtl">
+          <h2 class="text-light h5 title">ایرنا 24</h2>
+        </div>
+        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        <!-- irna-24 slider -->
+        <div class="irna-24-slider-container">
+          <div class="swiper irna-24-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/reportermenu.png" alt="" />
+                  <span>گزارش خبری</span>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/goftogoo.jpg" alt="" />
+                  <span>گفت وگوی ویژه</span>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/repotaz.jpg" alt="" />
+                  <span>مصاحبه</span>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/chat.jpg" alt="" />
+                  <span>خبر</span>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/round-table.jpg" alt="" />
+                  <span>میز گرد</span>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/studio.jpg" alt="" />
+                  <span>استودیو</span>
+                </a>
+              </div>
+              <div class="swiper-slide">
+                <a href="" class="irna-24-slide-link nav-link text-light">
+                  <img src="/assets/images/document.jpg" alt="" />
+                  <span>مستند</span>
+                </a>
+              </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+          </div>
+        </div>
+      </div>
+      <!-- irna-24 slider -->
+      <!-- adds slider -->
+      <div class="adds-slider-container">
+        <div class="swiper adds-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="#" class="add-content text-light nav-link">تبلیغات 1</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="add-content text-light nav-link">تبلیغات 2</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="add-content text-light nav-link">تبلیغات 3</a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="add-content text-light nav-link">تبلیغات 4</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- adds slider -->
+      <!-- filter section -->
+      <div class="filter d-flex d-lg-none mb-3">
+        <button type="button" class="btn show-filter">
+          <span class="bi bi-funnel"></span>
+          فیلتر
+        </button>
+      </div>
+      <div id="filter" class="filter mt-lg-3">
+        <div class="btn-group d-none d-lg-flex">
+          <a href="#" class="btn text-light">همه</a>
+          <a href="#" class="btn text-light">فیلم</a>
+          <a href="#" class="btn text-light">سریال</a>
+        </div>
+        <div class="filter-items">
+          <select name="" id="" class="form-select">
+            <option selected value="">مرتب سازی</option>
+            <option value="">سال ساخت</option>
+            <option value="">محبوبیت</option>
+          </select>
+          <select name="" id="" class="form-select">
+            <option selected value="">فیلم و سریال</option>
+            <option value="">فیلم</option>
+            <option value="">سریال</option>
+          </select>
+          <select name="" id="" class="form-select">
+            <option selected value="">ژانر</option>
+            <option value="">رزمی</option>
+            <option value="">تاریخی</option>
+          </select>
+          <select name="" id="" class="form-select">
+            <option selected value="">سن</option>
+            <option value="">جوانان</option>
+            <option value="">بزرگش سالان</option>
+          </select>
+          <select name="" id="" class="form-select">
+            <option selected value="">کیفیت</option>
+            <option value="">خوب</option>
+            <option value="">عالی</option>
+          </select>
+          <select name="" id="" class="form-select">
+            <option selected value="">کیفیت</option>
+            <option value="">رزمی</option>
+            <option value="">تاریخی</option>
+          </select>
+        </div>
+        <button class="btn btn-filter text-light">
+          <span class="bi bi-funnel"></span>
+          <span>اعمال فیلتر</span>
+        </button>
+      </div>
+      <!-- filter section -->
+      <!-- latest movies slider -->
+      <div class="latest-movies-slider-container">
+        <div class="head">
+          <h2 class="h5 text-light m-0">جدیدترین ها</h2>
+
+          <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        </div>
+        <div class="swiper latest-movies-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="#" class="latest-movies-content text-light nav-link">
+                <img src="/assets/images/Muddy.jpg" alt="" />
+                <span>فیلم مادی</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="latest-movies-content text-light nav-link">
+                <img src="/assets/images/Tuck-Everlasting-2002-No.jpg" alt="" />
+                <span>فیلم تاک اور لستین</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="latest-movies-content text-light nav-link">
+                <img src="/assets/images/Munich-The-Edge-of-War.jpg" alt="" />
+                <span>فیلم مونیخ در اغاز جنگ</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- latest movies -->
+      <!-- events slider -->
+      <div class="events-slider-container">
+        <div class="head mb-2">
+          <h2 class="h5 text-light m-0">مناسبت ها</h2>
+
+          <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        </div>
+        <div class="swiper events-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="#" class="events-content text-light nav-link">
+                <img src="/assets/images/best-of-2021-Header.jpg" alt="" />
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="events-content text-light nav-link">
+                <img src="/assets/images/best-of-Action-2021-Header.jpg" alt="" />
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="events-content text-light nav-link">
+                <img src="/assets/images/best-of-Marvel-2021-Header.jpg" alt="" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- events movies -->
+      <!-- special section -->
+      <div class="special-container mt-lg-4">
+        <div class="special-content">
+          <img src="/assets/images/siavash.png" alt="sivash" />
+          <a href="#" class="btn btn-preview text-light">پیش نمایش</a>
+          <a href="#" class="btn btn-episodes text-light">قسمت ها</a>
+        </div>
+      </div>
+      <!-- special section -->
+      <!-- oskar movies slider -->
+      <div class="oskar-movies-slider-container">
+        <div class="head">
+          <h2 class="h5 text-light m-0">اسکار 2021</h2>
+
+          <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        </div>
+        <div class="swiper oskar-movies-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a href="#" class="oskar-movies-content text-light nav-link">
+                <img src="/assets/images/Muddy.jpg" alt="" />
+                <span>فیلم مادی</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="oskar-movies-content text-light nav-link">
+                <img src="/assets/images/Tuck-Everlasting-2002-No.jpg" alt="" />
+                <span>فیلم تاک اور لستین</span>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="#" class="oskar-movies-content text-light nav-link">
+                <img src="/assets/images/Munich-The-Edge-of-War.jpg" alt="" />
+                <span>فیلم مونیخ در اغاز جنگ</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- oskar latest movies -->
+    </main>
+    <!-- footer section -->
+    <footer>
+      <div class="head">
+        <span class="d-none d-lg-inline-flex text-light small"
+          >ما را در شبکه های اجتماعی دنبال کنید
+        </span>
+        <a href="#"><span class="bi bi-twitter"></span></a>
+        <a href="#"><span class="bi bi-linkedin"></span></a>
+        <a href="#"><span class="bi bi-telegram"></span></a>
+        <a href="#"><span class="bi bi-instagram"></span></a>
+      </div>
+      <div class="shapheadltr"><h3 class="text-light h5">IRAN FILM</h3></div>
+      <div class="footer-title">
+        <div class="content">
+          <p class="small text-light">پنجره ای به دنیایی فیلم و سریال</p>
+        </div>
+        <a href="#">
+          <img src="/assets/images/logo.png" alt="logo" class="logo" />
+        </a>
+      </div>
+      <div class="footer">
+        <div class="news-leter">
+          <label for="email" class="text-light mb-3 mb-lg-0"
+            >عضویت در خبر نامه ایرنا فیلم
+          </label>
+          <div class="input-group">
+            <input
+              id="email"
+              type="text"
+              class="form-control"
+              placeholder="ایمیل خود را وارد نمایید"
+            />
+            <button class="btn text-light input-group-text">ارسال</button>
+          </div>
+        </div>
+        <div class="usefull-links">
+          <div class="links">
+            <a href="" class="nav-link text-light">درباره ما</a>
+            <a href="" class="nav-link text-light">فیلم</a>
+            <a href="" class="nav-link text-light">مجموعه ها</a>
+            <a href="" class="nav-link text-light">تماس با ما</a>
+            <a href="" class="nav-link text-light">سریال</a>
+            <a href="" class="nav-link text-light">سوالات متداول</a>
+          </div>
+          <button class="btn rounded-pill text-light">دانلود اپلیکیشن</button>
+        </div>
+        <div class="copy-rights text-light">
+          کلیه حقوق این وب سایت متعلق به خبرگزاری جمهوری اسلامی می باشد
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap js -->
+    <script src="/assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <!-- swiper js -->
+    <script src="/assets/node_modules/swiper/swiper-bundle.js"></script>
+    <!-- jquey -->
+    <script src="/assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- main js -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
