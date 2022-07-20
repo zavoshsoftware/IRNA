@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Irna film | @ViewBag.Title</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/Assets/node_modules/bootstrap/dist/css/bootstrap.rtl.css" />
+    <link rel="stylesheet" href="~/Assets/node_modules/bootstrap-icons/font/bootstrap-icons.css" />
+    <!-- Bootstrap CSS -->
+    <!-- swiper css -->
+    <link rel="stylesheet" href="~/Assets/node_modules/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="~/Assets/css/main.css" />
+    @*<link rel="stylesheet" href="./css/views/home/index.css" />*@
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <!-- navbar section -->
+    @Html.Partial("_TopNav")
+    <!-- navbar section end -->
+
+    <!-- main section -->
+    @RenderBody()
+
+    <!-- footer section -->
+    @Html.Partial("_Footer")
+
+    <!-- Bootstrap js --> 
+    <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- swiper js --> 
+    <script src="~/Assets/node_modules/swiper/swiper-bundle.js"></script>
+    <!-- jquey --> 
+    <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- main js -->
+    <script src="~/Assets/js/main.js"></script>
+    @RenderSection("Scripts",false)
+</body>
+</html>

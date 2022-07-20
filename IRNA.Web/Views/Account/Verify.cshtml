@@ -1,0 +1,43 @@
+﻿@model IRNA.Web.ViewModels.VerifyVM
+@{
+    ViewBag.Title = "Verify";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var phone = $"{Model.Login.CityCode.Remove(0, 1)}{Model.Login.Phone.Remove(0, 1)}";
+}
+@section Styles {
+    <link href="@Url.Content("~/Assets/css/login-verify.css")" rel="stylesheet" type="text/css" />
+
+}
+
+<main class="wraper pb-3">
+    <div class="login-verify">
+        @if (TempData["Verify"]!=null)
+        {
+        <p>@TempData["Verify"]</p>
+        <hr />
+        }
+        <form action="/VerifyAuth" method="post">
+            <h2>کد ارسال شده به شماره زیر را وارد کنید</h2>
+            <p>
+                <span dir="ltr">@Model.Login.Phone</span>
+                <a href="/Login">
+                    <span class="bi bi-pencil-square"></span>
+                    اصلاح شماره
+                </a>
+            </p>
+
+            <input type="password" class="form-control" id="confirm" name="confirm" placeholder="- - - - -">
+            @Html.Hidden("mobile", phone)
+            <button type="submit" class="btn">تایید</button>
+            <p>
+                <span id="time" style="margin-inline-end: 0.7rem;">3:00</span>
+                <span class="vr"></span>
+                <a style="margin-inline-start: 0.7rem;" href="#">ارسال مجدد</a>
+            </p>
+        </form>
+    </div>
+</main>
+
+@section Scripts{
+    <script src="~/Assets/js/verify.js"></script>
+    }

@@ -39,7 +39,7 @@ button {
 }
 /*top navigation menu section*/
 .topnav {
-  position: relative;
+  /*position: relative;*/
   display: flex;
   align-items: center;
   height: 60px;

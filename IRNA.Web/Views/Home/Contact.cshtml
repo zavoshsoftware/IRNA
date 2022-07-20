@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/Assets/css/contact.css")" rel="stylesheet" type="text/css" />
+}
+
+<main class="wraper pb-3">
+    <img src="~/Assets/images/contact.jpg" alt="about" class="d-lg-inline-block d-none" />
+    <div class="contact">
+        <img src="~/Assets/images/contact.jpg" alt="about" class="d-lg-none d-inline-block" />
+
+        <h3>تماس با ما</h3>
+        <div class="content">
+            <div class="info-container">
+                <span>
+                    هفت روز هفته، ۲۴ ساعت شبانه روز پاسخگوی شما هستیم
+                </span>
+                <div class="info">
+                    <span>ایمیل: support@irna.ir</span>
+                    <span>تلفن تماس: <span dir="ltr">021-1547474</span></span>
+                </div>
+            </div>
+
+            <div class="link-faq d-none d-lg-flex">
+                <a href="#" class="btn">سوالات متداول</a>
+                <p>اگر پاسخ سوال خود را پیدا نکردید, ما کنارتان هستیم</p>
+            </div>
+        </div>
+        <div class="link-faq d-flex d-lg-none">
+            <a href="#" class="btn">سوالات متداول</a>
+            <p>اگر پاسخ سوال خود را پیدا نکردید, ما کنارتان هستیم</p>
+        </div>
+        <div class="form">
+            <select name="relatedunit" id="relatedunit" class="form-select">
+                <option value="0" selected>واحد مربوطه</option>
+                <option value="1">پشتیبانی فنی</option>
+                <option value="2">رسیدگی به شکایات</option>
+                <option value="3">پیشنهادات</option>
+            </select>
+            <input type="text"
+                   dir="rtl"
+                   name="email"
+                   id="email"
+                   placeholder="ایمیل"
+                   class="form-control" />
+            <input type="text"
+                   name="mobile"
+                   id="mobile"
+                   placeholder="موبایل"
+                   class="form-control" />
+            <input type="text"
+                   name="title"
+                   id="title"
+                   placeholder="عنوان"
+                   class="form-control" />
+            <textarea name="message"
+                      id="message"
+                      rows="6"
+                      placeholder="متن پیام"
+                      class="form-control"></textarea>
+            <button class="btn rounded-pill my-3">ارسال</button>
+        </div>
+    </div>
+</main>

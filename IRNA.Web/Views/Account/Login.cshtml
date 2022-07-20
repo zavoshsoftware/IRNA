@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/Assets/css/login-register-phone.css")" rel="stylesheet" type="text/css" /> 
+}
+<main class="wraper pb-3">
+    <div class="login-register">
+        <form action="/Verify" method="post">
+            <h2>ورود و ثبت نام با شماره تلفن همراه</h2>
+            @if (TempData["verify"] != null)
+            {
+                <hr />
+                <p> @TempData["Verify"]</p>
+                <hr />
+            }
+            <p>لطفا کشور خود را انتخاب و شماره تلفن همراه خود را وارد کنید</p>
+            <div class="input-group" dir="ltr">
+
+                <select name="citycode" id="citycode" class="form-select">
+                    <option value="+98" selected>+98</option>
+                </select>
+                <input type="text" class="form-control" id="phone" name="phone" aria-label="Text input with dropdown button"
+                       placeholder="09*********" />
+                <input id="resend" disabled hidden />
+            </div>
+            <button type="submit" class="btn">ورود / ثبت نام</button>
+            <h4>به ایرنا فیلم خوش آمدید</h4>
+        </form>
+    </div>
+</main>
+
+<script>
+    var verifyKey = localStorage.getItem("verify_key"); 
+    if (verifyKey != null) {
+        document.getElementById("resend").value = verifyKey;
+    }
+</script>
+

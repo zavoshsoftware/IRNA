@@ -1,0 +1,53 @@
+﻿
+<nav class="topnav">
+    <div class="nav-group ms-2">
+        <span id="menu-btn"
+              class="bi bi-list text-light h3 m-0 d-inline-flex d-lg-none align-items-center"></span>
+        <a class="logo text-light nav-link" href="/">
+            <img src="~/Assets/images/logo.png" class="logo-img me-2" alt="" />
+            <span>ایرنا فیلم</span>
+        </a>
+       @Html.Action("Menu","Home")
+        <span class="quick-watch-d text-light py-3 py-lg-2 rounded-pill ms-2 d-none d-lg-inline-flex">
+            <span class="px-2">پخش فوری</span>
+            <span class="me-4 ms-2 circle"></span>
+        </span>
+    </div>
+    <div class="mobile-menu">
+        <a href="#" class="nav-link text-light ms-2"> فیلم و سریال </a>
+        <a href="#" class="nav-link text-light ms-2"> خبر </a>
+        <a href="#" class="nav-link text-light ms-2"> مجموعه ها </a>
+        <a href="#" class="nav-link text-light ms-2"> پخش فوری </a>
+    </div>
+    <div class="nav-group ms-auto">
+        <input type="search"
+               placeholder="جستجو"
+               data-visible="false"
+               class="form-control d-none d-lg-block"
+               name=""
+               id="searchd" />
+        <input type="search"
+               placeholder="جستجو"
+               data-visible="false"
+               class="form-control"
+               name=""
+               id="searchm"
+               style="display: none" />
+        <span id="search-btn" class="bi bi-search search-icon ms-2"></span>
+        <span class="buy-sub-con">
+            <a href="#" class="nav-link text-light ms-2" id="buy-sub" data-open="false">
+                خرید اشتراک
+            </a>
+            <div class="buy-sub">
+                <h4>اشتراک دارید</h4>
+                <span>اینتـرنت شمــا بصـورت نیم بها محاسبه می شود </span>
+                <a href="#">75 روز مانـده </a>
+            </div>
+        </span>
+        <a href="#" class="nav-link text-light ms-2">ورود</a>
+        <a href="#" class="nav-link text-light ms-2">ثبت نام</a>
+        <button class="btn rounded-pill text-light download-app ms-2 d-lg-none d-xl-flex">
+            دانلود اپلیکیشن
+        </button>
+    </div>
+</nav>

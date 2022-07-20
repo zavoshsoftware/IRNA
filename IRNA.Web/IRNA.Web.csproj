@@ -46,6 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -160,6 +166,7 @@
     <Content Include="Assets\images\Tuck-Everlasting-2002-No.jpg" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\movie-detail.js" />
+    <Content Include="Assets\js\verify.js" />
     <Content Include="Assets\node_modules\%40popperjs\core\dist\cjs\enums.js" />
     <Content Include="Assets\node_modules\%40popperjs\core\dist\cjs\popper-base.js" />
     <Content Include="Assets\node_modules\%40popperjs\core\dist\cjs\popper-lite.js" />
@@ -2186,10 +2193,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Helper.cs" />
+    <Compile Include="Services\Interfaces\IService.cs" />
+    <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\Setting.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\ApiViewModel.cs" />
+    <Compile Include="ViewModels\ContentViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2541,6 +2557,20 @@
     <Content Include="Assets\node_modules\swiper\swiper.less" />
     <Content Include="Assets\node_modules\swiper\swiper.scss" />
     <None Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_TopNav.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Home\LatestContents.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Faq.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Verify.cshtml" />
+    <Content Include="Views\Home\Menu.cshtml" />
+    <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Views\Shared\_Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2550,88 +2580,18 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\index.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\createPopper.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\contains.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getBoundingClientRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getClippingRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getCompositeRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getComputedStyle.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getDocumentElement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getDocumentRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getHTMLElementScroll.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getLayoutRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getNodeName.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getNodeScroll.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getOffsetParent.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getParentNode.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getScrollParent.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getViewportRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getWindow.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getWindowScroll.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\getWindowScrollBarX.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\instanceOf.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\isScrollParent.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\isTableElement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\dom-utils\listScrollParents.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\enums.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\index.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\applyStyles.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\arrow.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\computeStyles.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\eventListeners.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\flip.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\hide.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\index.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\offset.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\popperOffsets.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\modifiers\preventOverflow.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\popper-base.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\popper-lite.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\popper.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\types.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\computeAutoPlacement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\computeOffsets.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\debounce.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\detectOverflow.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\expandToHashMap.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\format.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getAltAxis.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getAltLen.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getBasePlacement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getFreshSideObject.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getMainAxisFromPlacement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getOppositePlacement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getOppositeVariationPlacement.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\getVariation.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\math.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\mergeByName.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\mergePaddingObject.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\orderModifiers.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\rectToClientRect.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\uniqueBy.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\validateModifiers.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\%40popperjs\core\lib\utils\within.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\dom7\dom7.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\ssr-window\types\document.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\ssr-window\types\extend.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\ssr-window\types\ssr-window.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\ssr-window\types\window.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\public-api.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\swiper-slide.directive.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\swiper.component.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\swiper.module.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\utils\get-params.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\utils\params-list.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\angular\angular\src\utils\utils.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\angular\swiper-angular.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\angular\swiper_angular.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\react\swiper-react.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\svelte\swiper-svelte.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\swiper.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\types\index.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\types\modules\a11y.d.ts" />
@@ -2663,7 +2623,6 @@
     <TypeScriptCompile Include="Assets\node_modules\swiper\types\swiper-class.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\types\swiper-events.d.ts" />
     <TypeScriptCompile Include="Assets\node_modules\swiper\types\swiper-options.d.ts" />
-    <TypeScriptCompile Include="Assets\node_modules\swiper\vue\swiper-vue.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
