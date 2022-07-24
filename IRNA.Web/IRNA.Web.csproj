@@ -164,6 +164,7 @@
     <Content Include="Assets\images\square.svg" />
     <Content Include="Assets\images\studio.jpg" />
     <Content Include="Assets\images\Tuck-Everlasting-2002-No.jpg" />
+    <Content Include="Assets\images\wp2646303.png" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\movie-detail.js" />
     <Content Include="Assets\js\verify.js" />
@@ -2194,6 +2195,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2571,6 +2573,16 @@
     <Content Include="Views\Home\Menu.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Views\Shared\_Profile.cshtml" />
+    <Content Include="Views\Content\Last.cshtml" />
+    <Content Include="Views\Home\PopularContents.cshtml" />
+    <Content Include="Views\Home\MostVisitedContents.cshtml" />
+    <Content Include="Views\Content\Details.cshtml" />
+    <Content Include="Views\Content\Comments.cshtml" />
+    <Content Include="Views\Home\RandomContents.cshtml" />
+    <Content Include="Views\Home\SuggestedContents.cshtml" />
+    <Content Include="Views\Home\AdsContents.cshtml" />
+    <Content Include="Views\Home\EventsContents.cshtml" />
+    <Content Include="Views\Home\Slider.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

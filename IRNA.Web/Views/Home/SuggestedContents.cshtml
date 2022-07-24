@@ -1,0 +1,26 @@
+﻿@model IRNA.Web.ViewModels.ContentResponseVM
+
+@if (Model.list.Any() && Model.list != null)
+{
+    <div class="suggested-movies-slider-container">
+        <div class="head">
+            <h2 class="h5 text-light m-0">فیلم های پیشنهادی</h2>
+
+            <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        </div>
+        <div class="swiper suggested-movies-slider">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.list)
+                {
+                    <div class="swiper-slide">
+                        <a href="#" class="suggested-movies-content text-light nav-link">
+                            <img src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code=300x400&position=0")" alt="" />
+                            <span>@item.title</span>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

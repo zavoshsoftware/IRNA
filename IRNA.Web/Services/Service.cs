@@ -2,7 +2,9 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -44,8 +46,10 @@ namespace IRNA.Web.Services
         }
 
 
+         
+
+
         public bool IsMobileDevice( string userAgent) => mobileDevices.Any(x => userAgent.ToLower().Contains(x));
-
-
+         
     }
 }

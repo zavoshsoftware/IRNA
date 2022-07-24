@@ -1,0 +1,18 @@
+﻿
+@model IRNA.Web.ViewModels.ContentResponseVM
+<div class="adds-slider-container">
+    <div class="swiper adds-slider">
+        <div class="swiper-wrapper">
+            @foreach (var item in Model.list)
+            {
+                <div class="swiper-slide ads-img">
+                    <a href="#" >
+                        <img class="add-content" src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code=300x400&position=0")" alt="@item.title" />
+                     
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>

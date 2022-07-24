@@ -15,7 +15,7 @@ namespace IRNA.Web.Controllers
         private readonly IService _accountService;
         public AccountController()
         {
-            _accountService = new IRNA.Web.Services.Service();
+            _accountService = new Service();
         }
         // GET: Account
         public ActionResult Index()
@@ -113,8 +113,7 @@ namespace IRNA.Web.Controllers
             {
                 var token = cookie.Value;
                 var url = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/profiles/getProfile?token={token}";
-                var res = _accountService.GetApiResponse<VerifySmsCodeVM>(url).GetAwaiter().GetResult();
-                ;
+                var res = _accountService.GetApiResponse<VerifySmsCodeVM>(url).GetAwaiter().GetResult(); 
             }
             return View();
         }

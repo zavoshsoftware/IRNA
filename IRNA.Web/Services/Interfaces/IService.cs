@@ -13,5 +13,7 @@ namespace IRNA.Web.Services.Interfaces
          //Task<T> GetApiResponse2<T>(string url);
 
           bool IsMobileDevice(string userAgent);
+
+       
     }
 }

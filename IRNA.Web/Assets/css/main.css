@@ -1020,3 +1020,29 @@ footer .copy-rights {
   }
   /*end media query*/
 }
+
+
+.ads-img {
+    height: 100%;
+    position: relative;
+}
+
+    .ads-img img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .ads-img:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0; 
+    }
+    .ads-img:hover { 
+        background-image: linear-gradient(to right, #002f4b, #131720);
+        opacity: .6;
+    }

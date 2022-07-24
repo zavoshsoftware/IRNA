@@ -6,140 +6,13 @@
 
 <main class="wraper py-3">
     <!-- main slider -->
-    <div class="main-slider-container">
-        <div class="swiper main-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide fake-slide">
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-none d-lg-block"
-                         alt="hamrafigh" />
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-block d-lg-none img-m"
-                         alt="hamrafigh" />
-                    <span class="quick-watch text-light py-3 rounded-pill rounded-end">
-                        <span class="px-2">پخش فوری</span>
-                        <span class="me-4 ms-2 circle"></span>
-                    </span>
-                    <button class="watch-video text-light btn rounded-pill position-absolute translate-middle">
-                        پخش فیلم
-                    </button>
-                </div>
-                <div class="swiper-slide fake-slide">
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-none d-lg-block"
-                         alt="hamrafigh" />
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-block d-lg-none img-m"
-                         alt="hamrafigh" />
-                    <span class="quick-watch text-light py-3 rounded-pill rounded-end">
-                        <span class="px-2">پخش فوری</span>
-                        <span class="me-4 ms-2 circle"></span>
-                    </span>
-                    <button class="watch-video text-light btn rounded-pill position-absolute translate-middle">
-                        پخش فیلم
-                    </button>
-                </div>
-                <div class="swiper-slide fake-slide">
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-none d-lg-block"
-                         alt="hamrafigh" />
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-block d-lg-none img-m"
-                         alt="hamrafigh" />
-                    <span class="quick-watch text-light py-3 rounded-pill rounded-end">
-                        <span class="px-2">پخش فوری</span>
-                        <span class="me-4 ms-2 circle"></span>
-                    </span>
-                    <button class="watch-video text-light btn rounded-pill position-absolute translate-middle">
-                        پخش فیلم
-                    </button>
-                </div>
-            </div>
-            <div class="swiper-button-next d-none d-lg-inline-flex"></div>
-            <div class="swiper-button-prev d-none d-lg-inline-flex"></div>
-            <div class="swiper-pagination d-lg-none"></div>
-        </div>
-    </div>
+
     <!-- main slider -->
     <!-- irna-24 slider -->
-    <div class="irna-24">
-        <div class="headshaprtl">
-            <h2 class="text-light h5 title">ایرنا 24</h2>
-        </div>
-        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
-        <!-- irna-24 slider -->
-        <div class="irna-24-slider-container">
-            <div class="swiper irna-24-slider">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/reportermenu.png" alt="" />
-                            <span>گزارش خبری</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/goftogoo.jpg" alt="" />
-                            <span>گفت وگوی ویژه</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/repotaz.jpg" alt="" />
-                            <span>مصاحبه</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/chat.jpg" alt="" />
-                            <span>خبر</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/round-table.jpg" alt="" />
-                            <span>میز گرد</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/studio.jpg" alt="" />
-                            <span>استودیو</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="irna-24-slide-link nav-link text-light">
-                            <img src="./images/document.jpg" alt="" />
-                            <span>مستند</span>
-                        </a>
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-        </div>
-    </div>
+    @Html.Action("RandomContents")
     <!-- irna-24 slider -->
     <!-- adds slider -->
-    <div class="adds-slider-container">
-        <div class="swiper adds-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#" class="add-content text-light nav-link">تبلیغات 1</a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="add-content text-light nav-link">تبلیغات 2</a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="add-content text-light nav-link">تبلیغات 3</a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="add-content text-light nav-link">تبلیغات 4</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Action("AdsContents")
     <!-- adds slider -->
     <!-- filter section -->
     <div class="filter d-flex d-lg-none mb-3">
@@ -192,39 +65,15 @@
         </button>
     </div>
     <!-- filter section -->
+    
     <!-- latest movies slider -->
-
     @Html.Action("LatestContents")
-
     <!-- latest movies -->
+    
     <!-- events slider -->
-    <div class="events-slider-container">
-        <div class="head mb-2">
-            <h2 class="h5 text-light m-0">مناسبت ها</h2>
-
-            <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
-        </div>
-        <div class="swiper events-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="#" class="events-content text-light nav-link">
-                        <img src="./images/best-of-2021-Header.jpg" alt="" />
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="events-content text-light nav-link">
-                        <img src="./images/best-of-Action-2021-Header.jpg" alt="" />
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="events-content text-light nav-link">
-                        <img src="./images/best-of-Marvel-2021-Header.jpg" alt="" />
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+     @Html.Action("EventsContents")
     <!-- events movies -->
+
     <!-- special section -->
     <div class="special-container mt-lg-4">
         <div class="special-content">

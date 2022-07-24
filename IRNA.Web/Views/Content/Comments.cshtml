@@ -1,0 +1,33 @@
+﻿@model IRNA.Web.ViewModels.CommentListVM
+@using IRNA.Web.Services
+<div class="comments-cards">
+    @foreach (var item in Model.list)
+    {
+        
+        var date = (new DateTime(1970, 1, 1)).AddSeconds(Model.sendTime);
+        <div class="comment-card">
+            <span class="bi bi-person-fill"></span>
+            <div class="comment-section">
+                <span class="info">
+                    <span>@item.name</span>
+                    <span class="vr"></span>
+                    <span>@date.ToShamsi()</span>
+                    <span class="vr"></span>
+                    <span>ساعت @date.ToShamsi('h')</span>
+                </span>
+                <span class="comment">@item.body</span>
+            </div>
+            <div class="buttons">
+                @Model.sendTime
+                <button class="btn rounded-circle">
+                    <span class="bi bi-hand-thumbs-up"></span>
+                </button>
+                <span>@item.numberOfLikes</span>
+                <button class="btn rounded-circle">
+                    <span class="bi bi-hand-thumbs-down"></span>
+                </button>
+                <span>@item.numberOfDislikes</span>
+            </div>
+        </div>
+    }
+</div>

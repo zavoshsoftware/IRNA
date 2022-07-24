@@ -1,0 +1,22 @@
+﻿
+@model IRNA.Web.ViewModels.ContentResponseVM
+<div class="events-slider-container">
+    <div class="head mb-2">
+        <h2 class="h5 text-light m-0">مناسبت ها</h2>
+
+        @*<a href="#" class="nav-link text-light view-all">مشاهده همه</a>*@
+    </div>
+    <div class="swiper events-slider">
+        <div class="swiper-wrapper">
+            @foreach (var item in Model.list)
+            {
+                <div class="swiper-slide">
+                    <a href="#" class="events-content text-light nav-link">
+                        <img src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code=300x400&position=0")" alt="" />
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
