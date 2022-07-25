@@ -5,8 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 
-namespace IRNA.Web.Services
-{
+ 
     public static class Settings
     {
 
@@ -37,6 +36,48 @@ namespace IRNA.Web.Services
             irnaookies.Expires = DateTime.Now.AddDays(days);
             return irnaookies;
         }
-    }
 
-}
+    /// <summary>
+    /// کد تصویر اسلایدر صفحه اصلی 
+    /// </summary>
+    public static string IndexSliderCode
+    {
+        get
+        {
+            return "slider";
+        }
+    } 
+    
+    /// <summary>
+    /// کد تصویر اسلایدر صفحه اصلی 
+    /// </summary>
+    public static string IndexSliderCode2
+    {
+        get
+        {
+            return "mslider";
+        }
+    } 
+
+    /// <summary>
+    /// کد تصویر بنر اصلی صفحه جزئیات یک محتوا
+    /// </summary>
+    public static string ContentDetailsBannerCode
+        {
+            get
+            {
+                return "banner";
+            }
+        }
+
+        /// <summary>
+        /// کد تصویر گالری صفحه جزئیات یک محتوا
+        /// </summary>
+        public static string ContentDetailsGalleryCode
+        {
+            get
+            {
+                return "300x400";
+            }
+        }
+    } 

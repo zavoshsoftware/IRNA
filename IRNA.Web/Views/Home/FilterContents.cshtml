@@ -1,0 +1,75 @@
+﻿@model IRNA.Web.ViewModels.RootFilterVM
+@{
+    string qGenre = Request.QueryString["genre"] == null ? "" : Request.QueryString["genre"].Trim();
+    string qAge = Request.QueryString["age"] == null ? "" : Request.QueryString["age"].Trim();
+}
+<div class="filter d-flex d-lg-none mb-3">
+    <button type="button" class="btn show-filter">
+        <span class="bi bi-funnel"></span>
+        فیلتر
+    </button>
+</div>
+<script>
+
+</script>
+<div id="filter" class="filter mt-lg-3">
+    <form action="/List" method="get">
+        <div class="btn-group d-none d-lg-flex">
+            <a href="#" class="btn text-light">همه</a>
+            <a href="#" class="btn text-light">فیلم</a>
+            <a href="#" class="btn text-light">سریال</a>
+        </div>
+        <div class="filter-items">
+
+            <select name="" id="" class="form-select">
+                <option selected value="">مرتب سازی</option>
+                <option value="">سال ساخت</option>
+                <option value="">محبوبیت</option>
+            </select>
+            @*<select name="" id="" class="form-select">
+                    <option selected value="">فیلم و سریال</option>
+                    <option value="">فیلم</option>
+                    <option value="">سریال</option>
+                </select>*@
+            <select name="genre" id="genre" class="form-select">
+                <option selected value="0">ژانر</option>
+                @foreach (var item in Model.more.genres.list)
+                {
+                    <option value="@item.id">@item.title</option>
+                }
+            </select>
+            <select name="age" id="age" class="form-select">
+                <option selected value="0">سن</option>
+                @foreach (var item in Model.more.ageGroups)
+                {
+                    <option value="@item.id">@item.text</option>
+                }
+            </select>
+            <select name="" id="" class="form-select">
+                <option selected value="">کیفیت</option>
+                @foreach (var item in Model.more.qualityTypes)
+                {
+                    <option value="@item.id">@item.text</option>
+                }
+            </select>
+            <select name="" id="" class="form-select">
+                <option selected value="">کشور</option>
+                @foreach (var item in Model.more.countries)
+                {
+                    <option value="@item.id">@item.text</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-filter text-light">
+            <span class="bi bi-funnel"></span>
+            <span>اعمال فیلتر</span>
+        </button>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+     
+    </script>
+}
+

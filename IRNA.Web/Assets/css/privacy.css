@@ -8,7 +8,7 @@
 .privacy{
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
 }
 .privacy h3{
     position: relative;

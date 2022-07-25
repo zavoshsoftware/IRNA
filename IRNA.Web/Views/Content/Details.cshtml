@@ -1,6 +1,6 @@
 ﻿@model IRNA.Web.ViewModels.RootContentDetailsVM
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.vodResult.defaultTitle;
 }
  
 @section Styles {
@@ -15,8 +15,8 @@
              alt="khejalat nakesh" />*@
         <div class="bg-img " style="direction:ltr">
             <img class="d-none d-lg-inline-block main-img-d"
-                 src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={Model.vodResult.id}&code=2&position=0")"
+                 src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")"
              />
             @*<img class="d-none d-lg-inline-block main-img-d"
                  src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
@@ -73,7 +73,7 @@
     </div>
     <!-- movie intro -->
     <!-- images and detail of movie -->
-    <!--<div class="movie-images">
+    <div class="movie-images">
         <div class="headshaprtl">
             <h2 class="text-light h5 title">
                 <span>تصاویر و جزئیات فیلم</span>
@@ -87,36 +87,28 @@
                 </span>
             </h2>
         </div>
-        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>-->
-        <!-- movie-images slider -->
-        <!--<div class="movie-images-slider-container">
+        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        @Model.vodResult.gallery.types.FirstOrDefault(t => t.code == Settings.ContentDetailsGalleryCode).numberOfFiles
+        <div class="movie-images-slider-container">
             <div class="swiper movie-images-slider">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <a href="" class="movie-images-slide-link nav-link text-light">
-                            <img src="~/Assets/images/reportermenu.png" alt="" />
-                            <span>گزارش خبری</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="movie-images-slide-link nav-link text-light">
-                            <img src="~/Assets/images/goftogoo.jpg" alt="" />
-                            <span>گفت وگوی ویژه</span>
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="" class="movie-images-slide-link nav-link text-light">
-                            <img src="~/Assets/images/repotaz.jpg" alt="" />
-                            <span>مصاحبه</span>
-                        </a>
-                    </div> 
+                    @for (int i = 0; i < Model.vodResult.gallery.types.FirstOrDefault(t => t.code == Settings.ContentDetailsGalleryCode).numberOfFiles; i++)
+                    {
+                        <div class="swiper-slide">
+                            <a href="" class="movie-images-slide-link nav-link text-light">
+                                <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsGalleryCode}&position={i}")" alt="" />
+                                @*<span></span>*@
+                            </a>
+                        </div>
+                    }
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-pagination"></div>
             </div>
         </div>
-    </div>-->
+    </div>
     <!-- images and detail of movie -->
     <!-- about movie -->
     @if (string.IsNullOrEmpty(Model.vodResult.criticize))
@@ -247,17 +239,22 @@
             <span>نظرات کاربران</span>
             <span></span>
         </h3>
+           &nbsp;&nbsp;&nbsp; <label class="text-light" id="cmdres"></label>
         <div class="submit-comment">
             <span class="bi bi-person-fill"></span>
-            <form action="/content/sendcomment" method="post">
+            <form method="post">
                 <input id="id" type="number" value="@Model.vodResult.id" hidden />
                 <input class="form-controle" id="body" name="body"
                        type="text"
                        placeholder="دیدگاه شما درباره @Model.vodResult.name" />
-                <button type="submit" class="btn rounded-pill">ارسال</button>
+                <button type="button" id="comment" class="btn rounded-pill">ارسال</button>
             </form>
         </div>
         @Html.Action("Comments", new { id = Model.vodResult.id })
     </div>
     <!-- users comments -->
 </main>
+
+@section Scripts{
+    <script src="~/Assets/js/movie-detail.js"></script>
+    }

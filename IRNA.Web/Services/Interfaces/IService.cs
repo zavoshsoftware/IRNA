@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IRNA.Web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,6 @@ namespace IRNA.Web.Services.Interfaces
 
           bool IsMobileDevice(string userAgent);
 
-       
+        Task<RootGenresVM> GetGenres();
     }
 }

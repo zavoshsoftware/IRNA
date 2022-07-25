@@ -19,7 +19,7 @@ namespace IRNA.Web.Controllers
         // GET: Content
         public ActionResult Index()
         {
-            var url = $"{Services.Settings.BaseUrl}iptv/irna/v2/content/last?lang=fa&page=0&pageSize=10";
+            var url = $"{Settings.BaseUrl}iptv/irna/v2/content/last?lang=fa&page=0&pageSize=10";
 
             //iptv/irna/v2/content/last?lang=fa&page=0&pageSize=10&classes=
 
@@ -29,7 +29,7 @@ namespace IRNA.Web.Controllers
 
         public ActionResult Last(int page=0,int pageSize=10)
         {
-            var url = $"{Services.Settings.BaseUrl}iptv/irna/v2/content/last" +
+            var url = $"{Settings.BaseUrl}iptv/irna/v2/content/last" +
                 $"?lang=fa&page={page}&pageSize={pageSize}";
             
              var res = _apiService.GetApiResponse<ContentResponseVM>(url).GetAwaiter().GetResult();
@@ -40,10 +40,10 @@ namespace IRNA.Web.Controllers
         [Route("Content/{id}")]
         public ActionResult Details(int id)
         {
-            var url = $"{Services.Settings.BaseUrl}iptv/irna/contentStatus?lang=fa&albumId={id}";
+            var url = $"{Settings.BaseUrl}iptv/irna/contentStatus?lang=fa&albumId={id}";
 
             var res = _apiService.GetApiResponse<RootContentDetailsVM>(url).GetAwaiter().GetResult();
-            if (res.vodResult==null)
+            if (res!=null && res.vodResult==null)
             {
                 return HttpNotFound();
             }
@@ -51,13 +51,16 @@ namespace IRNA.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult SendComment(int id,string name,string body,int rate=0)
+        [Route("Content/SendComment")]
+        public ActionResult SendComment(CommentVM comment)
         {
             //iptv/irna/v2/content/comment?language=fa&username=989335431764&diskId=2&name=سعید&body=سلام عالی&rate=3
 
             var url = $"{Settings.BaseUrl}iptv/irna/v2/content/comment?" +
-                $"language=fa&username=989335431764&diskId={id}&name={name}&body={body}&rate={rate}";
-            return Json(new { });
+                $"language=fa&username=989335431764&diskId={comment.id}&name=&body={comment.body}&rate=0";
+            var res = _apiService.GetApiResponse<RootCommentVM>(url).GetAwaiter().GetResult();
+            return Json(new { res = res });
+            //return Redirect($"/Content/{id}");
         }
 
         public ActionResult Comments(int id,int page=0,int pageSize=10)
@@ -67,6 +70,8 @@ namespace IRNA.Web.Controllers
             CommentListVM res = _apiService.GetApiResponse<RootCommentVM>(url).GetAwaiter().GetResult().more.list;
             return PartialView(res);
         }
+
+
 
     }
 }

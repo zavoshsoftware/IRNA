@@ -2,7 +2,7 @@
 
 @foreach (var item in Model.list)
 {
-    <a class="btn text-light">@item.title</a>
+    <a href="/List?genre=@item.id" class="btn text-light" >@item.title</a>
 }
 
 @*<div class="dropdown d-none d-lg-inline-flex">

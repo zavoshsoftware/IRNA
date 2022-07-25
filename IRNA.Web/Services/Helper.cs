@@ -23,7 +23,7 @@ namespace IRNA.Web.Services
                    result = string.Format("{0}/{1}/{2}", pc.GetYear(d), pc.GetMonth(d), pc.GetDayOfMonth(d));
                     break;
                 case 'h':
-                   result = string.Format("{0}:{1}", pc.GetHour(d),pc.GetMinute(d));
+                   result = string.Format("{0}:{1}", pc.GetHour(d.AddHours(4)) ,pc.GetMinute(d.AddMinutes(30)));
                     break;
                      
             }

@@ -1,4 +1,4 @@
-// init movie-imagesslider:
+﻿// init movie-imagesslider:
 const movieImagesSlider = new Swiper(".movie-images-slider", {
     slidesPerView: 3.3,
     spaceBetween: 5,
@@ -34,3 +34,31 @@ const suggestedMovieSlider = new Swiper(".suggested-movies-slider", {
     992: { slidesPerView: 8, spaceBetween: 10 },
   },
 });
+
+
+$(document).ready(() => {
+
+    $('#comment').on('click', () => {
+        
+        $.post('/Content/sendcomment',
+            {
+                id: parseInt($('#id').val()), 
+                body: $('#body').val() 
+            },
+            function (data, status) {
+                console.log(data.res);
+                if (status == 'success') {
+                    $('#cmdres').text('نظر شما ثبت شد')
+                    $('#body').val('')
+                }
+            }); 
+    });
+
+
+
+
+
+
+
+
+})

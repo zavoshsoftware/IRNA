@@ -12,8 +12,8 @@
             {
                 <div class="swiper-slide">
                     <a href="#" class="events-content text-light nav-link">
-                        <img src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code=300x400&position=0")" alt="" />
+                        <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
                     </a>
                 </div>
             }

@@ -6,7 +6,7 @@
 
 <main class="wraper py-3">
     <!-- main slider -->
-
+    @Html.Action("Slider")
     <!-- main slider -->
     <!-- irna-24 slider -->
     @Html.Action("RandomContents")
@@ -15,55 +15,7 @@
     @Html.Action("AdsContents")
     <!-- adds slider -->
     <!-- filter section -->
-    <div class="filter d-flex d-lg-none mb-3">
-        <button type="button" class="btn show-filter">
-            <span class="bi bi-funnel"></span>
-            فیلتر
-        </button>
-    </div>
-    <div id="filter" class="filter mt-lg-3">
-        <div class="btn-group d-none d-lg-flex">
-            <a href="#" class="btn text-light">همه</a>
-            <a href="#" class="btn text-light">فیلم</a>
-            <a href="#" class="btn text-light">سریال</a>
-        </div>
-        <div class="filter-items">
-            <select name="" id="" class="form-select">
-                <option selected value="">مرتب سازی</option>
-                <option value="">سال ساخت</option>
-                <option value="">محبوبیت</option>
-            </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">فیلم و سریال</option>
-                <option value="">فیلم</option>
-                <option value="">سریال</option>
-            </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">ژانر</option>
-                <option value="">رزمی</option>
-                <option value="">تاریخی</option>
-            </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">سن</option>
-                <option value="">جوانان</option>
-                <option value="">بزرگش سالان</option>
-            </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">کیفیت</option>
-                <option value="">خوب</option>
-                <option value="">عالی</option>
-            </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">کیفیت</option>
-                <option value="">رزمی</option>
-                <option value="">تاریخی</option>
-            </select>
-        </div>
-        <button class="btn btn-filter text-light">
-            <span class="bi bi-funnel"></span>
-            <span>اعمال فیلتر</span>
-        </button>
-    </div>
+ @Html.Action("FilterContents")
     <!-- filter section -->
     
     <!-- latest movies slider -->
@@ -75,16 +27,16 @@
     <!-- events movies -->
 
     <!-- special section -->
-    <div class="special-container mt-lg-4">
+    <!--<div class="special-container mt-lg-4">
         <div class="special-content">
             <img src="./images/siavash.png" alt="sivash" />
             <a href="#" class="btn btn-preview text-light">پیش نمایش</a>
             <a href="#" class="btn btn-episodes text-light">قسمت ها</a>
         </div>
-    </div>
+    </div>-->
     <!-- special section -->
     <!-- oskar movies slider -->
-    <div class="oskar-movies-slider-container">
+    <!--<div class="oskar-movies-slider-container">
         <div class="head">
             <h2 class="h5 text-light m-0">اسکار 2021</h2>
 
@@ -112,6 +64,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- oskar latest movies -->
 </main>

@@ -34,6 +34,14 @@ namespace IRNA.Web.ViewModels
         public object parentIds { get; set; } 
     }
 
+    public class CommentVM
+    { 
+        public int id { get; set; }
+        public string username { get; set; }
+        public string name { get; set; }
+        public string body { get; set; } 
+    }
+
     public class ContentResponseVM
     {
         public int page { get; set; }
@@ -375,27 +383,108 @@ namespace IRNA.Web.ViewModels
     }
 
 
+    //Filter viewmodel
 
 
+    public class AgeGroupFilterVM
+    {
+        public string id { get; set; }
+        public string text { get; set; }
+    }
+
+    public class CountryFilterVM
+    {
+        public string id { get; set; }
+        public string text { get; set; }
+    }
+
+    public class GenresFilterVM
+    {
+        public int page { get; set; }
+        public int pageSize { get; set; }
+        public int numberOfRecords { get; set; }
+        public int numberOfPages { get; set; }
+        public string root { get; set; }
+        public string galleryRoot { get; set; }
+        public object priceUnit { get; set; }
+        public List<ListFilterVM> list { get; set; }
+        public object info { get; set; }
+    }
+
+    public class ListFilterVM
+    {
+        public int id { get; set; }
+        public bool music { get; set; }
+        public string title { get; set; }
+        public string picture { get; set; }
+        public object gallery { get; set; }
+    }
+
+    public class LocalizedMessagesFilterVM
+    {
+        public string ar { get; set; }
+        public string en { get; set; }
+        public string fa { get; set; }
+    }
+
+    public class MoreFilterVM
+    {
+        public List<object> boldTags { get; set; }
+        public GenresFilterVM genres { get; set; }
+        public PrizesFilterVM prizes { get; set; }
+        public List<QualityTypeFilterVM> qualityTypes { get; set; }
+        public List<CountryFilterVM> countries { get; set; }
+        public List<AgeGroupFilterVM> ageGroups { get; set; }
+    }
+
+    public class PrizesFilterVM
+    {
+        public int page { get; set; }
+        public int pageSize { get; set; }
+        public int numberOfRecords { get; set; }
+        public int numberOfPages { get; set; }
+        public string root { get; set; }
+        public string galleryRoot { get; set; }
+        public object priceUnit { get; set; }
+        public List<ListFilterVM> list { get; set; }
+        public object info { get; set; }
+    }
+
+    public class QualityTypeFilterVM
+    {
+        public string id { get; set; }
+        public string text { get; set; }
+    }
+
+    public class RootFilterVM
+    {
+        public int code { get; set; }
+        public LocalizedMessagesFilterVM localizedMessages { get; set; }
+        public MoreFilterVM more { get; set; }
+    }
 
 
+    public class ListGenresVM
+    {
+        public int id { get; set; }
+        public bool music { get; set; }
+        public string title { get; set; }
+        public string picture { get; set; }
+        public object gallery { get; set; }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public class RootGenresVM
+    {
+        public int page { get; set; }
+        public int pageSize { get; set; }
+        public int numberOfRecords { get; set; }
+        public int numberOfPages { get; set; }
+        public string root { get; set; }
+        public string galleryRoot { get; set; }
+        public object priceUnit { get; set; }
+        public List<ListGenresVM> list { get; set; }
+        public object info { get; set; }
+    }
 
 
 }

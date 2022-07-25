@@ -35,7 +35,7 @@ namespace IRNA.Web.Controllers
         public ActionResult Verify(LoginVM login)
         {
             var phone = $"{login.CityCode.Remove(0, 1)}{login.Phone.Replace(" ",string.Empty).Remove(0, 1)}";
-            var url = $"{Services.Settings.BaseUrl}iptv/irna/access/rest/v2/auth/sendSmsCode?phoneNumber={phone}";
+            var url = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/sendSmsCode?phoneNumber={phone}";
             var res = new VerifyVM
             {
                 Response = _accountService.GetApiResponse<ResponseVM>(url).GetAwaiter().GetResult(),
@@ -72,13 +72,13 @@ namespace IRNA.Web.Controllers
         public ActionResult VerifyAuth(string mobile, string confirm)
         {
             var phone = mobile.Replace(" ","");
-            var url1 = $"{Services.Settings.BaseUrl}iptv/irna/access/rest/v2/auth/verifySmsCode?" +
+            var url1 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/verifySmsCode?" +
            $"phoneNumber={phone}&verificationCode={confirm}";
             var res1 = _accountService.GetApiResponse<VerifySmsCodeVM>(url1).GetAwaiter().GetResult();
             if (res1.code == (int)HttpStatusCode.OK)
             { 
 
-                var url2 = $"{Services.Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms" +
+                var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms" +
                 $"?email={res1.more.email}&name={res1.more.name}&family={res1.more.family}&" +
                 $"phoneNumber={phone}&verificationCode={confirm}";
                 var res2 = _accountService.GetApiResponse<ResponseVM>(url2).GetAwaiter().GetResult();
@@ -86,13 +86,13 @@ namespace IRNA.Web.Controllers
 
                 if (res2.code == (int)HttpStatusCode.OK)
                 {
-                    var url3 = $"{Services.Settings.BaseUrl}iptv/irna/access/rest/v2/auth/getRandom";
+                    var url3 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/getRandom";
                     var res3 = _accountService.GetApiResponse<getRandomResponseVM>(url3).GetAwaiter().GetResult();
                     TempData["Verify"] = res3.localizedMessages.fa;
 
                     if (res3.code == (int)HttpStatusCode.OK)
                     {
-                        var url4 = $"{Services.Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
+                        var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
                         $"username={phone}&password={res3.more.random}";
                         var res4 = _accountService.GetApiResponse<LoginByGetResponseVM>(url4).GetAwaiter().GetResult();
                         TempData["Verify"] = res2.localizedMessages.fa;

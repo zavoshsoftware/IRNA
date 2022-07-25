@@ -1,0 +1,46 @@
+﻿@model IRNA.Web.ViewModels.ContentResponseVM
+@{
+    ViewBag.Title = "List";
+}
+<main class="wraper pb-3">
+
+    <!-- filter section -->
+    @Html.Action("FilterContents")
+    <!-- filter section -->
+    <div class="latest-movies-slider-container">
+        <div class="head">
+            <h2 class="h5 text-light m-0">جدیدترین ها</h2>
+
+            @*<a href="#" class="nav-link text-light view-all">مشاهده همه</a>*@
+        </div>
+        <div class="swiper latest-movies-slider">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.list)
+                {
+                    <div class="swiper-slide">
+
+                        <a href="/Content/@item.id" class="latest-movies-content text-light nav-link">
+                            <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
+                            <span>@item.title</span>
+                        </a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+@section Scripts{
+    <script src="~/Assets/js/contentlist.js"></script>
+    <script>
+        var urlParams = new URLSearchParams(window.location.search);
+        var genre = urlParams.get('genre')
+        var age = urlParams.get('age')
+        $('#genre option[value=' + genre +']').attr('selected', 'selected'); 
+        $('#age option[value=' + age +']').attr('selected', 'selected');  
+    </script>
+}

@@ -8,6 +8,12 @@
 * {
   font-family: Iransans;
 }
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 :root {
   --bgc-primary: #151f30;
   --bgc-primary-accent: #1c2c46;
@@ -186,7 +192,7 @@ border-end-start-radius:1rem ;
   position: relative;
 }
 .fake-slide img {
-  width: 100%;
+  width: 100%; 
 }
 .fake-slide .quick-watch {
   top: 0;
@@ -1046,3 +1052,41 @@ footer .copy-rights {
         background-image: linear-gradient(to right, #002f4b, #131720);
         opacity: .6;
     }
+
+.irna-overlay {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(19 23 32 / 0.99);
+    z-index: 100
+}
+
+.irna-spinner {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e100d2;
+    border-top: 3px solid #9318a8;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    animation: spin 2s infinite linear;
+    z-index: 101
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

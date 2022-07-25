@@ -4,7 +4,7 @@
     @foreach (var item in Model.list)
     {
         
-        var date = (new DateTime(1970, 1, 1)).AddSeconds(Model.sendTime);
+        var date = (new DateTime(1970, 1, 1)).AddMilliseconds(item.sendTime);
         <div class="comment-card">
             <span class="bi bi-person-fill"></span>
             <div class="comment-section">
@@ -18,7 +18,6 @@
                 <span class="comment">@item.body</span>
             </div>
             <div class="buttons">
-                @Model.sendTime
                 <button class="btn rounded-circle">
                     <span class="bi bi-hand-thumbs-up"></span>
                 </button>

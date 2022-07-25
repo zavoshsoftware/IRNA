@@ -12,29 +12,41 @@
     <!-- swiper css -->
     <link rel="stylesheet" href="~/Assets/node_modules/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="~/Assets/css/main.css" />
+
     @*<link rel="stylesheet" href="./css/views/home/index.css" />*@
     @RenderSection("Styles", false)
 </head>
-<body>
+<body style="width:100%">
+    <div class="irna-overlay" id="irna-main-overlay">
+        <div id="irna-spinner" class="irna-spinner"></div>
+    </div>
+
     <!-- navbar section -->
     @Html.Partial("_TopNav")
     <!-- navbar section end -->
-
     <!-- main section -->
     @RenderBody()
 
     <!-- footer section -->
     @Html.Partial("_Footer")
 
-    <!-- Bootstrap js --> 
+    <!-- Bootstrap js -->
     <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- swiper js --> 
+    <!-- swiper js -->
     <script src="~/Assets/node_modules/swiper/swiper-bundle.js"></script>
-    <!-- jquey --> 
+    <!-- jquey -->
     <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
     <!-- main js -->
     <script src="~/Assets/js/main.js"></script>
-    @RenderSection("Scripts",false)
+    @RenderSection("Scripts", false)
+    <script>
+        $(window).bind("pageshow", function (event) {
+            document.getElementById("irna-spinner").className = "";
+            document.getElementsByClassName("irna-overlay")[0].className = "";
+
+        });
+    </script>
+
 </body>
 </html>

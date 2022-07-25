@@ -7,8 +7,8 @@
             {
                 <div class="swiper-slide ads-img">
                     <a href="#" >
-                        <img class="add-content" src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code=300x400&position=0")" alt="@item.title" />
+                        <img class="add-content" src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="@item.title" />
                      
                     </a>
                 </div>

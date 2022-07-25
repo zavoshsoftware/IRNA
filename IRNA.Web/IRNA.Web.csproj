@@ -165,6 +165,7 @@
     <Content Include="Assets\images\studio.jpg" />
     <Content Include="Assets\images\Tuck-Everlasting-2002-No.jpg" />
     <Content Include="Assets\images\wp2646303.png" />
+    <Content Include="Assets\js\contentlist.js" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\movie-detail.js" />
     <Content Include="Assets\js\verify.js" />
@@ -2583,6 +2584,9 @@
     <Content Include="Views\Home\AdsContents.cshtml" />
     <Content Include="Views\Home\EventsContents.cshtml" />
     <Content Include="Views\Home\Slider.cshtml" />
+    <Content Include="Views\Home\FilterContents.cshtml" />
+    <Content Include="Views\Home\Privacy.cshtml" />
+    <Content Include="Views\Home\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

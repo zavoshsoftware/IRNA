@@ -1,14 +1,18 @@
 ﻿@model IRNA.Web.ViewModels.ContentResponseVM
 
+  
 <div class="main-slider-container">
     <div class="swiper main-slider">
         <div class="swiper-wrapper">
             @foreach (var item in Model.list)
             {
-                <div class="swiper-slide fake-slide"> 
-                    <img src="~/Assets/images/hamrafigh.jpg"
-                         class="d-block d-lg-none img-m"
-                         alt="hamrafigh" />
+                <div class="swiper-slide fake-slide">
+                    <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.IndexSliderCode}&position=0")"
+                         class="d-none d-lg-block" />
+                    <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.IndexSliderCode2}&position=0")"
+                         class="d-block d-lg-none img-m" />
                     <span class="quick-watch text-light py-3 rounded-pill rounded-end">
                         <span class="px-2">پخش فوری</span>
                         <span class="me-4 ms-2 circle"></span>
