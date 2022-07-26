@@ -21,12 +21,19 @@ namespace IRNA.Web.Controllers
             return View();
         }
 
-        public ActionResult Menu(int page = 0, int pageSize = 10)
+        public ActionResult Menu(int page = 0, int pageSize = 10,bool isMobile=false)
         {
             var url = $"{Settings.BaseUrl}iptv/irna/v2/content/genres?page={page}&pageSize={pageSize}";
             var res = _service.GetApiResponse<ViewModels.ContentResponseVM>(url).GetAwaiter().GetResult();
 
-            return PartialView(res);
+            if (isMobile)
+            {
+                return PartialView("MenuMobile", res);
+            }
+            else
+            {
+                return PartialView(res); 
+            }
         }
 
         public ActionResult Slider(int page = 0, int pageSize = 10)
@@ -46,8 +53,7 @@ namespace IRNA.Web.Controllers
             var res = _service.GetApiResponse<ContentResponseVM>(url).GetAwaiter().GetResult();
             return PartialView(res);
         }
-
-
+         
         public ActionResult PopularContents(int page = 0, int pageSize = 10)
         {
             var url = $"{Settings.BaseUrl}iptv/irna/v2/content/userRate" +
@@ -129,15 +135,20 @@ namespace IRNA.Web.Controllers
         }
          
         [Route("List")]
-        public ActionResult List(int page=0,int pageSize=10, int genre = 0,string age="")
+        public ActionResult List(int page=0,int pageSize=10, int genre = 0,string age="0",string qualityTypes="0"
+            ,string countries = "0")
         {
             var genreObj = _service.GetGenres().GetAwaiter().GetResult().list.FirstOrDefault(l => l.id == genre);
             string genreQuery = genre == 0 ? "" : $"&genres={genre}";
             string ageQuery = age == "" || age == "0" ? "" : $"&ageGroups={age}";
+            string qualityQuery = qualityTypes == "" || qualityTypes == "0" ? "" : $"&qualityType={qualityTypes}";
+            string countryQuery = countries == "" || countries == "0" ? "" : $"&qualityType={countries}";
             var url = $"{Settings.BaseUrl}iptv/irna/v2/content/last" +
                $"?lang=fa&page={page}&pageSize={pageSize}" +
               genreQuery+
-              ageQuery
+              ageQuery+
+              qualityQuery+
+              countryQuery
               ;
 
             var res = _service.GetApiResponse<ContentResponseVM>(url).GetAwaiter().GetResult(); 

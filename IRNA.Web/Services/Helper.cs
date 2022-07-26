@@ -29,5 +29,12 @@ namespace IRNA.Web.Services
             }
             return result;
         }
+        
+        public static string ToShamsi(this long time,char type = 'a')
+        =>  ToShamsi((new DateTime(1970, 1, 1)).AddMilliseconds(time), type);
+        
+
+        
+
     }
 }

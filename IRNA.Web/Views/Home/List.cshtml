@@ -1,34 +1,44 @@
 ﻿@model IRNA.Web.ViewModels.ContentResponseVM
+@using IRNA.Web.Services
 @{
     ViewBag.Title = "List";
 }
-<main class="wraper pb-3">
+
+@section Styles {
+    <link href="@Url.Content("~/Assets/css/quick-watch.css")" rel="stylesheet" type="text/css" />
+}
+<main class="wraper pb-3 irna-srch-list">
 
     <!-- filter section -->
     @Html.Action("FilterContents")
     <!-- filter section -->
     <div class="latest-movies-slider-container">
-        <div class="head">
-            <h2 class="h5 text-light m-0">جدیدترین ها</h2>
+        <h3 class="quick-watch-archive-title d-none d-lg-flex">
+            <span>نتایج</span>
+            <span></span>
+        </h3>
+        <div class="quick-watch-archive-container">
+            @foreach (var item in Model.list)
+            {
+                <div class="quick-watch-archive-card">
 
-            @*<a href="#" class="nav-link text-light view-all">مشاهده همه</a>*@
-        </div>
-        <div class="swiper latest-movies-slider">
-            <div class="swiper-wrapper">
-                @foreach (var item in Model.list)
-                {
-                    <div class="swiper-slide">
-
-                        <a href="/Content/@item.id" class="latest-movies-content text-light nav-link">
-                            <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
-                            <span>@item.title</span>
-                        </a>
+                    <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="best">
+                    <div class="content">
+                        <p class="text-truncate">
+                            <a href="/Content/@item.id">
+                                @item.title
+                            </a>
+                        </p>  
+                        <span>
+                          @item.date
+                        </span>
                     </div>
-                }
+                </div>
+            }
 
-            </div>
         </div>
+
     </div>
 
 </main>
@@ -40,7 +50,11 @@
         var urlParams = new URLSearchParams(window.location.search);
         var genre = urlParams.get('genre')
         var age = urlParams.get('age')
-        $('#genre option[value=' + genre +']').attr('selected', 'selected'); 
-        $('#age option[value=' + age +']').attr('selected', 'selected');  
+        var qualityTypes = urlParams.get('qualityTypes')
+        var countries = urlParams.get('countries')
+        $('#genre option[value=' + genre + ']').attr('selected', 'selected');
+        $('#age option[value=' + age + ']').attr('selected', 'selected');
+        $('#qualityTypes option[value=' + qualityTypes + ']').attr('selected', 'selected');
+        $('#countries option[value=' + countries + ']').attr('selected', 'selected');
     </script>
 }

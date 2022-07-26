@@ -1,42 +1,25 @@
 ﻿@model IRNA.Web.ViewModels.ContentResponseVM
 
-@foreach (var item in Model.list)
-{
-    <a href="/List?genre=@item.id" class="btn text-light" >@item.title</a>
-}
 
-@*<div class="dropdown d-none d-lg-inline-flex">
-    <button class="btn text-light dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false">
-        @item.title
-    </button>
-    <div class="dropdown-menu" style="border-radius: 0 0 1rem 1rem">
-        <ul class="mega-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">فیلم اکشن</a></li>
-            <li><a class="dropdown-item" href="#">فیلم عاشقانه</a></li>
-            <li><a class="dropdown-item" href="#">فیلم مستند</a></li>
-            <li><a class="dropdown-item" href="#">فیلم انیمیشن</a></li>
-            <li><a class="dropdown-item" href="#">فیلم علمی تخیلی</a></li>
-            <li><a class="dropdown-item" href="#">تاکشو</a></li>
-            <li><a class="dropdown-item" href="#">کنسرت</a></li>
-            <li><a class="dropdown-item" href="#">تاریخی | مذهبی</a></li>
-            <li><a class="dropdown-item" href="#">فیلم کوتاه</a></li>
-            <li><a class="dropdown-item" href="#">فیلم ترسناک</a></li>
-            <li><a class="dropdown-item" href="#">فیلم خانوادگی</a></li>
-            <li><a class="dropdown-item" href="#">فیلم کمدی</a></li>
-            <li><a class="dropdown-item" href="#">فیلم تئاتر</a></li>
-            <li><a class="dropdown-item" href="#">فیلم ورزشی</a></li>
-            <li><a class="dropdown-item" href="#">فیلم آموزشی</a></li>
-            <li style="margin-inline-start: auto">
-                <a href="dropdown-item">
-                    <img class="mega-menu-img"
-                         src="./images/filmingclip.png"
-                         alt="" />
-                </a>
-            </li>
-        </ul>
-    </div>
-</div>*@
+<div class="nav-group ms-2">
+    <span id="menu-btn"
+          class="bi bi-list text-light h3 m-0 d-inline-flex d-lg-none align-items-center"></span>
+    <a class="logo text-light nav-link" href="/">
+        <img src="~/Assets/images/logo.png" class="logo-img me-2" alt="" />
+        <span>ایرنا فیلم</span>
+    </a>
+    @foreach (var item in Model.list)
+    {
+        @*<div class="">*@
+            <a class="btn text-light  d-none d-lg-inline-flex"
+                   href="/List?genre=@item.id" >
+                @item.title
+            </a>
+           
+        @*</div>*@
+    }
+    <span class="quick-watch-d text-light py-3 py-lg-2 rounded-pill ms-2 d-none d-lg-inline-flex">
+        <span class="px-2">پخش فوری</span>
+        <span class="me-4 ms-2 circle"></span>
+    </span>
+</div>

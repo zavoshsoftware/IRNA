@@ -2587,6 +2587,7 @@
     <Content Include="Views\Home\FilterContents.cshtml" />
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
+    <Content Include="Views\Home\MenuMobile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

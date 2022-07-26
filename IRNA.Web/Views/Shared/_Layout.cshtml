@@ -12,8 +12,8 @@
     <!-- swiper css -->
     <link rel="stylesheet" href="~/Assets/node_modules/swiper/swiper-bundle.css" />
     <link rel="stylesheet" href="~/Assets/css/main.css" />
-
-    @*<link rel="stylesheet" href="./css/views/home/index.css" />*@
+    <link rel="stylesheet" href="~/Assets/css/collections.css" />
+     
     @RenderSection("Styles", false)
 </head>
 <body style="width:100%">
@@ -30,15 +30,17 @@
     <!-- footer section -->
     @Html.Partial("_Footer")
 
+
+
     <!-- Bootstrap js -->
     <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
-    <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <!-- swiper js -->
     <script src="~/Assets/node_modules/swiper/swiper-bundle.js"></script>
     <!-- jquey -->
     <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
     <!-- main js -->
     <script src="~/Assets/js/main.js"></script>
+
     @RenderSection("Scripts", false)
     <script>
         $(window).bind("pageshow", function (event) {
@@ -50,3 +52,4 @@
 
 </body>
 </html>
+

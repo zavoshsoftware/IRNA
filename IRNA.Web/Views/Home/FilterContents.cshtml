@@ -8,24 +8,21 @@
         <span class="bi bi-funnel"></span>
         فیلتر
     </button>
-</div>
-<script>
-
-</script>
+</div> 
 <div id="filter" class="filter mt-lg-3">
     <form action="/List" method="get">
-        <div class="btn-group d-none d-lg-flex">
+        @*<div class="btn-group d-none d-lg-flex">
             <a href="#" class="btn text-light">همه</a>
             <a href="#" class="btn text-light">فیلم</a>
             <a href="#" class="btn text-light">سریال</a>
-        </div>
+        </div>*@
         <div class="filter-items">
 
-            <select name="" id="" class="form-select">
+            @*<select name="" id="" class="form-select">
                 <option selected value="">مرتب سازی</option>
                 <option value="">سال ساخت</option>
                 <option value="">محبوبیت</option>
-            </select>
+            </select>*@
             @*<select name="" id="" class="form-select">
                     <option selected value="">فیلم و سریال</option>
                     <option value="">فیلم</option>
@@ -45,15 +42,15 @@
                     <option value="@item.id">@item.text</option>
                 }
             </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">کیفیت</option>
+            <select name="qualityTypes" id="qualityTypes" class="form-select">
+                <option selected value="0">کیفیت</option>
                 @foreach (var item in Model.more.qualityTypes)
                 {
                     <option value="@item.id">@item.text</option>
                 }
             </select>
-            <select name="" id="" class="form-select">
-                <option selected value="">کشور</option>
+            <select name="countries" id="countries" class="form-select">
+                <option selected value="0">کشور</option>
                 @foreach (var item in Model.more.countries)
                 {
                     <option value="@item.id">@item.text</option>
@@ -66,10 +63,5 @@
         </button>
     </form>
 </div>
-
-@section Scripts{
-    <script>
-     
-    </script>
-}
+ 
 

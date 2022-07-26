@@ -1,0 +1,11 @@
+﻿@model IRNA.Web.ViewModels.ContentResponseVM
+ 
+<div class="mobile-menu">
+    @foreach (var item in Model.list)
+    {
+        <a href="/List?genre=@item.id" class="nav-link text-light ms-2">@item.title</a>
+         
+    }
+      <a href="#" class="nav-link text-light ms-2"> پخش فوری </a>
+</div>
+ 

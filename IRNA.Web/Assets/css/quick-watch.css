@@ -16,6 +16,14 @@ hr {
   color: whitesmoke;
   margin-inline: auto;
 }
+a {
+    color:white;
+    text-decoration:none
+}
+a:hover{
+    color:white;
+    text-shadow: 1px 1px 1px purple 
+}
 .head-container {
   display: flex;
   flex-direction: column;
