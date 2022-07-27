@@ -1,36 +1,37 @@
 ﻿
 @model IRNA.Web.ViewModels.ContentResponseVM
+@if (Model.list.Any() && Model.list != null)
+{
+    <div class="latest-movies-slider-container">
+        <div class="head">
+            <h2 class="h5 text-light m-0">جدیدترین ها</h2>
 
-<div class="latest-movies-slider-container">
-    <div class="head">
-        <h2 class="h5 text-light m-0">جدیدترین ها</h2>
-
-        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
-    </div>
-    <div class="swiper latest-movies-slider">
-        <div class="swiper-wrapper">
-            @foreach (var item in Model.list)
-            {
-                <div class="swiper-slide">
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
-                        <span>@item.title</span>
-                    </a>
-                </div>
-            }
-
-            @*<div class="swiper-slide">
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/Tuck-Everlasting-2002-No.jpg" alt="" />
-                        <span>فیلم تاک اور لستین</span>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="./images/Munich-The-Edge-of-War.jpg" alt="" />
-                        <span>فیلم مونیخ در اغاز جنگ</span>
-                    </a>
-                </div>*@
+            <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
         </div>
-    </div>
-</div>
+        <div class="swiper latest-movies-slider">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.list)
+                {
+                    <div class="swiper-slide">
+                        <a href="#" class="latest-movies-content text-light nav-link">
+                            <img src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
+                            <span>@item.title</span>
+                        </a>
+                    </div>
+                }
+
+                @*<div class="swiper-slide">
+                        <a href="#" class="latest-movies-content text-light nav-link">
+                            <img src="~/Assets/images/Tuck-Everlasting-2002-No.jpg" alt="" />
+                            <span>فیلم تاک اور لستین</span>
+                        </a>
+                    </div>
+                    <div class="swiper-slide">
+                        <a href="#" class="latest-movies-content text-light nav-link">
+                            <img src="./images/Munich-The-Edge-of-War.jpg" alt="" />
+                            <span>فیلم مونیخ در اغاز جنگ</span>
+                        </a>
+                    </div>*@
+            </div>
+        </div>
+    </div>}

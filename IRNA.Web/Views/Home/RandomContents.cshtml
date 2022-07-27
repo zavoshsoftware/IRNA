@@ -1,27 +1,29 @@
 ﻿@model IRNA.Web.ViewModels.ContentResponseVM
-<div class="irna-24">
-    <div class="headshaprtl">
-        <h2 class="text-light h5 title">ایرنا 24</h2>
-    </div>
-    <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
-    <!-- irna-24 slider -->
-    <div class="irna-24-slider-container">
-        <div class="swiper irna-24-slider">
-            <div class="swiper-wrapper">
-                @foreach (var item in Model.list)
-                {
-                    <div class="swiper-slide">
-                        <a href="/Content/@item.id" class="irna-24-slide-link nav-link text-light">
-                            <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
-                            <span>@item.title</span>
-                        </a>
-                    </div>
-                }
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+@if (Model.list.Any() && Model.list != null)
+{
+    <div class="irna-24">
+        <div class="headshaprtl">
+            <h2 class="text-light h5 title">ایرنا 24</h2>
         </div>
-    </div>
-</div>
+        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        <!-- irna-24 slider -->
+        <div class="irna-24-slider-container">
+            <div class="swiper irna-24-slider">
+                <div class="swiper-wrapper">
+                    @foreach (var item in Model.list)
+                    {
+                        <div class="swiper-slide">
+                            <a href="/Content/@item.id" class="irna-24-slide-link nav-link text-light">
+                                <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+$"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="" />
+                                <span>@item.title</span>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>}

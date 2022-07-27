@@ -119,7 +119,7 @@ namespace IRNA.Web.Controllers
         public ActionResult EventsContents(int page = 0, int pageSize = 10)
         {
             var url = $"{Settings.BaseUrl}iptv/irna/v2/content/last" +
-                  $"?lang=fa&tags=مناسبت&page={page}&pageSize={pageSize}";
+                  $"?lang=fa&tagId=24&page={page}&pageSize={pageSize}";
 
             var res = _service.GetApiResponse<ContentResponseVM>(url).GetAwaiter().GetResult();
             return PartialView(res);
@@ -136,19 +136,22 @@ namespace IRNA.Web.Controllers
          
         [Route("List")]
         public ActionResult List(int page=0,int pageSize=10, int genre = 0,string age="0",string qualityTypes="0"
-            ,string countries = "0")
+            ,string countries = "0",string q="")
         {
             var genreObj = _service.GetGenres().GetAwaiter().GetResult().list.FirstOrDefault(l => l.id == genre);
             string genreQuery = genre == 0 ? "" : $"&genres={genre}";
             string ageQuery = age == "" || age == "0" ? "" : $"&ageGroups={age}";
-            string qualityQuery = qualityTypes == "" || qualityTypes == "0" ? "" : $"&qualityType={qualityTypes}";
-            string countryQuery = countries == "" || countries == "0" ? "" : $"&qualityType={countries}";
+            string qualityQuery = qualityTypes == "" || qualityTypes == "0" ? "" : $"&qualityTypes={qualityTypes}";
+            string countryQuery = countries == "" || countries == "0" ? "" : $"&countries={countries}";
+            string qQuery = q == "" || q == "0" ? "" : $"&keyword={q}";
+
             var url = $"{Settings.BaseUrl}iptv/irna/v2/content/last" +
                $"?lang=fa&page={page}&pageSize={pageSize}" +
               genreQuery+
               ageQuery+
               qualityQuery+
-              countryQuery
+              countryQuery+
+              qQuery
               ;
 
             var res = _service.GetApiResponse<ContentResponseVM>(url).GetAwaiter().GetResult(); 

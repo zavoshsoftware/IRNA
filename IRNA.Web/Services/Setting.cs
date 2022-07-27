@@ -80,4 +80,24 @@ using System.Web;
                 return "300x400";
             }
         }
+        /// <summary>
+        /// کد تصویرمناسبت
+        /// </summary>
+        public static string EventCode
+        {
+            get
+            {
+                return "event";
+            }
+        }
+        /// <summary>
+        /// کد تصویرتبلیغات
+        /// </summary>
+        public static string AdsCode
+        {
+            get
+            {
+                return "ads";
+            }
+        }
     } 

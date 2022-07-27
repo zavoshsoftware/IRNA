@@ -6,25 +6,30 @@
         <div class="swiper-wrapper">
             @foreach (var item in Model.list)
             {
-                <div class="swiper-slide fake-slide">
-                    <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code={Settings.IndexSliderCode}&position=0")"
-                         class="d-none d-lg-block" />
-                    <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code={Settings.IndexSliderCode2}&position=0")"
-                         class="d-block d-lg-none img-m" />
-                    <span class="quick-watch text-light py-3 rounded-pill rounded-end">
-                        <span class="px-2">پخش فوری</span>
-                        <span class="me-4 ms-2 circle"></span>
-                    </span>
-                    <a href="/content/@item.id" class="watch-video text-light btn rounded-pill position-absolute translate-middle">
-                        پخش فیلم
-                    </a>
+            <div class="swiper-slide fake-slide">
+                <a  href="/content/@item.id" >
+
+                <div class="irna-top-right">
+                  
+                    @item.description
                 </div>
+                <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.IndexSliderCode}&position=0")"
+                     class="d-none d-lg-block" />
+                <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.IndexSliderCode2}&position=0")"
+                     class="d-block d-lg-none img-m" />
+
+                <span class="quick-watch text-light py-3 rounded-pill rounded-end">
+                    <span class="px-2">پخش فوری</span>
+                    <span class="me-4 ms-2 circle"></span>
+                </span> 
+                </a>
+            </div>
             }
         </div>
-        <div class="swiper-button-next d-none d-lg-inline-flex"></div>
-        <div class="swiper-button-prev d-none d-lg-inline-flex"></div>
+        <div class="swiper-button-next d-none d-lg-inline-flex bg-purple"></div>
+        <div class="swiper-button-prev d-none d-lg-inline-flex bg-purple"></div>
         <div class="swiper-pagination d-lg-none"></div>
     </div>
 </div>

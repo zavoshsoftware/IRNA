@@ -116,7 +116,8 @@ searchBtn.on("click", (e) => {
     if (document.body.clientWidth <= 992) {
         if (visiblem === "false") {
             searchm.slideDown();
-            searchm.attr("data-visible", "true");
+            searchm.attr("data-visible", "true"); 
+            searchBtn.attr("onclick", "irnasearch('m');");
         } else if (e.target.id !== "search-btn") {
             searchm.slideUp();
             searchm.attr("data-visible", "false");
@@ -128,11 +129,32 @@ searchBtn.on("click", (e) => {
         if (visibled === "false") {
             searchd.css("transform", "scaleX(1)");
             searchd.attr("data-visible", "true");
+            searchBtn.attr("onclick", "irnasearch('c');");
         } else {
             searchd.attr("data-visible", "false");
             searchd.css("transform", "scaleX(0)");
         }
     }
+});
+
+function irnasearch(device) {
+    let searchd = $("#searchd");
+    let searchm = $("#searchm");
+    if (device == 'm') {
+        document.location.href = '/list?q='+searchm.val()
+    }
+    else {
+        document.location.href = '/list?q=' + searchd.val()
+    }
+}
+
+$(document).ready(() => {
+    $('.swiper-slide').filter(function () { //use filter on all .categories
+        var txt = $.trim(this.innerHTML); //Get the text of current
+        return ($(this).nextAll().filter(function () { //filter all of the proceeding siblings which has the same text
+            return $.trim(this.innerHTML) === txt
+        }).length); //send true or false (in fact truthy or falsy to ask to hide the current element in question)
+    }).hide();
 });
 
 /***** buy sub scribtion in menu***** */
@@ -167,13 +189,5 @@ document.addEventListener("click", (e) => {
 
 
 
-$(document).ready(() => {
-    $('.swiper-slide').filter(function () { //use filter on all .categories
-        var txt = $.trim(this.innerHTML); //Get the text of current
-        return ($(this).nextAll().filter(function () { //filter all of the proceeding siblings which has the same text
-            return $.trim(this.innerHTML) === txt
-        }).length); //send true or false (in fact truthy or falsy to ask to hide the current element in question)
-    }).hide(); 
-});
 
 

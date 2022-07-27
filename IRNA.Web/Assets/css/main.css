@@ -1093,3 +1093,57 @@ footer .copy-rights {
 .irna-srch-list{
    height:1000px
 }
+
+
+/* Container holding the image and the text */
+.irna-container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+/* Bottom left text */
+.irna-bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+}
+
+/* Top left text */
+.irna-top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+
+/* Top right text */
+.irna-top-right {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    color: white;
+    text-shadow: 5px 5px 5px black;text-align:justify;font-size:small
+}
+
+/* Bottom right text */
+.irna-bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+}
+
+/* Centered text */
+.irna-centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+ .bg-purple{
+
+ }
+ .bg-purple:hover{
+     background-color:purple
+ }

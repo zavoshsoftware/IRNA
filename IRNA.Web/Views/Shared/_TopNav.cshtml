@@ -5,23 +5,21 @@
 
     @Html.Action("Menu", "Home", new { isMobile = true })
     <div class="nav-group ms-auto">
-        <input
-          type="search"
-          placeholder="جستجو"
-          data-visible="false"
-          class="form-control d-none d-lg-block"
-          name=""
-          id="searchd"
-        />
-        <input
-          type="search"
-          placeholder="جستجو"
-          data-visible="false"
-          class="form-control"
-          name=""
-          id="searchm"
-          style="display: none"
-        />
+        <form method="get" action="/list">
+            <input type="search"
+                   placeholder="جستجو"
+                   data-visible="false"
+                   class="form-control d-none d-lg-block"
+                   name="q"
+                   id="searchd" />
+            <input type="search"
+                   placeholder="جستجو"
+                   data-visible="false"
+                   class="form-control"
+                   name="q"
+                   id="searchm"
+                   style="display: none" />
+        </form>
         <span id="search-btn" class="bi bi-search search-icon ms-2"></span>
         <a href="#" class="nav-link text-light ms-2">خرید اشتراک</a>
         <a href="#" class="nav-link text-light ms-2">ورود</a>

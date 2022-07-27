@@ -1,18 +1,20 @@
-﻿
-@model IRNA.Web.ViewModels.ContentResponseVM
-<div class="adds-slider-container">
-    <div class="swiper adds-slider">
-        <div class="swiper-wrapper">
-            @foreach (var item in Model.list)
-            {
-                <div class="swiper-slide ads-img">
-                    <a href="#" >
-                        <img class="add-content" src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")" alt="@item.title" />
-                     
-                    </a>
-                </div>
-            }
+﻿@model IRNA.Web.ViewModels.ContentResponseVM
+
+@if (Model.list.Any() && Model.list != null)
+{
+    <div class="adds-slider-container">
+        <div class="swiper adds-slider">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.list)
+                {
+                    <div class="swiper-slide ads-img">
+                        <a href="/content/@item.id">
+                            <img class="add-content" src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+$"?type=content&id={item.id}&code={Settings.AdsCode}&position=0")" alt="@item.title" />
+
+                        </a>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
-</div>
+    </div>}
