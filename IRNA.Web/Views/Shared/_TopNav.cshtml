@@ -6,13 +6,13 @@
     @Html.Action("Menu", "Home", new { isMobile = true })
     <div class="nav-group ms-auto">
         <form method="get" action="/list">
-            <input type="search"
+            <input type="search" required
                    placeholder="جستجو"
                    data-visible="false"
                    class="form-control d-none d-lg-block"
                    name="q"
                    id="searchd" />
-            <input type="search"
+            <input type="search" required
                    placeholder="جستجو"
                    data-visible="false"
                    class="form-control"
