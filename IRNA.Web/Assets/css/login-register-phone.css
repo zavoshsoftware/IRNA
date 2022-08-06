@@ -2,7 +2,7 @@
     --bgc-primary: #151f30;
     --bgc-primary-accent: #1c2c46;
     --bgc-main: #131720;
-    --bgc-secondary: #e100d2;
+    --bgc-secondary: #f9c802;
     --bgc-filler: rgb(114, 206, 134);
     --text-color:#7085AA;
   }
@@ -40,7 +40,7 @@
     text-align: center;
 }
   .login-register .input-group > .form-select{
-      flex: 0.15 1 auto;
+      flex: 0.25 1 auto;
   }
   .login-register .input-group:not(.has-validation) > :not(:last-child):not(.dropdown-toggle):not(.dropdown-menu), .input-group:not(.has-validation) > .dropdown-toggle:nth-last-child(n+3){
       border-start-start-radius: 0.7rem;

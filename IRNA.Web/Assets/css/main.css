@@ -18,7 +18,7 @@ html, body {
   --bgc-primary: #151f30;
   --bgc-primary-accent: #1c2c46;
   --bgc-main: #131720;
-  --bgc-secondary: #e100d2;
+  --bgc-secondary: #f9c802;
   --bgc-filler: rgb(114, 206, 134);
   --bgc-green:forestgreen;
   --text-color: #7085aa;
@@ -124,9 +124,10 @@ button {
 .topnav .nav-link:focus {
   color: var(--bgc-secondary) !important;
 }
-.topnav .btn:hover,
+/*.topnav .btn:not(button) hover,*/
+.topnav .btn: hover,
 .topnav .btn:focus {
-  color: var(--bgc-secondary) !important;
+    color: var(--bgc-secondary) !important;
 }
 .topnav .mobile-menu {
   position: fixed;
@@ -368,6 +369,7 @@ border-end-start-radius:1rem ;
   background-color: var(--bgc-secondary);
   width: 100%;
   margin-block-start: 0.5rem;
+  color: var(--bgc-main)
 }
 .filter .show-filter {
   background-color: var(--bgc-primary);
@@ -744,6 +746,11 @@ footer .copy-rights {
     display: inline-flex;
     margin-inline-end: 1rem;
   }
+  .download-app:hover {
+    color: darkblue;
+    display: inline-flex;
+    margin-inline-end: 1rem;
+  }
   .fake-slide .quick-watch {
     display: none;
   }
@@ -760,7 +767,7 @@ footer .copy-rights {
   }
   .quick-watch-d .circle {
     position: relative;
-    background-color: #fa51ef;
+    background-color: #b59100;
     width: 22px;
     height: 22px;
     border-radius: 50%;
@@ -770,7 +777,7 @@ footer .copy-rights {
   .quick-watch-d .circle::before {
     content: "";
     position: absolute;
-    background-color: #ff25f0;
+    background-color: #f8edbe;
 
     top: 3px;
     left: 3px;
@@ -1145,5 +1152,5 @@ footer .copy-rights {
 
  }
  .bg-purple:hover{
-     background-color:purple
+     background-color:var(--bgc-secondary)
  }

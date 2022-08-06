@@ -71,7 +71,10 @@ namespace IRNA.Web.Controllers
             return PartialView(res);
         }
 
-
+        public ActionResult Display()
+        {
+            return View();
+        }
 
     }
 }

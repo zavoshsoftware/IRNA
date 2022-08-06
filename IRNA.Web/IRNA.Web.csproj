@@ -168,6 +168,7 @@
     <Content Include="Assets\js\contentlist.js" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Assets\js\movie-detail.js" />
+    <Content Include="Assets\js\player-min.js" />
     <Content Include="Assets\js\verify.js" />
     <Content Include="Assets\node_modules\%40popperjs\core\dist\cjs\enums.js" />
     <Content Include="Assets\node_modules\%40popperjs\core\dist\cjs\popper-base.js" />
@@ -2588,6 +2589,7 @@
     <Content Include="Views\Home\Privacy.cshtml" />
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\MenuMobile.cshtml" />
+    <Content Include="Views\Content\Display.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -244,10 +244,10 @@
             <span class="bi bi-person-fill"></span>
             <form method="post">
                 <input id="id" type="number" value="@Model.vodResult.id" hidden />
-                <input class="form-controle" id="body" name="body"
+                <input class="form-controle text-light" id="body" name="body"
                        type="text"
                        placeholder="دیدگاه شما درباره @Model.vodResult.name" />
-                <button type="button" id="comment" class="btn rounded-pill">ارسال</button>
+                <button type="button" id="comment" class="btn rounded-pill text-dark">ارسال</button>
             </form>
         </div>
         @Html.Action("Comments", new { id = Model.vodResult.id })
