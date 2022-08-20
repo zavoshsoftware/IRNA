@@ -29,8 +29,12 @@
                 @Model.vodResult.description
             </p>
             <div class="btn-container order-2 order-lg-4">
-                <button class="btn rounded-pill text-light">پخش فیلم</button>
-                <button class="btn rounded-pill text-light">پیش نمایش</button>
+                <form action="/Content/display" method="post">  
+                    <input id="Id" name="Id" hidden value="@Model.vodResult.id" type="number" />
+                <button type="submit" class="btn rounded-pill text-light" >پخش فیلم</button>
+                </form>
+                <a class="btn rounded-pill text-light" >پیش نمایش</a>
+          
             </div>
             <div class="detail order-3 order-lg-0">
                 <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>

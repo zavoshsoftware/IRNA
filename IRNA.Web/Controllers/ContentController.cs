@@ -47,7 +47,7 @@ namespace IRNA.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(res);
+            return View(res); 
         }
 
         [HttpPost]
@@ -69,12 +69,23 @@ namespace IRNA.Web.Controllers
                 $"language=fa&diskId={id}&page={page}&pageSize={pageSize}";
             CommentListVM res = _apiService.GetApiResponse<RootCommentVM>(url).GetAwaiter().GetResult().more.list;
             return PartialView(res);
-        }
 
-        public ActionResult Display()
-        {
-            return View();
         }
+        [Route("Content/Display")] 
+        [HttpPost]
+        public ActionResult Display(int id)
+        { 
+            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&qualit=&lang=";
 
+            var res = _apiService.GetApiResponse<RtmpPlayAlbumRoot>(url).GetAwaiter().GetResult();
+            
+            if (!res.list.Any())
+            {
+                return View("~/Views/Shared/NotFound.cshtml");
+            }
+            RtmpPlayAlbumList video = res.list.LastOrDefault();
+            return View(video);
+        }
+         
     }
 }

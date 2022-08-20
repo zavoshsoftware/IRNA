@@ -24,8 +24,10 @@ namespace IRNA.Web.Services
                     break;
                 case 'h':
                    result = string.Format("{0}:{1}", pc.GetHour(d.AddHours(4)) ,pc.GetMinute(d.AddMinutes(30)));
-                    break;
-                     
+                    break; 
+                case 's':
+                   result = string.Format("{0}/{1}/{2}-{3}:{4}", pc.GetYear(d), pc.GetMonth(d), pc.GetDayOfMonth(d), pc.GetHour(d.AddHours(4)) ,pc.GetMinute(d.AddMinutes(30)));
+                    break; 
             }
             return result;
         }

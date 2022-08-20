@@ -148,6 +148,7 @@
     <Content Include="Assets\images\Muddy.jpg" />
     <Content Include="Assets\images\Munich-The-Edge-of-War.jpg" />
     <Content Include="Assets\images\musicmenu.png" />
+    <Content Include="Assets\images\NotFound.jpg" />
     <Content Include="Assets\images\parsian.png" />
     <Content Include="Assets\images\privacy.jpg" />
     <Content Include="Assets\images\report.jpeg" />
@@ -2210,6 +2211,7 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ApiViewModel.cs" />
     <Compile Include="ViewModels\ContentViewModel.cs" />
+    <Compile Include="ViewModels\RtmpPlayAlbumViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -2590,6 +2592,7 @@
     <Content Include="Views\Home\List.cshtml" />
     <Content Include="Views\Home\MenuMobile.cshtml" />
     <Content Include="Views\Content\Display.cshtml" />
+    <Content Include="Views\Shared\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
