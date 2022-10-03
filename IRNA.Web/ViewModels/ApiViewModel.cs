@@ -24,6 +24,5 @@ namespace IRNA.Web.ViewModels
     public partial class moreVM
     {
         public string result { get; set; }
-    }
-
+    } 
 }

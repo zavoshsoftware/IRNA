@@ -79,7 +79,7 @@ namespace IRNA.Web.Controllers
 
             var res = _apiService.GetApiResponse<RtmpPlayAlbumRoot>(url).GetAwaiter().GetResult();
             
-            if (!res.list.Any())
+            if (!res?.list?.Any()??true)
             {
                 return View("~/Views/Shared/NotFound.cshtml");
             }

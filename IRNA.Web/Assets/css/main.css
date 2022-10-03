@@ -1178,3 +1178,10 @@ footer .copy-rights {
         transform: translate(-50%,-50%);
       
     }
+
+.bg-gold { 
+    background-color: #f9c802 !important;
+}
+.bg-gold:hover { 
+    background-color: #d9af05 !important;
+}
