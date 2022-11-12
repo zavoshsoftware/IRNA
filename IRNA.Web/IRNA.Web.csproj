@@ -2206,6 +2206,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Helper.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
+    <Compile Include="Services\Security.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\Setting.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />

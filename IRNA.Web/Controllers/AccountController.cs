@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Mvc;
 
@@ -34,7 +35,8 @@ namespace IRNA.Web.Controllers
         [HttpPost]
         public ActionResult Verify(LoginVM login)
         {
-            var phone = $"{login.CityCode.Remove(0, 1)}{login.Phone.Replace(" ",string.Empty).Remove(0, 1)}";
+            //var phone = $"{login.CityCode.Remove(0, 1)}{login.Phone.Replace(" ",string.Empty).Remove(0, 1)}";
+            var phone = login.Phone.StartsWith("0") ? login.Phone.Trim().Replace(" ", string.Empty).Remove(0, 1) : login.Phone.Trim();
             var url = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/sendSmsCode?phoneNumber={phone}";
             var res = new VerifyVM
             {
@@ -71,13 +73,12 @@ namespace IRNA.Web.Controllers
         [HttpPost]
         public ActionResult VerifyAuth(string mobile, string confirm)
         {
-            var phone = mobile.Replace(" ","");
+            var phone = mobile.Replace(" ", "");
             var url1 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/verifySmsCode?" +
            $"phoneNumber={phone}&verificationCode={confirm}";
             var res1 = _accountService.GetApiResponse<VerifySmsCodeVM>(url1).GetAwaiter().GetResult();
             if (res1.code == (int)HttpStatusCode.OK)
-            { 
-
+            {
                 var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms" +
                 $"?email={res1.more.email}&name={res1.more.name}&family={res1.more.family}&" +
                 $"phoneNumber={phone}&verificationCode={confirm}";
@@ -92,19 +93,27 @@ namespace IRNA.Web.Controllers
 
                     if (res3.code == (int)HttpStatusCode.OK)
                     {
+                        var hashedPassword = Security.ComputeSHA256(Security.CreateMD5(confirm) + res3.more.random + "gsfb97FGD^%R%$");
                         var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
-                        $"username={phone}&password={res3.more.random}";
+                     $"username={phone}&" +
+                     $"domain=shared&" +
+                     $"password={hashedPassword}&" +
+                     $"serverSelfIds=&" +
+                     $"sessionId={res3.more.sessionId}";
+                        //var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
+                        //$"username={phone}&password={res3.more.random}";
                         var res4 = _accountService.GetApiResponse<LoginByGetResponseVM>(url4).GetAwaiter().GetResult();
                         TempData["Verify"] = res2.localizedMessages.fa;
                         var token = res4.more.token;
                         Response.Cookies.Add(Settings.CreateCookie(token));
+                       
                         return Redirect("/Profile");
                     }
                 }
             }
             return Redirect("/Verify");
         }
-         
+
         [Route("Profile")]
         public ActionResult Profile()
         {
@@ -113,7 +122,7 @@ namespace IRNA.Web.Controllers
             {
                 var token = cookie.Value;
                 var url = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/profiles/getProfile?token={token}";
-                var res = _accountService.GetApiResponse<VerifySmsCodeVM>(url).GetAwaiter().GetResult(); 
+                var res = _accountService.GetApiResponse<VerifySmsCodeVM>(url).GetAwaiter().GetResult();
             }
             return View();
         }
