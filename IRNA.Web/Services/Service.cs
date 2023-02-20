@@ -23,6 +23,22 @@ namespace IRNA.Web.Services
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
+            GlobalVariable.CurrentApiResponse = response.Content;
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response.Content);
+        }
+        
+        public async Task<T> GetApiResponse<T>(string url, Dictionary<string,object> ps)
+        {
+            var client = new RestClient(url);
+           
+            ps.Keys.ToList().ForEach(p =>
+            { 
+                client.AddDefaultParameter(p,ps[p]);
+            });
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            GlobalVariable.CurrentApiResponse = response.Content;
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(response.Content);
         }
 

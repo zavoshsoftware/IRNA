@@ -22,10 +22,16 @@
         </form>
         <span id="search-btn" class="bi bi-search search-icon ms-2"></span>
         <a href="#" class="nav-link text-light ms-2">خرید اشتراک</a>
-        <a href="/login" class="nav-link text-light ms-2">ورود</a> 
-        <button
-          class="btn rounded-pill text-dark download-app ms-2 d-lg-none d-xl-flex"
-        >دانلود اپلیکیشن
+        @if (string.IsNullOrEmpty(Request.GetCookieOrDefault("Token")))
+        {
+            <a href="/login" class="nav-link text-light ms-2">ورود</a>
+        }
+        else
+        {
+            <a href="/profile" class="nav-link text-light ms-2">پروفایل</a>
+        }
+        <button class="btn rounded-pill text-dark download-app ms-2 d-lg-none d-xl-flex">
+            دانلود اپلیکیشن
         </button>
-      </div>
+    </div>
 </nav>

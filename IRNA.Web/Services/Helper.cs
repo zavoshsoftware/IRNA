@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -34,9 +35,23 @@ namespace IRNA.Web.Services
         
         public static string ToShamsi(this long time,char type = 'a')
         =>  ToShamsi((new DateTime(1970, 1, 1)).AddMilliseconds(time), type);
-        
 
-        
 
+        public static string GetObjectInfo(object myObject)
+        {
+            string result="";
+            Type myType = myObject.GetType();
+            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties());
+
+            foreach (PropertyInfo prop in props)
+            {
+                object propValue = prop.GetValue(myObject, null);
+                result = result + propValue.ToString();
+                // Do something with propValue
+            }
+            return result;
+        }
+        public static string StringConcatenator(string seprator, params string[] ps)
+        => string.Join(seprator, ps.ToList());
     }
 }

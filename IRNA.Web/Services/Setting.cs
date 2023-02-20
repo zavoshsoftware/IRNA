@@ -17,8 +17,15 @@ using System.Web;
                 return Setting<string>("BaseUrl");
                 //return Setting<string>("LocalBaseUrl");
             }
-        } 
-        private static T Setting<T>(this string name)
+        }
+
+
+    public static string GetCookieOrDefault(this HttpRequestBase request, string name)
+    {
+        return request.Cookies[name] == null ? "" : request.Cookies[name]?.Value??"";
+    }
+
+    private static T Setting<T>(this string name)
         {
             string value = ConfigurationManager.AppSettings[name];
 

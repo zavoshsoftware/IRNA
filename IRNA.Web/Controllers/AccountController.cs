@@ -76,20 +76,30 @@ namespace IRNA.Web.Controllers
             var phone = mobile.Replace(" ", "");
             var url1 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/verifySmsCode?" +
            $"phoneNumber={phone}&verificationCode={confirm}";
-            var res1 = _accountService.GetApiResponse<VerifySmsCodeVM>(url1).GetAwaiter().GetResult();
+            var res1 = _accountService.GetApiResponse<VerifySmsCodeDtoRoot>(url1).GetAwaiter().GetResult();
+            TempData["Err"] += Helper.StringConcatenator(" _ ", url1, GlobalVariable.CurrentApiResponse, nameof(res1));
             if (res1.code == (int)HttpStatusCode.OK)
             {
-                var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms" +
-                $"?email={res1.more.email}&name={res1.more.name}&family={res1.more.family}&" +
-                $"phoneNumber={phone}&verificationCode={confirm}";
-                var res2 = _accountService.GetApiResponse<ResponseVM>(url2).GetAwaiter().GetResult();
-                TempData["Verify"] = res2.localizedMessages.fa;
+                var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms";
+                //$"?" +
+                //$"email={res1.more.result.email}&name={res1.more.result.name}&family={res1.more.result.family}&" +
+                //$"phoneNumber={phone}&verificationCode={confirm}").Replace("&", "&amp;");
 
+                var res2 = _accountService.GetApiResponse<ResponseVM>(url2,new Dictionary<string, object> {
+                    { "email", res1.more.result.email },
+                    { "name", res1.more.result.name },
+                    { "family", res1.more.result.family },
+                    { "phoneNumber", mobile },
+                    { "verificationCode",confirm } 
+                    }).GetAwaiter().GetResult();
+                TempData["Verify"] = res2.localizedMessages.fa; 
+                TempData["Err"] += Helper.StringConcatenator(" _ ", res1.more.result.email, res1.more.result.name, res1.more.result.family, res1.more.result.telephone, res1.more.result.verificationCode, GlobalVariable.CurrentApiResponse, nameof(res2));
                 if (res2.code == (int)HttpStatusCode.OK)
                 {
                     var url3 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/getRandom";
                     var res3 = _accountService.GetApiResponse<getRandomResponseVM>(url3).GetAwaiter().GetResult();
                     TempData["Verify"] = res3.localizedMessages.fa;
+                    TempData["Err"] += res3.localizedMessages.fa + nameof(res3);
 
                     if (res3.code == (int)HttpStatusCode.OK)
                     {
@@ -104,14 +114,16 @@ namespace IRNA.Web.Controllers
                         //$"username={phone}&password={res3.more.random}";
                         var res4 = _accountService.GetApiResponse<LoginByGetResponseVM>(url4).GetAwaiter().GetResult();
                         TempData["Verify"] = res2.localizedMessages.fa;
+                        TempData["Err"] += res4.localizedMessages.fa + nameof(res4);
+
                         var token = res4.more.token;
                         Response.Cookies.Add(Settings.CreateCookie(token));
                        
-                        return Redirect("/Profile");
+                        return Redirect("/");
                     }
                 }
             }
-            return Redirect("/Verify");
+            return Redirect("/login");
         }
 
         [Route("Profile")]
@@ -131,9 +143,8 @@ namespace IRNA.Web.Controllers
         {
             if (Request.Cookies["Token"] != null)
             {
-                var c = new HttpCookie("Token");
-                c.Expires = DateTime.Now.AddDays(-1);
-                Response.Cookies.Remove("Token");
+                string token = null;
+                Response.Cookies.Add(Settings.CreateCookie(token));
             }
             return Redirect("/");
         }

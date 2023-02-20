@@ -10,10 +10,11 @@ namespace IRNA.Web.Services.Interfaces
    public interface IService
     {
         Task<T> GetApiResponse<T>(string url);
-        
+        Task<T> GetApiResponse<T>(string url, Dictionary<string, object> ps);
+
          //Task<T> GetApiResponse2<T>(string url);
 
-          bool IsMobileDevice(string userAgent);
+        bool IsMobileDevice(string userAgent);
 
         Task<RootGenresVM> GetGenres();
     }

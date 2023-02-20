@@ -26,6 +26,15 @@ namespace IRNA.Web.ViewModels
         public ResponseVM Response { get; set; }
     }
 
+
+
+
+
+
+
+
+
+
     public partial class VerifySmsCodeVM:BaseResponseVM
     {
         public VerifySmsCodeMoreVM more { get; set; }
@@ -40,6 +49,54 @@ namespace IRNA.Web.ViewModels
         public string verificationCode { get; set; }
         public string language { get; set; }
     }
+
+
+
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    public class VerifySmsCodeDto
+    {
+        public string ar { get; set; }
+        public string en { get; set; }
+        public string fa { get; set; }
+    }
+
+    public class VerifySmsCodeDtoMore
+    {
+        public VerifySmsCodeDtoResult result { get; set; }
+    }
+
+    public class VerifySmsCodeDtoResult
+    {
+        public string email { get; set; }
+        public string name { get; set; }
+        public string family { get; set; }
+        public string telephone { get; set; }
+        public string verificationCode { get; set; }
+        public object language { get; set; }
+    }
+
+    public class VerifySmsCodeDtoRoot
+    {
+        public int code { get; set; }
+        public VerifySmsCodeDto localizedMessages { get; set; }
+        public VerifySmsCodeDtoMore more { get; set; }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public partial class getRandomResponseVM : BaseResponseVM
     {

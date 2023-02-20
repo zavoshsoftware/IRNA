@@ -10,13 +10,16 @@
     <div class="login-register">
         <form action="/Verify" method="post">
             <h2>ورود و ثبت نام با شماره تلفن همراه</h2>
-            @if (TempData["verify"] != null)
+            @if (TempData["Verify"] != null)
             {
                 <hr />
                 <p> @TempData["Verify"]</p>
                 <hr />
             }
-            <p>لطفا کشور خود را انتخاب و شماره تلفن همراه خود را وارد کنید</p>
+            else
+            {
+                <p>لطفا کشور خود را انتخاب و شماره تلفن همراه خود را وارد کنید</p>
+            }
             <div class="input-group" dir="ltr">
 
                 <select name="citycode" id="citycode" class="form-select">
@@ -33,9 +36,11 @@
 </main>
 
 <script>
-    var verifyKey = localStorage.getItem("verify_key"); 
+    var verifyKey = localStorage.getItem("verify_key");
     if (verifyKey != null) {
         document.getElementById("resend").value = verifyKey;
     }
+
+    console.log('@TempData["Err"]');
 </script>
 
