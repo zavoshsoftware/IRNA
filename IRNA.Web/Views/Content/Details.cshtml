@@ -9,72 +9,145 @@
 
 <main class="wraper pb-3">
     <!-- movie intro -->
-    <div class="movie-intro">
-        @*<img class="main-img d-lg-none" 
-             src="~/Assets/images/best-of-Marvel-2021-Header.jpg"
-             alt="khejalat nakesh" />*@
-        <div class="bg-img " style="direction:ltr">
-            <img class="d-none d-lg-inline-block main-img-d"
-                 src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")"
-             />
-            @*<img class="d-none d-lg-inline-block main-img-d"
-                 src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={Model.vodResult.id}&code=300x400&position=0")" />*@
+    @if (!Request.UserAgent.IsMobileDevice())
+    {
+    <!--pc-->
+        <div class="movie-intro">
+            @*<img class="main-img d-lg-none"
+                src="~/Assets/images/best-of-Marvel-2021-Header.jpg"
+                alt="khejalat nakesh" />*@
+            <div class="bg-img " style="direction:ltr">
+                <img class="d-none d-lg-inline-block main-img-d"
+                     src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")" />
+                @*<img class="d-none d-lg-inline-block main-img-d"
+                    src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                       $"?type=content&id={Model.vodResult.id}&code=300x400&position=0")" />*@
+            </div>
+            <div class="movie-intro-content">
+                <h2 class="text-center text-light order-0 order-lg-2">@(Model.vodResult?.name)</h2>
+                <p>@(Model.vodResult?.defaultTitle)</p>
+                <p class="text-center text-lg-start text-light text order-1 order-lg-3">
+                    @Model.vodResult.description
+                </p>
+                <div class="btn-container order-2 order-lg-4">
+                    <form action="/Content/display" method="post">
+                        <input id="Id" name="Id" hidden value="@Model.vodResult.id" type="number" />
+                        <button type="submit" class="btn rounded-pill bg-gold text-dark">پخش فیلم</button>
+                    </form>
+                    <a class="btn rounded-pill bg-dark text-warning">پیش نمایش</a>
+
+                </div>
+                <div class="detail order-3 order-lg-0">
+                    <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>
+                    <span class="vr text-light"></span>
+                    <span class="text-light">@Model.vodResult.date</span>
+                    <span class="vr text-light"></span>
+                    <span class="text-light">
+                        @Model.stats.numberOfViews  <span class="bi bi-eye"></span>
+                    </span>
+                    <span class="vr text-light"></span>
+                    <span class="text-light">
+                        @(Model.vodResult.rate.userRate)% <span class="bi bi-heart"></span>
+                    </span>
+                </div>
+                <div class="age-group text-light order-4 order-lg-1">
+                    <span class="badge bg-warning rounded-pill text-dark">گروه سنی</span>
+                    @Model.vodResult.ageGroup.text
+                </div>
+                <div class="age-group text-light order-4 order-lg-1">
+                    <span class="badge bg-warning rounded-pill text-dark">محصول</span>
+                    @Model.vodResult.country.text
+                </div>
+                @*<div class="stars d-none d-lg-flex order-5">
+                        <span>ستارگان</span>
+                        <span>احمد مهران فر</span>
+                        <span>شبنم مقدمی</span>
+                        <span>لیندا کیانی</span>
+                    </div>*@
+                <div class="agents d-none d-lg-flex">
+                    <span>@Model.vodResult.castAndCrew.Split(':')[0]:&nbsp;</span>
+                    <span>@Model.vodResult.castAndCrew.Split(':')[1]</span>
+                </div>
+                <div class="ganra d-none d-lg-flex">
+                    @foreach (var item in Model.vodResult.tags)
+                    {
+                        <button class="btn badge text-light"><small>@item.title</small></button>
+                    }
+                </div>
+            </div>
         </div>
-        <div class="movie-intro-content">
-            <h2 class="text-center text-light order-0 order-lg-2">@(Model.vodResult?.name)</h2>
-            <p>@(Model.vodResult?.defaultTitle)</p>
-            <p class="text-center text-lg-start text-light text order-1 order-lg-3">
-                @Model.vodResult.description
-            </p>
-            <div class="btn-container order-2 order-lg-4">
-                <form action="/Content/display" method="post">  
-                    <input id="Id" name="Id" hidden value="@Model.vodResult.id" type="number" />
-                <button type="submit" class="btn rounded-pill bg-gold text-dark" >پخش فیلم</button>
-                </form>
-                <a class="btn rounded-pill bg-dark text-warning" >پیش نمایش</a>
-          
+
+    }
+    else
+    {
+        <!--mobile-->
+        <div class="movie-intro">
+
+            <div style="direction:ltr;" class="">
+                <img 
+                       src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")" 
+                     style="height: 80vw;" class="">
+
             </div>
-            <div class="detail order-3 order-lg-0">
-                <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>
-                <span class="vr text-light"></span>
-                <span class="text-light">@Model.vodResult.date</span>
-                <span class="vr text-light"></span>
-                <span class="text-light">
-                    @Model.stats.numberOfViews  <span class="bi bi-eye"></span>
-                            </span>
-                <span class="vr text-light"></span>
-                <span class="text-light">
-                    @(Model.vodResult.rate.userRate)% <span class="bi bi-heart"></span>
-                </span>
-            </div>
-            <div class="age-group text-light order-4 order-lg-1">
-                <span class="badge bg-warning rounded-pill text-dark">گروه سنی</span>
-                @Model.vodResult.ageGroup.text
-            </div>
-            <div class="age-group text-light order-4 order-lg-1">
-                <span class="badge bg-warning rounded-pill text-dark">محصول</span>
-                @Model.vodResult.country.text
-            </div>
-            @*<div class="stars d-none d-lg-flex order-5">
-                <span>ستارگان</span>
-                <span>احمد مهران فر</span>
-                <span>شبنم مقدمی</span>
-                <span>لیندا کیانی</span>
-            </div>*@
-            <div class="agents d-none d-lg-flex">
-                <span>@Model.vodResult.castAndCrew.Split(':')[0]:&nbsp;</span>
-                <span>@Model.vodResult.castAndCrew.Split(':')[1]</span>
-            </div> 
-            <div class="ganra d-none d-lg-flex">
-                @foreach (var item in Model.vodResult.tags)
-                {
-                    <button class="btn badge text-light"><small>@item.title</small></button>
-                }
+            <div class="movie-intro-content pt-5">
+                <h2 class="text-center text-light order-0 order-lg-2">@(Model.vodResult?.name)</h2>
+                <p class="text-center">@(Model.vodResult?.defaultTitle)</p>
+                <p class="text-center text-lg-start text-light text order-1 order-lg-3">
+                    @Model.vodResult.description
+                </p>
+                <div class="btn-container order-2 order-lg-4">
+                    <form action="/Content/display" method="post">
+                        <input id="Id" name="Id" hidden value="@Model.vodResult.id" type="number" />
+                        <button type="submit" class="btn rounded-pill bg-gold text-dark">پخش فیلم</button>
+                    </form>
+                    <a class="btn rounded-pill bg-dark text-warning">پیش نمایش</a>
+
+                </div>
+                <div class="detail order-3 order-lg-0">
+                    <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>
+                    <span class="vr text-light"></span>
+                    <span class="text-light">@Model.vodResult.date</span>
+                    <span class="vr text-light"></span>
+                    <span class="text-light">
+                        @Model.stats.numberOfViews <span class="bi bi-eye"></span>
+                    </span>
+                    <span class="vr text-light"></span>
+                    <span class="text-light">
+                        @(Model.vodResult.rate.userRate)% <span class="bi bi-heart"></span>
+                    </span>
+                </div>
+                <div class="age-group text-light order-4 order-lg-1">
+                    <span class="badge bg-warning rounded-pill text-dark">گروه سنی</span>
+                    @Model.vodResult.ageGroup.text
+                </div>
+                <div class="age-group text-light order-4 order-lg-1">
+                    <span class="badge bg-warning rounded-pill text-dark">محصول</span>
+                    @Model.vodResult.country.text
+                </div>
+                <div class="agents d-none d-lg-flex">
+                    <span>@Model.vodResult.castAndCrew.Split(':')[0]:&nbsp;</span>
+                    <span>@Model.vodResult.castAndCrew.Split(':')[1]</span>
+                </div>
+                <div class="ganra d-none d-lg-flex">
+                    @foreach (var item in Model.vodResult.tags)
+                    {
+                        <button class="btn badge text-light"><small>@item.title</small></button>
+                    }
+                </div>
             </div>
         </div>
-    </div>
+    }
+
+
+
+
+
+
+
+
+
     <!-- movie intro -->
     <!-- images and detail of movie -->
     <div class="movie-images">
@@ -221,15 +294,15 @@
         </h3>
         <div class="agents-cards">
             @*<div class="agent-card">
-            <span class="text-white-50">@Model.vodResult.castAndCrew.Split(':')[0]</span>
-            <span class="text-light">@Model.vodResult.castAndCrew.Split(':')[1]</span>
-        </div>*@
+                    <span class="text-white-50">@Model.vodResult.castAndCrew.Split(':')[0]</span>
+                    <span class="text-light">@Model.vodResult.castAndCrew.Split(':')[1]</span>
+                </div>*@
             @foreach (var item in Model.vodResult.roles)
             {
                 <div class="agent-card">
                     <span class="text-white-50">@item.roleTitle</span>
                     <span class="text-light">@item.title</span>
-                </div> 
+                </div>
             }
         </div>
     </div>
@@ -243,7 +316,7 @@
             <span>نظرات کاربران</span>
             <span></span>
         </h3>
-           &nbsp;&nbsp;&nbsp; <label class="text-light" id="cmdres"></label>
+        &nbsp;&nbsp;&nbsp; <label class="text-light" id="cmdres"></label>
         <div class="submit-comment">
             <span class="bi bi-person-fill"></span>
             <form method="post">
@@ -251,7 +324,7 @@
                 <input class="form-controle text-light" id="body" name="body"
                        type="text"
                        placeholder="دیدگاه شما درباره @Model.vodResult.name" />
-                <button type="button" id="comment" class="btn rounded-pill text-dark">ارسال</button>
+                <button type="button" id="comment" class="btn rounded-pill text-dark" style="width: 38px;"><i class="bi bi-send" style="font-size: 15px;"></i></button>
             </form>
         </div>
         @Html.Action("Comments", new { id = Model.vodResult.id })

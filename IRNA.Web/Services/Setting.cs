@@ -9,7 +9,11 @@ using System.Web;
     public static class Settings
     {
 
-        public static string BaseUrl
+    private static string[] mobileDevices = new string[] {"iphone","ppc",
+                                                      "windows ce","blackberry",
+                                                      "opera mini","mobile","palm",
+                                                      "portable","opera mobi" };
+    public static string BaseUrl
         {
             get
             {
@@ -18,7 +22,9 @@ using System.Web;
                 //return Setting<string>("LocalBaseUrl");
             }
         }
-
+     
+    public static bool IsMobileDevice(this string userAgent)
+    => mobileDevices.Any(x => userAgent.ToLower().Contains(x));
 
     public static string GetCookieOrDefault(this HttpRequestBase request, string name)
     {
@@ -39,6 +45,14 @@ using System.Web;
         public static HttpCookie CreateCookie(string value, int days=3)
         {
             HttpCookie irnaookies = new HttpCookie("Token");
+            irnaookies.Value = value;
+            irnaookies.Expires = DateTime.Now.AddDays(days);
+            return irnaookies;
+        }
+    
+        public static HttpCookie CreateCookie(string name,string value, int days=3)
+        {
+            HttpCookie irnaookies = new HttpCookie(name);
             irnaookies.Value = value;
             irnaookies.Expires = DateTime.Now.AddDays(days);
             return irnaookies;
@@ -107,4 +121,17 @@ using System.Web;
                 return "ads";
             }
         }
-    } 
+
+     
+
+
+
+
+
+
+
+
+
+
+
+} 

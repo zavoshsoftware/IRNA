@@ -26,14 +26,29 @@ namespace IRNA.Web.ViewModels
         public ResponseVM Response { get; set; }
     }
 
+     
+    public class ProfileMoreVM
+    {
+        public ProfileVM Profile { get; set; }
+    }
 
+    public class ProfileVM
+    {
+        public string Language { get; set; }
+        public string Name { get; set; }
+        public string Family { get; set; }
+        public object Email { get; set; }
+        public object NationalCode { get; set; }
+        public int Province { get; set; }
+        public int City { get; set; }
+        public int BirthDate { get; set; }
+        public int Gender { get; set; }
+    }
 
-
-
-
-
-
-
+    public class ProfileRootVM : BaseResponseVM
+    { 
+        public ProfileMoreVM More { get; set; }
+    } 
 
     public partial class VerifySmsCodeVM:BaseResponseVM
     {

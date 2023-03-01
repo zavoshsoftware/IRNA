@@ -16,9 +16,9 @@
 
 .movie-intro-content {
     position: relative;
-    top: -8em;
+  /*  top: -8em;
     bottom: -8em;
-    margin-block-end: -8em;
+    margin-block-end: -8em;*/
 }
 
 .movie-intro .main-img {

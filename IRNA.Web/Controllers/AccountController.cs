@@ -118,6 +118,7 @@ namespace IRNA.Web.Controllers
 
                         var token = res4.more.token;
                         Response.Cookies.Add(Settings.CreateCookie(token));
+                        Response.Cookies.Add(Settings.CreateCookie("Mobile", phone));
                        
                         return Redirect("/");
                     }
@@ -129,14 +130,15 @@ namespace IRNA.Web.Controllers
         [Route("Profile")]
         public ActionResult Profile()
         {
-            var cookie = Request.Cookies["Token"];
+            HttpCookie cookie = Request.Cookies["Token"];
             if (cookie != null)
             {
                 var token = cookie.Value;
                 var url = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/profiles/getProfile?token={token}";
-                var res = _accountService.GetApiResponse<VerifySmsCodeVM>(url).GetAwaiter().GetResult();
+                var res = _accountService.GetApiResponse<ProfileRootVM>(url).GetAwaiter().GetResult();
+                return View(res);
             }
-            return View();
+            return Redirect("/login");
         }
 
         public ActionResult LogOut()

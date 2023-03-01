@@ -135,8 +135,9 @@ button {
   top: 55px;
   display: none;
   flex-direction: column;
-  width: 20%;
+  width: 100%;
   z-index: 101;
+  opacity:0.9
 }
 .buy-sub-con{
   position: relative;
@@ -264,13 +265,13 @@ border-end-start-radius:1rem ;
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-block-end: 1rem;
+  /*margin-block-end: 1rem;*/
 }
 .irna-24-slider-container {
   padding-block-start: 1rem;
 }
 .irna-24-slider .swiper-wrapper {
-  margin-block-end: 1rem;
+  /*margin-block-end: 1rem;*/
 }
 .headshaprtl {
   background-image: url("../images/headshaper.svg");
@@ -306,7 +307,7 @@ border-end-start-radius:1rem ;
 .irna-24-slider-container {
   width: calc(100% - 2rem);
   margin-inline: auto;
-  padding-block-end: 1rem;
+  /*padding-block-end: 1rem;*/
   aspect-ratio: 9/4;
   background-color: var(--bgc-primary);
   border-start-end-radius: 1rem;
@@ -850,7 +851,7 @@ footer .copy-rights {
   .irna-24 {
     width: calc(100% - 8rem);
     margin-inline: auto;
-    margin-block-end: 3rem;
+    /*margin-block-end: 3rem;*/
   }
   .irna-24 .view-all {
     left: 45%;

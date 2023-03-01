@@ -1,19 +1,19 @@
-﻿
+﻿@model IRNA.Web.ViewModels.ProfileRootVM
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = Request.GetCookieOrDefault("Mobile");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section Styles {
     <link href="@Url.Content("~/Assets/css/user-dashboard-visited.css")" rel="stylesheet" type="text/css" />
-    
+
 }
 <main class="wraper pb-3">
     <div class="user-dashboard-container">
         <div class="user-dashboard">
             <span class="bi bi-person-fill"></span>
             <div class="user-info">
-                <span>مجید بابایی</span>
-                <span>09352204330</span>
+                <span>@Model.More.Profile.Name @Model.More.Profile.Family</span>
+                <span>@Request.GetCookieOrDefault("Mobile")</span>
             </div>
         </div>
         <hr />
@@ -28,31 +28,31 @@
                     </div>
                 </div>
                 @*<div class="videos-container">
-                    <div class="video-card">
-                        <img src="~/Assets/images/Double-Dad.jpg" alt="" />
-                        <p>دو پدره</p>
-                    </div>
-                    <div class="video-card">
-                        <img src="~/Assets/images/Double-Dad.jpg" alt="" />
-                        <p>گلی</p>
-                    </div>
-                    <div class="video-card">
-                        <img src="~/Assets/images/Double-Dad.jpg" alt="" />
-                        <p>مونیخ در لبه جنگ</p>
-                    </div>
-                    <div class="video-card">
-                        <img src="~/Assets/images/Double-Dad.jpg" alt="" />
-                        <p>دو پدره</p>
-                    </div>
-                    <div class="video-card">
-                        <img src="~/Assets/images/Double-Dad.jpg" alt="" />
-                        <p>گلی</p>
-                    </div>
-                    <div class="video-card">
-                        <img src="~/Assets/images/Double-Dad.jpg" alt="" />
-                        <p>مونیخ در لبه جنگ</p>
-                    </div>
-                </div>*@
+                        <div class="video-card">
+                            <img src="~/Assets/images/Double-Dad.jpg" alt="" />
+                            <p>دو پدره</p>
+                        </div>
+                        <div class="video-card">
+                            <img src="~/Assets/images/Double-Dad.jpg" alt="" />
+                            <p>گلی</p>
+                        </div>
+                        <div class="video-card">
+                            <img src="~/Assets/images/Double-Dad.jpg" alt="" />
+                            <p>مونیخ در لبه جنگ</p>
+                        </div>
+                        <div class="video-card">
+                            <img src="~/Assets/images/Double-Dad.jpg" alt="" />
+                            <p>دو پدره</p>
+                        </div>
+                        <div class="video-card">
+                            <img src="~/Assets/images/Double-Dad.jpg" alt="" />
+                            <p>گلی</p>
+                        </div>
+                        <div class="video-card">
+                            <img src="~/Assets/images/Double-Dad.jpg" alt="" />
+                            <p>مونیخ در لبه جنگ</p>
+                        </div>
+                    </div>*@
             </div>
         </div>
     </div>
