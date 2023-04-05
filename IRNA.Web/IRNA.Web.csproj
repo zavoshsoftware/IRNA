@@ -124,6 +124,7 @@
     <Content Include="Assets\images\best-of-Marvel-2021-Header.jpg" />
     <Content Include="Assets\images\chat.jpg" />
     <Content Include="Assets\images\contact.jpg" />
+    <Content Include="Assets\images\default-banner.jpg" />
     <Content Include="Assets\images\document.jpg" />
     <Content Include="Assets\images\Double-Dad.jpg" />
     <Content Include="Assets\images\elnaz.jpg" />
@@ -2191,6 +2192,9 @@
     <Content Include="Assets\node_modules\swiper\vue\update-swiper.js" />
     <Content Include="Assets\node_modules\swiper\vue\utils.js" />
     <Content Include="Assets\node_modules\swiper\vue\virtual.js" />
+    <Content Include="Assets\video-js.css" />
+    <Content Include="Assets\video.js" />
+    <Content Include="Assets\videojs-contrib-hls.js" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <Content Include="Web.config" />

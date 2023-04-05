@@ -45,7 +45,7 @@ namespace IRNA.Web.Controllers
             var res = _apiService.GetApiResponse<RootContentDetailsVM>(url).GetAwaiter().GetResult();
             if (res!=null && res.vodResult==null)
             {
-                return HttpNotFound();
+                return View("~/Views/Shared/NotFound.cshtml");
             }
             return View(res); 
         }

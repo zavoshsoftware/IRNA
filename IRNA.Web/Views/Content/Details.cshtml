@@ -2,41 +2,56 @@
 @{
     ViewBag.Title = Model.vodResult.defaultTitle;
 }
- 
+
 @section Styles {
-    <link href="@Url.Content("~/Assets/css/movie-detail.css")" rel="stylesheet" type="text/css" /> 
+    <link href="@Url.Content("~/Assets/css/movie-detail.css")" rel="stylesheet" type="text/css" />
+
 }
 
 <main class="wraper pb-3">
     <!-- movie intro -->
     @if (!Request.UserAgent.IsMobileDevice())
     {
-    <!--pc-->
+        <!--pc-->
         <div class="movie-intro">
             @*<img class="main-img d-lg-none"
                 src="~/Assets/images/best-of-Marvel-2021-Header.jpg"
-                alt="khejalat nakesh" />*@
+                alt="khejalat nakesh" />*@ 
             <div class="bg-img " style="direction:ltr">
-                <img class="d-none d-lg-inline-block main-img-d"
+                <img class="d-none d-lg-inline-block main-img-d" id="img_banner"
                      src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
                     $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")" />
                 @*<img class="d-none d-lg-inline-block main-img-d"
                     src="@($"{IRNA.Web.Services.Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
                        $"?type=content&id={Model.vodResult.id}&code=300x400&position=0")" />*@
             </div>
+            <script>
+            (async () =>{
+                const arrayBuffer = await (await fetch("@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")")).arrayBuffer();
+                const myRequest = new Request(document.getElementById("img_banner").src);
+                fetch(myRequest).then((response) => {
+                    console.log(response.status); // returns 200
+                    console.log(document.getElementById("img_banner").src);
+                    response.blob().then((myBlob) => {
+                        console.log(myBlob.size)
+                        if (myBlob.size === 4440) {
+                            document.getElementById("img_banner").src = "~/Assets/images/default-banner.jpg";
+                        }
+                    });
+                });
+            })();
+            </script>
             <div class="movie-intro-content">
                 <h2 class="text-center text-light order-0 order-lg-2">@(Model.vodResult?.name)</h2>
                 <p>@(Model.vodResult?.defaultTitle)</p>
-                <p class="text-center text-lg-start text-light text order-1 order-lg-3">
-                    @Model.vodResult.description
-                </p>
+               
                 <div class="btn-container order-2 order-lg-4">
                     <form action="/Content/display" method="post">
                         <input id="Id" name="Id" hidden value="@Model.vodResult.id" type="number" />
                         <button type="submit" class="btn rounded-pill bg-gold text-dark">پخش فیلم</button>
                     </form>
-                    <a class="btn rounded-pill bg-dark text-warning">پیش نمایش</a>
-
+                    @*<a class="btn rounded-pill bg-dark text-warning">پیش نمایش</a>*@
+                   
                 </div>
                 <div class="detail order-3 order-lg-0">
                     <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>
@@ -65,10 +80,16 @@
                         <span>شبنم مقدمی</span>
                         <span>لیندا کیانی</span>
                     </div>*@
-                <div class="agents d-none d-lg-flex">
+            <div class="agents d-none d-lg-flex"> 
                     <span>@Model.vodResult.castAndCrew.Split(':')[0]:&nbsp;</span>
                     <span>@Model.vodResult.castAndCrew.Split(':')[1]</span>
-                </div>
+               
+            </div> 
+            <div class="agents d-none d-lg-flex pt-5">
+                <p class="text-center text-lg-start text-light text order-1 order-lg-3">
+                    @Model.vodResult.description
+                </p>
+            </div>
                 <div class="ganra d-none d-lg-flex">
                     @foreach (var item in Model.vodResult.tags)
                     {
@@ -85,9 +106,8 @@
         <div class="movie-intro">
 
             <div style="direction:ltr;" class="">
-                <img 
-                       src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
-                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")" 
+                <img id="img_banner" src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={Model.vodResult.id}&code={Settings.ContentDetailsBannerCode}&position=0")"
                      style="height: 80vw;" class="">
 
             </div>
@@ -108,7 +128,7 @@
                 <div class="detail order-3 order-lg-0">
                     <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>
                     <span class="vr text-light"></span>
-                    <span class="text-light">@Model.vodResult.date</span>
+                    <span class="text-light">@Model.vodResult.jalaliYear</span>
                     <span class="vr text-light"></span>
                     <span class="text-light">
                         @Model.stats.numberOfViews <span class="bi bi-eye"></span>
@@ -334,4 +354,5 @@
 
 @section Scripts{
     <script src="~/Assets/js/movie-detail.js"></script>
-    }
+}
+
