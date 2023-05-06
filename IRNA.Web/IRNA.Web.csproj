@@ -2599,6 +2599,7 @@
     <Content Include="Views\Home\MenuMobile.cshtml" />
     <Content Include="Views\Content\Display.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Content\Live.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

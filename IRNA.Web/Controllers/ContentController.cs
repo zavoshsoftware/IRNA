@@ -86,6 +86,13 @@ namespace IRNA.Web.Controllers
             RtmpPlayAlbumList video = res.list.LastOrDefault();
             return View(video);
         }
+
+        [Route("Live")]
+        public ActionResult Live()
+        {
+            RtmpPlayAlbumList video =new RtmpPlayAlbumList();
+            return View(video);
+        }
          
     }
 }
