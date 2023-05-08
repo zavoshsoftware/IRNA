@@ -1,4 +1,4 @@
-﻿
+﻿@model IRNA.Web.ViewModels.LiveViewModel.StreamRoot
 @{
     ViewBag.Title = "پخش زنده";
 }
@@ -14,7 +14,7 @@
     <!-- images and detail of movie -->
     <div class="movie-images">
         <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" style="width:100%" controls preload="auto" autoplay data-setup="{}" controls>
-            <source src="http://tv.irna.ir/live/stream/index.m3u8" type="application/x-mpegURL">
+            <source src="@Model.more.list.FirstOrDefault().link" type="application/x-mpegURL">
         </video>
     </div>
     <!-- images and detail of movie -->

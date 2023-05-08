@@ -1,14 +1,14 @@
 ﻿// init movie-imagesslider:
-const movieImagesSlider = new Swiper(".movie-images-slider", {
-    slidesPerView: 3.3,
+const movieImagesSlider = new Swiper(".movie-images-slider", { 
     spaceBetween: 5,
-    loop: true,
+    slidesPerGroup: 1,
+    loop: false,
     autoplay: {
       delay: 2000,
     },
     pagination: {
       el: ".swiper-pagination",
-      clickable: true,
+      clickable: false,
     },
     navigation: {
       nextEl: ".swiper-button-next",
@@ -17,22 +17,21 @@ const movieImagesSlider = new Swiper(".movie-images-slider", {
     breakpoints: {
       328: { slidesPerView: 3.3, spaceBetween: 5 },
       768: { slidesPerView: 5, spaceBetween: 5 },
-      992: { slidesPerView: 7, spaceBetween: 10 },
+      992: { slidesPerView: 7, spaceBetween: 5},
     }
   });
   // suggested movies slider:
 const suggestedMovieSlider = new Swiper(".suggested-movies-slider", {
   slidesPerView: 8,
-  spaceBetween: 10,
+    spaceBetween: 10,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
   loop: true,
   autoplay: {
     delay: 2000,
-  },
-  breakpoints: {
-    328: { slidesPerView: 3.1, spaceBetween: 5 },
-    768: { slidesPerView: 3.1, spaceBetween: 5 },
-    992: { slidesPerView: 8, spaceBetween: 10 },
-  },
+  } 
 });
 
 

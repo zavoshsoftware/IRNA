@@ -12,7 +12,7 @@
         <div class="user-dashboard">
             <span class="bi bi-person-fill"></span>
             <div class="user-info">
-                <span>@Model.More.Profile.Name @Model.More.Profile.Family</span>
+                <span>@(Model?.More?.Profile?.Name??"") @(Model?.More?.Profile?.Family??"")</span>
                 <span>@Request.GetCookieOrDefault("Mobile")</span>
             </div>
         </div>
@@ -20,13 +20,13 @@
         <div class="d-flex flex-column flex-lg-row">
             @Html.Partial("_Profile")
             <div class="d-flex flex-column big-padding">
-                <div class="filter">
+                @*<div class="filter">
                     <div class="btn-group">
                         <div class="btn">همه</div>
                         <div class="btn">فیلم</div>
                         <div class="btn">سریال</div>
                     </div>
-                </div>
+                </div>*@
                 @*<div class="videos-container">
                         <div class="video-card">
                             <img src="~/Assets/images/Double-Dad.jpg" alt="" />

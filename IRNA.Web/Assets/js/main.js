@@ -18,7 +18,7 @@ const mainSlider = new Swiper(".main-slider", {
 
 // init irna-24 slider:
 const irna24Slider = new Swiper(".irna-24-slider", {
-    slidesPerView: 3.3,
+    slidesPerView: 6,
     spaceBetween: 5,
     loop: true,
     autoplay: {
@@ -26,7 +26,7 @@ const irna24Slider = new Swiper(".irna-24-slider", {
     },
     pagination: {
         el: ".swiper-pagination",
-        clickable: true,
+        clickable: false,
     },
     navigation: {
         nextEl: ".swiper-button-next",

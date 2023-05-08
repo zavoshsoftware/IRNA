@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static IRNA.Web.ViewModels.LiveViewModel;
 
 namespace IRNA.Web.Controllers
 {
@@ -42,11 +43,17 @@ namespace IRNA.Web.Controllers
         {
             var url = $"{Settings.BaseUrl}iptv/irna/contentStatus?lang=fa&albumId={id}";
 
-            var res = _apiService.GetApiResponse<RootContentDetailsVM>(url).GetAwaiter().GetResult();
+            RootContentDetailsVM res = _apiService.GetApiResponse<RootContentDetailsVM>(url).GetAwaiter().GetResult();
             if (res!=null && res.vodResult==null)
             {
                 return View("~/Views/Shared/NotFound.cshtml");
             }
+
+
+             url = $"{Settings.BaseUrl}iptv/irna/v2/content/listLikesOfDisk?diskId={id}&page=0&pageSize=10000";
+            LikeRootVM likeres = _apiService.GetApiResponse<LikeRootVM>(url).GetAwaiter().GetResult();
+
+            res.LikeRoot = likeres;
             return View(res); 
         }
 
@@ -91,8 +98,27 @@ namespace IRNA.Web.Controllers
         public ActionResult Live()
         {
             RtmpPlayAlbumList video =new RtmpPlayAlbumList();
-            return View(video);
+
+            var url = $"{Settings.BaseUrl}iptv/irna/api/v2/channels/open?radio=false&lang=fa";
+
+            var res = _apiService.GetApiResponse<ChannelRootVM>(url).GetAwaiter().GetResult();
+
+            url = $"{Settings.BaseUrl}iptv/irna/api/v1/stream/open?id={res.data.FirstOrDefault().id}";
+
+            StreamRoot streamRes = _apiService.GetApiResponse<StreamRoot>(url).GetAwaiter().GetResult();
+
+
+            return View(streamRes);
         }
          
+        [HttpGet]
+        [Route("Content/LikePost/{id}/{stat}/{mobile}")]
+        public JsonResult LikePost(int id,bool stat,string mobile)
+        { 
+            var url = $"{Settings.BaseUrl}iptv/irna/v2/content/like?username={mobile}&name={mobile}&dislike={!stat}&value=true&diskId={id}";
+            var res = _apiService.GetApiResponse<object>(url).GetAwaiter().GetResult();
+            return Json(new { result = res});
+        }
+
     }
 }

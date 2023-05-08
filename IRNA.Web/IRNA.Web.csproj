@@ -2217,6 +2217,7 @@
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\ApiViewModel.cs" />
     <Compile Include="ViewModels\ContentViewModel.cs" />
+    <Compile Include="ViewModels\LiveViewModel.cs" />
     <Compile Include="ViewModels\RtmpPlayAlbumViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2600,6 +2601,7 @@
     <Content Include="Views\Content\Display.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Content\Live.cshtml" />
+    <Content Include="Views\Account\Played.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

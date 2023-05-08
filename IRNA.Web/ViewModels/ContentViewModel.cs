@@ -302,6 +302,7 @@ namespace IRNA.Web.ViewModels
         public IsPostPaidVM isPostPaid { get; set; }
         public DiscountVM discount { get; set; }
         public StatsVM stats { get; set; }
+        public LikeRootVM LikeRoot { get; set; }
     }
 
     public class StatsVM
@@ -486,5 +487,25 @@ namespace IRNA.Web.ViewModels
         public object info { get; set; }
     }
 
+    public class LikeListVM
+    {
+        public int id { get; set; }
+        public string username { get; set; }
+        public string name { get; set; }
+        public int diskId { get; set; }
+    }
+
+    public class LikeRootVM
+    {
+        public int page { get; set; }
+        public int pageSize { get; set; }
+        public int numberOfRecords { get; set; }
+        public int numberOfPages { get; set; }
+        public string root { get; set; }
+        public string galleryRoot { get; set; }
+        public object priceUnit { get; set; }
+        public List<LikeListVM> list { get; set; }
+        public object info { get; set; }
+    }
 
 }

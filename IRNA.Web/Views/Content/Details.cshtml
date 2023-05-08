@@ -51,19 +51,19 @@
                         <button type="submit" class="btn rounded-pill bg-gold text-dark">پخش فیلم</button>
                     </form>
                     @*<a class="btn rounded-pill bg-dark text-warning">پیش نمایش</a>*@
-                   
+                    
                 </div>
                 <div class="detail order-3 order-lg-0">
-                    <span class="text-light">@(Model.vodResult.totalDuration) دقیقه </span>
+                    <span class="text-light">@(Model.vodResult.totalDurationText) </span>
                     <span class="vr text-light"></span>
-                    <span class="text-light">@Model.vodResult.date</span>
+                    <span class="text-light">@Model.vodResult.jalaliYear</span>
                     <span class="vr text-light"></span>
                     <span class="text-light">
                         @Model.stats.numberOfViews  <span class="bi bi-eye"></span>
                     </span>
                     <span class="vr text-light"></span>
                     <span class="text-light">
-                        @(Model.vodResult.rate.userRate)% <span class="bi bi-heart"></span>
+                        @(Model.LikeRoot.list.Count) <span class="bi bi-heart"></span>
                     </span>
                 </div>
                 <div class="age-group text-light order-4 order-lg-1">
@@ -81,7 +81,7 @@
                         <span>لیندا کیانی</span>
                     </div>*@
             <div class="agents d-none d-lg-flex"> 
-                    <span>@Model.vodResult.castAndCrew.Split(':')[0]:&nbsp;</span>
+                    <span>خبرنگار:&nbsp;</span>
                     <span>@Model.vodResult.castAndCrew.Split(':')[1]</span>
                
             </div> 
@@ -135,7 +135,7 @@
                     </span>
                     <span class="vr text-light"></span>
                     <span class="text-light">
-                        @(Model.vodResult.rate.userRate)% <span class="bi bi-heart"></span>
+                        @(Model.LikeRoot.list.Count) <span class="bi bi-heart"></span>
                     </span>
                 </div>
                 <div class="age-group text-light order-4 order-lg-1">
@@ -160,14 +160,6 @@
         </div>
     }
 
-
-
-
-
-
-
-
-
     <!-- movie intro -->
     <!-- images and detail of movie -->
     <div class="movie-images">
@@ -175,18 +167,73 @@
             <h2 class="text-light h5 title">
                 <span>تصاویر و جزئیات فیلم</span>
                 <span>
-                    <button class="btn rounded-circle">
-                        <span class="bi bi-hand-thumbs-up text-light"></span>
-                    </button>
-                    <button class="btn rounded-circle">
+                    @if (!string.IsNullOrEmpty(Request.GetCookieOrDefault("Mobile")))
+                    {
+                        if (Model.LikeRoot.list.Any(l => l.username.Contains($"{Request.GetCookieOrDefault("Mobile")}")))
+                        {
+
+                            <button class="btn rounded-circle">
+                                <span class="bi bi-hand-thumbs-up-fill text-light"></span>
+                            </button>
+                        }
+                        else
+                        {
+
+                            <button class="btn rounded-circle" onclick="like()">
+                                <span class="bi bi-hand-thumbs-up text-light" id="spanLike"></span>
+                            </button>
+                        }
+                        <button class="btn rounded-circle" onclick="dislike()">
+                            <span class="bi bi-hand-thumbs-down text-light"  id="spandisLike"> </span>
+                        </button>
+                    }
+                    else
+                    {
+                        <a class="btn rounded-circle" href="/Login">
+                            <span class="bi bi-hand-thumbs-up text-light"></span>
+                        </a> 
+                    <a class="btn rounded-circle" href="/Login">
                         <span class="bi bi-hand-thumbs-down text-light"></span>
-                    </button>
+                    </a>
+                    }
                 </span>
+                <script>
+                    function like() {
+                        var xhr = new XMLHttpRequest();
+                        xhr.withCredentials = true;
+
+                        xhr.addEventListener("readystatechange", function () {
+                            if (this.readyState === 4) {
+                                console.log(this.responseText);
+                                document.getElementById("spanLike").className = "bi bi-hand-thumbs-up-fill text-light";
+                            }
+                        });
+
+                        xhr.open("GET", "/Content/LikePost/@(Model.vodResult.id)/true/@(Request.GetCookieOrDefault("Mobile"))");
+
+                        xhr.send();
+                    }
+                    function dislike() {
+                        document.getElementById("spandisLike").className = "bi bi-hand-thumbs-down-fill text-light";
+                        var xhr = new XMLHttpRequest();
+                        xhr.withCredentials = true;
+
+                        xhr.addEventListener("readystatechange", function () {
+                            if (this.readyState === 4) {
+                                console.log(this.responseText);
+                            }
+                        });
+
+                        xhr.open("GET", "/Content/LikePost/@(Model.vodResult.id)/false/@(Request.GetCookieOrDefault("Mobile"))");
+
+                        xhr.send();
+                    }
+                </script>
             </h2>
         </div>
-        <a href="#" class="nav-link text-light view-all">مشاهده همه</a>
+        @*<a href="#" class="nav-link text-light view-all">مشاهده همه</a>*@
         @Model.vodResult.gallery.types.FirstOrDefault(t => t.code == Settings.ContentDetailsGalleryCode).numberOfFiles
-        <div class="movie-images-slider-container">
+        <div class="movie-images-slider-container p-3">
             <div class="swiper movie-images-slider">
                 <div class="swiper-wrapper">
                     @for (int i = 0; i < Model.vodResult.gallery.types.FirstOrDefault(t => t.code == Settings.ContentDetailsGalleryCode).numberOfFiles; i++)
@@ -206,6 +253,15 @@
             </div>
         </div>
     </div>
+    <script>
+        var queryAll = document.querySelectorAll('.swiper-slide');
+        console.log(queryAll);
+        for (var i = 0; i < queryAll.length; i++) {
+            if (i!==0) {
+                queryAll[i].innerHTML = "";
+            } 
+        }
+    </script>
     <!-- images and detail of movie -->
     <!-- about movie -->
     @if (string.IsNullOrEmpty(Model.vodResult.criticize))
