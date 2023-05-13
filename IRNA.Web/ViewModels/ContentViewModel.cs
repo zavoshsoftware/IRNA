@@ -508,4 +508,37 @@ namespace IRNA.Web.ViewModels
         public object info { get; set; }
     }
 
+
+
+    // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
+    public class LocalizedMessagesLanguageViewModel
+    {
+        public string ar { get; set; }
+        public string en { get; set; }
+        public string fa { get; set; }
+    }
+
+    public class MorePlayedViewModel
+    {
+        public Result result { get; set; }
+    }
+
+    public class Result
+    {
+        public List<string> list { get; set; }
+        public int page { get; set; }
+        public int pageSize { get; set; }
+        public int numberOfPages { get; set; }
+        public int numberOfRows { get; set; }
+    }
+
+    public class RootPlayedViewModel
+    {
+        public int code { get; set; }
+        public LocalizedMessagesLanguageViewModel localizedMessages { get; set; }
+        public MorePlayedViewModel more { get; set; }
+    }
+
+
+
 }

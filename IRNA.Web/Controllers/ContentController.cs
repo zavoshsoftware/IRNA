@@ -3,9 +3,11 @@ using IRNA.Web.Services.Interfaces;
 using IRNA.Web.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 using static IRNA.Web.ViewModels.LiveViewModel;
 
 namespace IRNA.Web.Controllers
@@ -83,7 +85,7 @@ namespace IRNA.Web.Controllers
         public ActionResult Display(int id)
         {
             HttpCookie cookie = Request.Cookies["Token"];
-            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&qualit=&lang=fa&token={cookie}";
+            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&quality=&lang=fa&token={cookie.Value}";
 
             var res = _apiService.GetApiResponse<RtmpPlayAlbumRoot>(url).GetAwaiter().GetResult();
             
@@ -128,9 +130,15 @@ namespace IRNA.Web.Controllers
         public ActionResult Played()
         {
             HttpCookie cookie = Request.Cookies["Token"];
-            var url = $"{Settings.BaseUrl}iptv/irna/v2/sessions/played?page=0&pageSize=10&token={cookie}";
-            var res = _apiService.GetApiResponse<object>(url).GetAwaiter().GetResult();
-            return View();
+            var url = $"{Settings.BaseUrl}iptv/irna/v2/sessions/played?page=0&pageSize=10&token={cookie.Value}";
+            var played_result = _apiService.GetApiResponse<RootPlayedViewModel>(url).GetAwaiter().GetResult();
+
+            var last_result_url = $"{Settings.BaseUrl}iptv/irna/v2/content/last" +
+            $"?lang=fa&page=0&pageSize=100&ids={played_result.more.result.list.FirstOrDefault()}";
+
+            var last_result = _apiService.GetApiResponse<ContentResponseVM>(last_result_url).GetAwaiter().GetResult();
+
+            return View(last_result);
         }
 
 

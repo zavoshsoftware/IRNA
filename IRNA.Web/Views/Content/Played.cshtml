@@ -1,4 +1,4 @@
-﻿
+﻿@model IRNA.Web.ViewModels.ContentResponseVM
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -6,93 +6,27 @@
 <main class="wraper pb-3 container">
     <div class="user-dashboard-container">
         <div class="user-dashboard">
-            <span class="bi bi-person-fill"></span> 
+            <span class="bi bi-person-fill"></span>
         </div>
         <hr />
-        <div class="row"> 
-          
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
+        <div class="row">
 
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
+            @foreach (var item in Model.list)
+            {
+                <div class="col-md-3 pb-5">
+                    <div class="swiper-slide">
 
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
+                        <a href="/content/@item.id" class="latest-movies-content text-light nav-link">
+                            <img src="@($"{Settings.BaseUrl}iptv/irna/rest/v2/images/downloadGalleryImage" +
+                    $"?type=content&id={item.id}&code={Settings.ContentDetailsGalleryCode}&position=0")"/>
+                            <span>@item.title</span>
+                        </a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
 
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
-
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
-
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
-
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
-
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
-            <div class="col-md-3 pb-5">
-                <div class="swiper-slide">
-
-                    <a href="#" class="latest-movies-content text-light nav-link">
-                        <img src="~/Assets/images/ahmad.jpg" alt="" />
-                        <span>gggggg</span>
-                    </a>
-                </div>
-            </div>
-            
+            }
             <div class="d-flex flex-column big-padding">
-          
+
             </div>
         </div>
     </div>
