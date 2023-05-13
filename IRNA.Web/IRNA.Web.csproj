@@ -2601,7 +2601,7 @@
     <Content Include="Views\Content\Display.cshtml" />
     <Content Include="Views\Shared\NotFound.cshtml" />
     <Content Include="Views\Content\Live.cshtml" />
-    <Content Include="Views\Account\Played.cshtml" />
+    <Content Include="Views\Content\Played.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

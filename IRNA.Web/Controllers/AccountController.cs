@@ -151,11 +151,6 @@ namespace IRNA.Web.Controllers
             return Redirect("/");
         }
 
-        public ActionResult Played()
-        {
-            var url = $"{Settings.BaseUrl}iptv/irna/v2/sessions/played?page=0&pageSize=10";
-            var res = _accountService.GetApiResponse<object>(url).GetAwaiter().GetResult();
-            return View();
-        }
+       
     }
 }

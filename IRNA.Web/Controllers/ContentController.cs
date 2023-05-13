@@ -81,8 +81,9 @@ namespace IRNA.Web.Controllers
         [Route("Content/Display")] 
         [HttpPost]
         public ActionResult Display(int id)
-        { 
-            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&qualit=&lang=";
+        {
+            HttpCookie cookie = Request.Cookies["Token"];
+            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&qualit=&lang=fa&token={cookie}";
 
             var res = _apiService.GetApiResponse<RtmpPlayAlbumRoot>(url).GetAwaiter().GetResult();
             
@@ -119,6 +120,20 @@ namespace IRNA.Web.Controllers
             var res = _apiService.GetApiResponse<object>(url).GetAwaiter().GetResult();
             return Json(new { result = res});
         }
+
+
+
+        [HttpGet]
+        [Route("Content/Played")]
+        public ActionResult Played()
+        {
+            HttpCookie cookie = Request.Cookies["Token"];
+            var url = $"{Settings.BaseUrl}iptv/irna/v2/sessions/played?page=0&pageSize=10&token={cookie}";
+            var res = _apiService.GetApiResponse<object>(url).GetAwaiter().GetResult();
+            return View();
+        }
+
+
 
     }
 }
