@@ -85,7 +85,7 @@ namespace IRNA.Web.Controllers
         public ActionResult Display(int id)
         {
             HttpCookie cookie = Request.Cookies["Token"];
-            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&quality=&lang=fa&token={cookie.Value}";
+            var url = $"{Settings.BaseUrl}iptv/irna/rtmpPlayAlbum?albumId={id}&lang=fa&token={cookie.Value}";
 
             var res = _apiService.GetApiResponse<RtmpPlayAlbumRoot>(url).GetAwaiter().GetResult();
             
