@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\170351464_480p.mp4" />
     <Content Include="Assets\css\about.css" />
     <Content Include="Assets\css\buy-subscribtion.css" />
     <Content Include="Assets\css\change-password.css" />

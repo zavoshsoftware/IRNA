@@ -8,16 +8,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Assets/video-js.css" rel="stylesheet">
 </head>
-<body style="display: flex; justify-content: center;align-items:center; background: #131720"> 
-    <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
-        <source src="@(Model?.answer?.hlsUrl??"")" type="application/x-mpegURL">
-        <source src="@(Model?.answer?.rtmpUrl??"")" type="application/x-mpegURL">
-        <source src="@(Model?.answer?.rtspUrl??"")" type="application/x-mpegURL">
-    </video>
+<body style="display: flex; justify-content: center;align-items:center; background: #131720">
+
+    @if (Model.code == 313)
+    {
+        <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
+            <source src="~/Assets/170351464_480p.mp4" type="application/x-mpegURL"> 
+        </video>
+    }
+    else
+    {
+
+        <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
+            <source src="@(Model?.answer?.hlsUrl??"")" type="application/x-mpegURL">
+            <source src="@(Model?.answer?.rtmpUrl??"")" type="application/x-mpegURL">
+            <source src="@(Model?.answer?.rtspUrl??"")" type="application/x-mpegURL">
+        </video>
+    }
 
     <script src="~/Assets/videojs-contrib-hls.js"></script>
     <script src="~/Assets/video.js"></script>
-
+    <script>
+        console.log('@ViewBag.ApiResponse');
+    </script>
     <script>
         var player = videojs('hls-example');
         player.play();
