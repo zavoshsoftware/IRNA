@@ -96,7 +96,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\videojs-resolution-switcher.js" />
     <Content Include="Assets\170351464_480p.mp4" />
+    <Content Include="Assets\balistic-missile\170389964_180p.mp4" />
+    <Content Include="Assets\balistic-missile\170389964_360p.mp4" />
+    <Content Include="Assets\balistic-missile\170389964_480p.mp4" />
+    <Content Include="Assets\balistic-missile\170389964_720p.mp4" />
     <Content Include="Assets\css\about.css" />
     <Content Include="Assets\css\buy-subscribtion.css" />
     <Content Include="Assets\css\change-password.css" />

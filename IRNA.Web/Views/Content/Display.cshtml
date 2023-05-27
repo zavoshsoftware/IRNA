@@ -1,40 +1,83 @@
-﻿@model IRNA.Web.ViewModels.RtmpPlayAlbumList
-@{
-    Layout = null;
-} 
-<!DOCTYPE html>
-<html style="height: 100%; display: flex; justify-content: center; align-items: center;">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/Assets/video-js.css" rel="stylesheet">
-</head>
-<body style="display: flex; justify-content: center;align-items:center; background: #131720">
+﻿@model List<IRNA.Web.ViewModels.RtmpPlayAlbumList>
 
-    @if (Model.code == 313)
-    {
-        <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
-            <source src="~/Assets/170351464_480p.mp4" type="application/x-mpegURL"> 
-        </video>
+    @{
+        Layout = null;
     }
-    else
-    {
+    <!DOCTYPE html>
+    <html style="height: 100%; display: flex; justify-content: center; align-items: center;">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="~/Assets/video-js.css" rel="stylesheet">
+    </head>
+    <body style="display: flex; justify-content: center;align-items:center; background: #131720">
 
-        <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
-            <source src="@(Model?.answer?.hlsUrl??"")" type="application/x-mpegURL">
-            <source src="@(Model?.answer?.rtmpUrl??"")" type="application/x-mpegURL">
-            <source src="@(Model?.answer?.rtspUrl??"")" type="application/x-mpegURL">
-        </video>
-    }
+        @*@if (Model.code == 313)
+        {
+            <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
+                <source src="~/Assets/170351464_480p.mp4" type="application/x-mpegURL">
+            </video>
+        }
+        else
+        {*@
 
-    <script src="~/Assets/videojs-contrib-hls.js"></script>
-    <script src="~/Assets/video.js"></script>
-    <script>
+            @*<video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
+                    <source src="@(Model?.answer?.hlsUrl??"")" type="application/x-mpegURL">
+                    <source src="@(Model?.answer?.rtmpUrl??"")" type="application/x-mpegURL">
+                    <source src="@(Model?.answer?.rtspUrl??"")" type="application/x-mpegURL">
+                </video>*@
+
+            @*<video id="hls-example" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
+                    <source src="~/Assets/balistic-missile/170389964_180p.mp4" type="video/mp4" res="180" label="180p">
+                    <source src="~/Assets/balistic-missile/170389964_360p.mp4" type="video/mp4" res="360" label="360p">
+                    <source src="~/Assets/balistic-missile/170389964_480p.mp4" type="video/mp4" res="480" label="480p">
+                    <source src="~/Assets/balistic-missile/170389964_720p.mp4" type="video/mp4" res="720" label="720p">
+                </video>*@
+
+
+            <video id="hls-example" class="video-js vjs-default-skin vjs-icon-cog  vjs-big-play-centered"
+                   controls
+                   preload="none"
+                   autoplay
+                   loop
+                   muted
+                   style="width:70vw;height:40vw">
+            </video>
+
+        @*}*@
+
+
+
+
+
+        <script src="~/Assets/videojs-contrib-hls.js"></script>
+        <script src="~/Assets/video.js"></script>
+        <script src="~/Assets/videojs-resolution-switcher.js"></script>
+        <script>
         console.log('@ViewBag.ApiResponse');
-    </script>
-    <script>
-        var player = videojs('hls-example');
-        player.play();
-    </script>
+        </script>
+        <script>
+            var player = videojs('hls-example', {
+                plugins: {
+                    videoJsResolutionSwitcher: {
+             /*           default: 'low',*/
+                        dynamicLabel: true
+                    }
+                }
+            });
+            player.updateSrc([
+                @Html.Raw(string.Join(",",Model.Where(
+               s=>s.contentData.contentName.ToLower().Contains("p")
+           ).OrderByDescending(x=>x.contentData.contentName).Select(s=>
+           @"  {    src: '"+ $"{s.answer.hlsUrl}" +"'," +
+           "      type: 'application/x-mpegURL'," +
+           //"                    res: 180," +
+           "                    label: '"+ s.contentData.contentName+ "'" +
+               "} ")))
+              
+            ])
 
-</body>
+            document.querySelector(".vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button.vjs-resolution-button").style = "padding-bottom: 25px;";
+        </script>
+
+    </body>
 </html>
