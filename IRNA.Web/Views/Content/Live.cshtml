@@ -12,10 +12,16 @@
 
 <main class="wraper pb-3">
     <!-- images and detail of movie -->
-    <div class="movie-images">
-        <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" style="width:100%" controls preload="auto" autoplay data-setup="{}" controls>
-            <source src="@Model.more.list.FirstOrDefault().link" type="application/x-mpegURL">
-        </video>
+    <div class="movie-images row p-3" style="display: -webkit-box;">
+        @foreach (var item in Model.more.list)
+        {
+        <div class="col-md-4 p-1  rounded rounded-2">
+
+            <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered rounded rounded-2" style="width:100%" height="400" controls preload="auto" autoplay data-setup="{}" >
+                <source onloadedmetadata="" class=" rounded rounded-2" src="@item.link" type="application/x-mpegURL">
+            </video>
+        </div>
+        }
     </div>
     <!-- images and detail of movie -->
     <!-- users comments -->

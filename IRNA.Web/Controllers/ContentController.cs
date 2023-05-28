@@ -159,16 +159,26 @@ namespace IRNA.Web.Controllers
             }
         }
 
-        [Route("Live")]
-        public ActionResult Live()
+        [Route("Channel")]
+        public ActionResult Channel()
         {
             RtmpPlayAlbumList video =new RtmpPlayAlbumList();
 
             var url = $"{Settings.BaseUrl}iptv/irna/api/v2/channels/open?radio=false&lang=fa";
 
-            var res = _apiService.GetApiResponse<ChannelRootVM>(url).GetAwaiter().GetResult();
+            ChannelRootVM res = _apiService.GetApiResponse<ChannelRootVM>(url).GetAwaiter().GetResult();
 
-            url = $"{Settings.BaseUrl}iptv/irna/api/v1/stream/open?id={res.data.FirstOrDefault().id}";
+            return View(res);
+        }
+         
+        [Route("Live")]
+        public ActionResult Live(long id)
+        {
+            RtmpPlayAlbumList video =new RtmpPlayAlbumList();
+
+            var url = $"{Settings.BaseUrl}iptv/irna/api/v2/channels/open?radio=false&lang=fa";
+             
+            url = $"{Settings.BaseUrl}iptv/irna/api/v1/stream/open?id={id}";
 
             StreamRoot streamRes = _apiService.GetApiResponse<StreamRoot>(url).GetAwaiter().GetResult();
 

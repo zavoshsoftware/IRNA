@@ -22,6 +22,15 @@ using System.Web;
                 //return Setting<string>("LocalBaseUrl");
             }
         }
+     public static string BaseUrlIptv
+        {
+            get
+            {
+                //api base url
+                return Setting<string>("BaseUrlIptv");
+                //return Setting<string>("LocalBaseUrl");
+            }
+        }
      
     public static bool IsMobileDevice(this string userAgent)
     => mobileDevices.Any(x => userAgent.ToLower().Contains(x));
@@ -37,7 +46,7 @@ using System.Web;
 
             if (value == null)
             {
-                throw new Exception(String.Format("Could not find setting '{0}',", name));
+            return default(T);
             }
 
             return (T)Convert.ChangeType(value, typeof(T), CultureInfo.InvariantCulture);
