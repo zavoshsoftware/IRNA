@@ -1,17 +1,17 @@
 ﻿@model List<IRNA.Web.ViewModels.RtmpPlayAlbumList>
 
-    @{
-        Layout = null;
-    }
-    <!DOCTYPE html>
-    <html style="height: 100%; display: flex; justify-content: center; align-items: center;">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="~/Assets/video-js.css" rel="stylesheet">
-    </head>
-    <body style="display: flex; justify-content: center;align-items:center; background: #131720">
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html style="height: 100%; display: flex; justify-content: center; align-items: center;">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Assets/video-js.css" rel="stylesheet">
+</head>
+<body style="display: flex; justify-content: center;align-items:center; background: #131720">
 
-        @*@if (Model.code == 313)
+    @*@if (Model.code == 313)
         {
             <video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
                 <source src="~/Assets/170351464_480p.mp4" type="application/x-mpegURL">
@@ -20,37 +20,36 @@
         else
         {*@
 
-        @*<video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
+    @*<video id='hls-example' class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" autoplay data-setup="{}" controls>
             <source src="@(Model?.answer?.hlsUrl??"")" type="application/x-mpegURL">
             <source src="@(Model?.answer?.rtmpUrl??"")" type="application/x-mpegURL">
             <source src="@(Model?.answer?.rtspUrl??"")" type="application/x-mpegURL">
         </video>*@
 
 
-        <video id="irnaVod" class="video-js vjs-default-skin vjs-icon-cog  vjs-big-play-centered"
-               controls
-               preload="none"
-               autoplay
-               muted
-               style="width:70vw;height:40vw">
-        </video>
+    <video id="irnaVod" class="video-js vjs-default-skin vjs-icon-cog  vjs-big-play-centered"
+           controls
+           preload="none"
+           autoplay
+           muted
+           style="width:70vw;height:40vw">
+    </video>
 
-        @*}*@
-
-
+    @*}*@
 
 
-        <!-- jquey -->
-        <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
 
-        <script src="~/Assets/video.js"></script>
-        <script src="~/Assets/videojs-contrib-hls.js"></script>
-        <script src="~/Assets/videojs-resolution-switcher.js"></script>
-        <script>
+
+    <!-- jquey -->
+    <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/Assets/video.js"></script>
+    <script src="~/Assets/videojs-contrib-hls.js"></script>
+    <script src="~/Assets/videojs-resolution-switcher.js"></script>
+    <script>
         ////console.log('ViewBag.ApiResponse');
-        </script>
-        <script>
-            var currentTime = 0;
+    </script>
+    <script>
 
             videojs('irnaVod', {
                 controls: true,
@@ -61,8 +60,10 @@
                     }
                 }
             }, function () {
+                var currentTime = 0;
                 var player = this;
-                window.player = player
+
+                window.player = player;
                 player.updateSrc([
                 @Html.Raw(string.Join(",",Model.Where(
                s=>s.contentData.contentName.ToLower().Contains("p")
@@ -74,15 +75,26 @@
                "} ")))
 
                 ]);
-                player.on('onPlaybackQualityChange', function () {
-                });
-
-                player.currentTime(currentTime);
-
 
                 setInterval(() => {
-                    currentTime = player.currentTime(); 
-                },1)
+                    currentTime = player.currentTime();
+                }, 1);
+
+                if (@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)) === 0) {
+                    player.currentTime(0);
+                }
+                else {
+
+                // start watching video after lastplayed time
+                setTimeout(() => {
+                    player.pause();
+                player.currentTime(@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)));
+                    player.play();
+                    player.pause();
+                    player.play();
+                },2500)
+
+                }
 
                 var elements = document.getElementsByClassName("vjs-menu-item");
 
@@ -91,8 +103,31 @@
                     setTimeout(() => {
                         //console.log(lastTime);
                         player.currentTime(lastTime);
-                    },1000)
+                    },2000)
                 };
+
+                setInterval(() => {
+
+                    var data = new FormData();
+                    data.append("id", "@(ViewBag.ContentId)");
+                    data.append("currentTime", currentTime);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText);
+                        }
+                    });
+                    console.log('thisis:','@(ViewBag.Cookie)')
+
+                    if ('@(ViewBag.Cookie)' !== '') {
+                        xhr.open("post", "/postlastplayed");
+                        xhr.send(data);
+                    }
+
+                }, 5000)
 
                 for (var i = 0; i < elements.length; i++) {
                     elements[i].addEventListener('click', changeQ, false);
@@ -109,8 +144,8 @@
 
 
 
-             
-        </script>
 
-    </body>
+    </script>
+
+</body>
 </html>

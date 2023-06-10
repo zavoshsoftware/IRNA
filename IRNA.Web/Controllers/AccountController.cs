@@ -80,49 +80,54 @@ namespace IRNA.Web.Controllers
             TempData["Err"] += Helper.StringConcatenator(" _ ", url1, GlobalVariable.CurrentApiResponse, nameof(res1));
             if (res1.code == (int)HttpStatusCode.OK)
             {
-                var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms";
-                //$"?" +
-                //$"email={res1.more.result.email}&name={res1.more.result.name}&family={res1.more.result.family}&" +
-                //$"phoneNumber={phone}&verificationCode={confirm}").Replace("&", "&amp;");
+                var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms"+
+                $"?" +
+                $"email={res1.more.result.email}&name={res1.more.result.name}&family={res1.more.result.family}&" +
+                $"phoneNumber={phone}&verificationCode={confirm}".Replace("&", "&amp;");
 
-                var res2 = _accountService.GetApiResponse<ResponseVM>(url2,new Dictionary<string, object> {
-                    { "email", res1.more.result.email },
-                    { "name", res1.more.result.name },
-                    { "family", res1.more.result.family },
-                    { "phoneNumber", mobile },
-                    { "verificationCode",confirm } 
-                    }).GetAwaiter().GetResult();
-                TempData["Verify"] = res2.localizedMessages.fa; 
-                TempData["Err"] += Helper.StringConcatenator(" _ ", res1.more.result.email, res1.more.result.name, res1.more.result.family, res1.more.result.telephone, res1.more.result.verificationCode, GlobalVariable.CurrentApiResponse, nameof(res2));
-                if (res2.code == (int)HttpStatusCode.OK)
+                var res2 = _accountService.GetApiResponse<ResponseVM>(url2).GetAwaiter().GetResult();
+
+
+                try
                 {
-                    var url3 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/getRandom";
-                    var res3 = _accountService.GetApiResponse<getRandomResponseVM>(url3).GetAwaiter().GetResult();
-                    TempData["Verify"] = res3.localizedMessages.fa;
-                    TempData["Err"] += res3.localizedMessages.fa + nameof(res3);
-
-                    if (res3.code == (int)HttpStatusCode.OK)
+                    TempData["Verify"] = res2.localizedMessages.fa;
+                    TempData["Err"] += Helper.StringConcatenator(" _ ", res1.more.result.email, res1.more.result.name, res1.more.result.family, res1.more.result.telephone, res1.more.result.verificationCode, GlobalVariable.CurrentApiResponse, nameof(res2));
+                    if (res2.code == (int)HttpStatusCode.OK)
                     {
-                        var hashedPassword = Security.ComputeSHA256(Security.CreateMD5(confirm) + res3.more.random + "gsfb97FGD^%R%$");
-                        var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
-                     $"username={phone}&" +
-                     $"domain=shared&" +
-                     $"password={hashedPassword}&" +
-                     $"serverSelfIds=&" +
-                     $"sessionId={res3.more.sessionId}";
-                        //var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
-                        //$"username={phone}&password={res3.more.random}";
-                        var res4 = _accountService.GetApiResponse<LoginByGetResponseVM>(url4).GetAwaiter().GetResult();
-                        TempData["Verify"] = res2.localizedMessages.fa;
-                        TempData["Err"] += res4.localizedMessages.fa + nameof(res4);
+                        var url3 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/getRandom";
+                        var res3 = _accountService.GetApiResponse<getRandomResponseVM>(url3).GetAwaiter().GetResult();
+                        TempData["Verify"] = res3.localizedMessages.fa;
+                        TempData["Err"] += res3.localizedMessages.fa + nameof(res3);
 
-                        var token = res4.more.token;
-                        Response.Cookies.Add(Settings.CreateCookie(token));
-                        Response.Cookies.Add(Settings.CreateCookie("Mobile", phone));
-                       
-                        return Redirect("/");
+                        if (res3.code == (int)HttpStatusCode.OK)
+                        {
+                            var hashedPassword = Security.ComputeSHA256(Security.CreateMD5(confirm) + res3.more.random + "gsfb97FGD^%R%$");
+                            var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
+                         $"username={phone}&" +
+                         $"domain=shared&" +
+                         $"password={hashedPassword}&" +
+                         $"serverSelfIds=&" +
+                         $"sessionId={res3.more.sessionId}";
+                            //var url4 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/loginByGet?" +
+                            //$"username={phone}&password={res3.more.random}";
+                            var res4 = _accountService.GetApiResponse<LoginByGetResponseVM>(url4).GetAwaiter().GetResult();
+                            TempData["Verify"] = res2.localizedMessages.fa;
+                            TempData["Err"] += res4.localizedMessages.fa + nameof(res4);
+
+                            var token = res4.more.token;
+                            Response.Cookies.Add(Settings.CreateCookie(token));
+                            Response.Cookies.Add(Settings.CreateCookie("Mobile", phone));
+
+                            return Redirect("/");
+                        }
                     }
                 }
+                catch (Exception ex)
+                {
+                    TempData["Err"] = ex.Message + ex.InnerException;
+                    return Redirect("/login");
+                }
+
             }
             return Redirect("/login");
         }

@@ -541,4 +541,27 @@ namespace IRNA.Web.ViewModels
 
 
 
+
+    public class LocalizedMessagesLastPlayed
+    {
+        public string ar { get; set; }
+        public string en { get; set; }
+        public string fa { get; set; }
+    }
+
+    public class MoreLastPlayed
+    {
+        public string time { get; set; }
+    }
+
+    public class RootLastPlayedViewModel
+    {
+        public int code { get; set; }
+        public LocalizedMessagesLastPlayed localizedMessages { get; set; }
+        public MoreLastPlayed more { get; set; }
+    }
+
+
+
+
 }
