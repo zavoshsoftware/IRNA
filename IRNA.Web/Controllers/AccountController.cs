@@ -82,8 +82,8 @@ namespace IRNA.Web.Controllers
             {
                 var url2 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/registerBySms"+
                 $"?" +
-                $"email={res1.more.result.email}&name={res1.more.result.name}&family={res1.more.result.family}&" +
-                $"phoneNumber={phone}&verificationCode={confirm}".Replace("&", "&amp;");
+                $"email={res1.more.result.email??""}&name={res1.more.result.name??""}&family={res1.more.result.family??""}&" +
+                $"phoneNumber={phone}&verificationCode={confirm}";
 
                 var res2 = _accountService.GetApiResponse<ResponseVM>(url2).GetAwaiter().GetResult();
 
