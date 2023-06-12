@@ -113,11 +113,11 @@
         // when the module is executed.
         var fn = window_1.console[type];
 
-        if (!fn && type === 'debug') {
-            // Certain browsers don't have support for console.debug. For those, we
-            // should default to the closest comparable log.
-            fn = window_1.console.info || window_1.console.log;
-        }
+        //if (!fn && type === 'debug') {
+        //    // Certain browsers don't have support for console.debug. For those, we
+        //    // should default to the closest comparable log.
+        //    fn = window_1.console.info || window_1.console.log;
+        //}
 
         // Bail out if there's no console or if this type is not allowed by the
         // current logging level.

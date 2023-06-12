@@ -88,6 +88,7 @@ namespace IRNA.Web.Controllers
         {
             ViewBag.Cookie = null;
             ViewBag.LastPlayed = 0;
+            ViewBag.Title = string.Empty;
             try
             {
                 HttpCookie cookie = Request.Cookies["Token"];
@@ -115,7 +116,7 @@ namespace IRNA.Web.Controllers
                         return View("~/Views/Shared/NotFound.cshtml");
                     }
                     List<RtmpPlayAlbumList> videos = res.list;
-                    ViewBag.ApiResponse = GlobalVariable.CurrentApiResponse;
+                    ViewBag.ApiResponse = GlobalVariable.CurrentApiResponse; 
                     return View(videos);
                 }
                 else
@@ -166,6 +167,27 @@ namespace IRNA.Web.Controllers
                 return View(videos);
             }
         }
+
+        [Route("Content/GetLastPlayed/{contentId}/{token}")]
+        [HttpGet]
+        public ActionResult GetLastPlayed(string contentId,string token)
+        {
+
+            var lastPlayed = _apiService.GetApiResponse<RootLastPlayedViewModel>($"{Settings.BaseUrl}" +
+                $"iptv/irna/v2/content/getLastPlay?diskId={contentId}&token={token}").GetAwaiter().GetResult();
+            return Json(lastPlayed.more.time);
+        }
+
+        [HttpPost]
+        [Route("GetLastPlayed")]
+        public ActionResult GetLastPlayed(int id, string token)
+        {
+            var lastPlayed = _apiService.GetApiResponse<RootLastPlayedViewModel>($"{Settings.BaseUrl}" +
+         $"iptv/irna/v2/content/getLastPlay?diskId={id}&token={token}").GetAwaiter().GetResult();
+            return Json(lastPlayed.more.time??"0");
+        }
+
+
 
         [HttpPost]
         [Route("PostLastPlayed")]

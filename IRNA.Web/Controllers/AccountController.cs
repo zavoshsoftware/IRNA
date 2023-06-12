@@ -35,6 +35,7 @@ namespace IRNA.Web.Controllers
         [HttpPost]
         public ActionResult Verify(LoginVM login)
         {
+            login.Phone = login.Phone.PersianToEnglish();
             //var phone = $"{login.CityCode.Remove(0, 1)}{login.Phone.Replace(" ",string.Empty).Remove(0, 1)}";
             var phone = login.Phone.StartsWith("0") ? login.Phone.Trim().Replace(" ", string.Empty).Remove(0, 1) : login.Phone.Trim();
             var url = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/sendSmsCode?phoneNumber={phone}";
@@ -73,6 +74,7 @@ namespace IRNA.Web.Controllers
         [HttpPost]
         public ActionResult VerifyAuth(string mobile, string confirm)
         {
+            confirm = confirm.PersianToEnglish();
             var phone = mobile.Replace(" ", "");
             var url1 = $"{Settings.BaseUrl}iptv/irna/access/rest/v2/auth/verifySmsCode?" +
            $"phoneNumber={phone}&verificationCode={confirm}";

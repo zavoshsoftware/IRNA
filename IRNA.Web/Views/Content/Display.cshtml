@@ -8,8 +8,79 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="~/Assets/video-js.css" rel="stylesheet">
+    <title>مشاهده</title>
+    <link rel="stylesheet" href="~/Assets/node_modules/bootstrap/dist/css/bootstrap.rtl.css" />
+    <link rel="stylesheet" href="~/Assets/css/main.css" />
+    <style>
+        /* For Desktop View */
+        @@media screen and (min-width: 1024px) {
+            #irnaVod {
+                width: 70vw;
+                height: 40vw
+            }
+        }
+
+        /* For Tablet View */
+        @@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+            #irnaVod {
+                width: 70vw;
+                height: 40vw
+            }
+        }
+
+        /* For Mobile Portrait View */
+        @@media screen and (max-device-width: 480px) and (orientation: portrait) {
+            #irnaVod {
+                width: 70vw;
+                height: 40vw
+            }
+        }
+
+        /* For Mobile Landscape View */
+        @@media screen and (max-device-width: 640px) and (orientation: landscape) {
+            #irnaVod {
+                width: 90%;
+                height: 90%
+            }
+        }
+
+        #modalPlay {
+            position: fixed;
+            margin: auto;
+            padding: 20px;
+            width: 75%;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
+            background-color: rgb(0 0 0 / 85.0);
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid black;
+        }
+
+        #modalPlayBody {
+            padding: 20px;
+        }
+
+            #modalPlayBody > p {
+                font-size: 25px;
+                font-weight: bolder;
+            }
+    </style>
 </head>
 <body style="display: flex; justify-content: center;align-items:center; background: #131720">
+
+    <div id="modalPlay" class="d-none">
+        <div id="modalPlayBody">
+            <p class="text-white">
+                پخش فیلم از آخرین جایی که مشاهده کردید؟
+            </p>
+            <div class=" text-center d-flex">
+                <button class="btn btn-warning btn-lg m-1" id="continue_vod">ادامه</button>
+                <button class="btn btn-dark btn-lg  m-1" id="start_vod">از ابتدا</button>
+            </div>
+        </div>
+    </div>
 
     @*@if (Model.code == 313)
         {
@@ -31,8 +102,7 @@
            controls
            preload="none"
            autoplay
-           muted
-           style="width:70vw;height:40vw">
+           muted>
     </video>
 
     @*}*@
@@ -42,14 +112,102 @@
 
     <!-- jquey -->
     <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
-
+    <script>
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function eraseCookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+    </script>
     <script src="~/Assets/video.js"></script>
-    <script src="~/Assets/videojs-contrib-hls.js"></script>
     <script src="~/Assets/videojs-resolution-switcher.js"></script>
+    <script src="~/Assets/videojs-contrib-hls.js"></script>
     <script>
         ////console.log('ViewBag.ApiResponse');
     </script>
-    <script>
+
+    @if (ViewBag.Cookie is null)
+    {
+<script>
+            videojs('irnaVod', {
+                controls: true,
+                plugins: {
+                    videoJsResolutionSwitcher: {
+                        //default: 'low', // Default resolution [{Number}, 'low', 'high'],
+                        dynamicLabel: true
+                    }
+                }
+            },
+                function () {
+
+                    var currentTime = 0;
+                    var player = this;
+                    var currentOddTime = 0;
+                       window.player = player;
+                player.updateSrc([
+                @Html.Raw(string.Join(",",Model.Where(
+               s=>s.contentData.contentName.ToLower().Contains("p")
+           ).OrderByDescending(x=>x.contentData.contentName).Select(s=>
+           @"  {    src: '"+ $"{s.answer.hlsUrl}" +"'," +
+           "      type: 'application/x-mpegURL'," +
+           //"                    res: 180," +
+           "                    label: '"+ s.contentData.contentName+ "'" +
+               "} ")))
+
+                ]);
+                    player.on('onPlaybackQualityChange', function () {
+                    });
+
+                    player.currentTime(currentTime);
+
+
+                    setInterval(() => {
+                        currentTime = player.currentTime();
+                    }, 1)
+
+                    var elements = document.getElementsByClassName("vjs-menu-item");
+
+                    var changeQ = function () {
+                       let  lastTime = currentTime;
+                        setTimeout(() => {
+                            //console.log(lastTime);
+                            player.currentTime(lastTime);
+                        }, 1500)
+                    };
+
+                    for (var i = 0; i < elements.length; i++) {
+                        elements[i].addEventListener('click', changeQ, false);
+                    }
+
+
+
+                    document.querySelector(".vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button.vjs-resolution-button").style = "padding-bottom: 25px;";
+
+
+                }
+            );
+</script>
+    }
+    else
+    {
+        <script>
 
             videojs('irnaVod', {
                 controls: true,
@@ -60,10 +218,23 @@
                     }
                 }
             }, function () {
-                var currentTime = 0;
-                var player = this;
+                 
+                    var currentTime = 0;
+                    let player = this;
+                    var currentOddTime = 0;
+                    let modalPlay = document.querySelector('#modalPlay')
+                    let videoPlay = document.getElementById('irnaVod');
 
-                window.player = player;
+                    if (@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)) > 10) {
+
+                        modalPlay.classList.remove('d-none');
+                        modalPlay.classList.add('d-block');
+
+                        document.getElementById("continue_vod").addEventListener("click", () => {
+
+                            ////////////// Clicked on continue
+
+                                window.player = player;
                 player.updateSrc([
                 @Html.Raw(string.Join(",",Model.Where(
                s=>s.contentData.contentName.ToLower().Contains("p")
@@ -78,32 +249,56 @@
 
                 setInterval(() => {
                     currentTime = player.currentTime();
+                    if ((parseInt(currentTime) % 3) == 0) {
+                        currentOddTime = currentTime;
+                    }
                 }, 1);
 
-                if (@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)) === 0) {
-                    player.currentTime(0);
-                }
-                else {
+                        // start watching video after lastplayed time
+                        setTimeout(() => {
+                            player.pause();
+                            player.currentTime(@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)));
+                            player.play();
 
-                // start watching video after lastplayed time
-                setTimeout(() => {
-                    player.pause();
-                player.currentTime(@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)));
-                    player.play();
-                    player.pause();
-                    player.play();
-                },2500)
+                        }, 2500);
 
-                }
+
+                            modalPlay.classList.remove('d-block');
+                            modalPlay.classList.add('d-none');
+
+
+                            document.querySelector(".vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button.vjs-resolution-button").style = "padding-bottom: 25px;";
+
 
                 var elements = document.getElementsByClassName("vjs-menu-item");
 
                 var changeQ = function () {
-                    lastTime = currentTime;
                     setTimeout(() => {
-                        //console.log(lastTime);
-                        player.currentTime(lastTime);
-                    },2000)
+                        //var lastTime = currentOddTime;
+                        //player.currentTime(lastTime);
+
+
+                          var data = new FormData();
+                    data.append("id", "@(ViewBag.ContentId)");
+                        data.append("token", getCookie("Token"));
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText)
+                            player.currentTime(parseInt(this.responseText));
+                        }
+                    });
+
+                        xhr.open("post", "/getlastplayed");
+                        xhr.send(data);
+
+
+                    }, 1500)
+
+
                 };
 
                 setInterval(() => {
@@ -120,7 +315,101 @@
                             console.log(this.responseText);
                         }
                     });
-                    console.log('thisis:','@(ViewBag.Cookie)')
+
+                    if ('@(ViewBag.Cookie)' !== '') {
+                        xhr.open("post", "/postlastplayed");
+                        xhr.send(data);
+                    }
+
+                }, 10000)
+
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].addEventListener('click', changeQ, false);
+                }
+
+
+                            /////////////////// End clicked on continue
+
+                        });
+
+                        document.getElementById("start_vod").addEventListener("click", () => {
+                            //////////////// Clicked on start again
+
+                                     window.player = player;
+                player.updateSrc([
+                @Html.Raw(string.Join(",",Model.Where(
+               s=>s.contentData.contentName.ToLower().Contains("p")
+           ).OrderByDescending(x=>x.contentData.contentName).Select(s=>
+           @"  {    src: '"+ $"{s.answer.hlsUrl}" +"'," +
+           "      type: 'application/x-mpegURL'," +
+           //"                    res: 180," +
+           "                    label: '"+ s.contentData.contentName+ "'" +
+               "} ")))
+
+                ]);
+
+                setInterval(() => {
+                    currentTime = player.currentTime();
+                    if ((parseInt(currentTime) % 3) == 0) {
+                        currentOddTime = currentTime;
+                    }
+                }, 1);
+
+                            modalPlay.classList.remove('d-block');
+                            modalPlay.classList.add('d-none');
+
+
+
+                            document.querySelector(".vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button.vjs-resolution-button").style = "padding-bottom: 25px;";
+
+
+                var elements = document.getElementsByClassName("vjs-menu-item");
+
+                var changeQ = function () {
+                    setTimeout(() => {
+                        //var lastTime = currentOddTime;
+                        //player.currentTime(lastTime);
+
+
+                          var data = new FormData();
+                    data.append("id", "@(ViewBag.ContentId)");
+                        data.append("token", getCookie("Token"));
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText);
+
+                            player.currentTime(parseInt(this.responseText));
+                        }
+                    });
+
+                        xhr.open("post", "/getlastplayed");
+                        xhr.send(data);
+
+
+                    }, 1500)
+
+
+                };
+
+                setInterval(() => {
+
+                    var data = new FormData();
+                    data.append("id", "@(ViewBag.ContentId)");
+                    data.append("currentTime", currentTime);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText);
+                            player.currentTime(parseInt(this.responseText));
+                        }
+                    });
 
                     if ('@(ViewBag.Cookie)' !== '') {
                         xhr.open("post", "/postlastplayed");
@@ -135,17 +424,112 @@
 
 
 
-            document.querySelector(".vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button.vjs-resolution-button").style = "padding-bottom: 25px;";
+                            /////////////// End Clicked on start again
+                        });
+
+
+                    }
+                    else {
+
+                         window.player = player;
+                player.updateSrc([
+                @Html.Raw(string.Join(",",Model.Where(
+               s=>s.contentData.contentName.ToLower().Contains("p")
+           ).OrderByDescending(x=>x.contentData.contentName).Select(s=>
+           @"  {    src: '"+ $"{s.answer.hlsUrl}" +"'," +
+           "      type: 'application/x-mpegURL'," +
+           //"                    res: 180," +
+           "                    label: '"+ s.contentData.contentName+ "'" +
+               "} ")))
+
+                ]);
+
+
+
+
+
+                            document.querySelector(".vjs-menu-button.vjs-menu-button-popup.vjs-control.vjs-button.vjs-resolution-button").style = "padding-bottom: 25px;";
+
+
+                var elements = document.getElementsByClassName("vjs-menu-item");
+
+                var changeQ = function () {
+                    setTimeout(() => {
+                        //var lastTime = currentOddTime;
+                        //player.currentTime(lastTime);
+
+
+                          var data = new FormData();
+                    data.append("id", "@(ViewBag.ContentId)");
+                        data.append("token", getCookie("Token"));
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText);
+                            player.currentTime(parseInt(this.responseText));
+                        }
+                    });
+
+                        xhr.open("post", "/getlastplayed");
+                        xhr.send(data);
+
+
+                    }, 1500)
+
+
+                };
+
+                setInterval(() => {
+
+                    var data = new FormData();
+                    data.append("id", "@(ViewBag.ContentId)");
+                    data.append("currentTime", currentTime);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.withCredentials = true;
+
+                    xhr.addEventListener("readystatechange", function () {
+                        if (this.readyState === 4) {
+                            console.log(this.responseText);
+                            player.currentTime(parseInt(this.responseText));
+                        }
+                    });
+
+                    if ('@(ViewBag.Cookie)' !== '') {
+                        xhr.open("post", "/postlastplayed");
+                        xhr.send(data);
+                    }
+
+                }, 5000)
+
+                for (var i = 0; i < elements.length; i++) {
+                    elements[i].addEventListener('click', changeQ, false);
+                }
+
+
+
+
+
+
+
+
+                    } 
+                 
+
+
+
+
+
+
+
             });
 
+        </script>
+    }
 
-
-
-
-
-
-
-    </script>
 
 </body>
 </html>
