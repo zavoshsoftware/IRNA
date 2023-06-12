@@ -31,7 +31,7 @@
     @Html.Partial("_Footer")
 
 
-    q
+    
     <!-- Bootstrap js -->
     <script src="~/Assets/node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <!-- swiper js -->
@@ -40,6 +40,44 @@
     <script src="~/Assets/node_modules/jquery/dist/jquery.min.js"></script>
     <!-- main js -->
     <script src="~/Assets/js/main.js"></script>
+
+    <script> 
+            function confirm(msg, callback) {
+                $('#confirm')
+                    .jqmShow()
+                    .find('p.jqmConfirmMsg')
+                    .html(msg)
+                    .end()
+                    .find(':submit:visible')
+                    .click(function () {
+                        if (this.value == 'Proceed') {
+                            $.cookie("agreed_to_terms", '1', { expires: 1, path: '/' }); //set cookie, expires in 365 days
+                            (typeof callback == 'string') ?
+                                window.location.href = callback :
+                                callback();
+                        }
+                        $('#confirm').jqmHide();
+                    });
+            }
+
+
+        $().ready(function () {
+            //$('#confirm').jqm({ overlay: 88, modal: 'true', trigger: false });
+
+            // trigger a confirm whenever links of class alert are pressed.
+            $('a.confirm').click(function () {
+                if ($.cookie('agreed_to_terms') == '1') {
+                    window.location.href = callback =
+                        callback()
+                    //they already have cookie set
+                } else {
+                    confirm('About to visit: ' + this.href + ' !', this.href);
+                }
+                return false;
+            });
+        });
+    </script>
+
 
     @RenderSection("Scripts", false)
     <script>

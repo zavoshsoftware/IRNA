@@ -137,7 +137,7 @@
         }
     </script>
     <script src="~/Assets/video.js"></script>
-    <script src="~/Assets/videojs-resolution-switcher.js"></script>
+    <script src="~/Assets/videojs-resolution-switcher.js?v=1.0"></script>
     <script src="~/Assets/videojs-contrib-hls.js"></script>
     <script>
         ////console.log('ViewBag.ApiResponse');
@@ -173,6 +173,9 @@
 
                 ]);
                     player.on('onPlaybackQualityChange', function () {
+
+                        alert('ssss');
+
                     });
 
                     player.currentTime(currentTime);
@@ -186,9 +189,8 @@
 
                     var changeQ = function () {
                        let  lastTime = currentTime;
-                        setTimeout(() => {
-                            //console.log(lastTime);
-                            player.currentTime(lastTime);
+                        setTimeout(() => { 
+                            player.currentTime(parseInt(getCookie("currentTime")));
                         }, 1500)
                     };
 
@@ -207,7 +209,7 @@
     }
     else
     {
-        <script>
+<script>
 
             videojs('irnaVod', {
                 controls: true,
@@ -218,13 +220,14 @@
                     }
                 }
             }, function () {
-                 
+
                     var currentTime = 0;
-                    let player = this;
+                    var player = this;
                     var currentOddTime = 0;
                     let modalPlay = document.querySelector('#modalPlay')
                     let videoPlay = document.getElementById('irnaVod');
-
+                debugger;
+                console.log(@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)));
                     if (@Html.Raw(Convert.ToDouble(ViewBag.LastPlayed)) > 10) {
 
                         modalPlay.classList.remove('d-none');
@@ -272,34 +275,17 @@
 
                 var elements = document.getElementsByClassName("vjs-menu-item");
 
-                var changeQ = function () {
-                    setTimeout(() => {
-                        //var lastTime = currentOddTime;
-                        //player.currentTime(lastTime);
 
 
-                          var data = new FormData();
-                    data.append("id", "@(ViewBag.ContentId)");
-                        data.append("token", getCookie("Token"));
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.withCredentials = true;
-
-                    xhr.addEventListener("readystatechange", function () {
-                        if (this.readyState === 4) {
-                            console.log(this.responseText)
-                            player.currentTime(parseInt(this.responseText));
-                        }
-                    });
-
-                        xhr.open("post", "/getlastplayed");
-                        xhr.send(data);
 
 
-                    }, 1500)
+                    var changeQ = function () {
+                       let  lastTime = currentTime;
+                        setTimeout(() => {
+                            player.currentTime(parseInt(getCookie("currentTime")));
+                        }, 1500)
+                    };
 
-
-                };
 
                 setInterval(() => {
 
@@ -313,6 +299,10 @@
                     xhr.addEventListener("readystatechange", function () {
                         if (this.readyState === 4) {
                             console.log(this.responseText);
+                            if (this.responseText.includes('507')) {
+                                eraseCookie("Token");
+                                alert('jj')
+                            }
                         }
                     });
 
@@ -365,35 +355,14 @@
 
                 var elements = document.getElementsByClassName("vjs-menu-item");
 
-                var changeQ = function () {
-                    setTimeout(() => {
-                        //var lastTime = currentOddTime;
-                        //player.currentTime(lastTime);
 
+                    var changeQ = function () {
+                       let  lastTime = currentTime;
+                        setTimeout(() => {
+                            player.currentTime(parseInt(getCookie("currentTime")));
+                        }, 1500)
+                    };
 
-                          var data = new FormData();
-                    data.append("id", "@(ViewBag.ContentId)");
-                        data.append("token", getCookie("Token"));
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.withCredentials = true;
-
-                    xhr.addEventListener("readystatechange", function () {
-                        if (this.readyState === 4) {
-                            console.log(this.responseText);
-
-                            player.currentTime(parseInt(this.responseText));
-                        }
-                    });
-
-                        xhr.open("post", "/getlastplayed");
-                        xhr.send(data);
-
-
-                    }, 1500)
-
-
-                };
 
                 setInterval(() => {
 
@@ -453,34 +422,14 @@
 
                 var elements = document.getElementsByClassName("vjs-menu-item");
 
-                var changeQ = function () {
-                    setTimeout(() => {
-                        //var lastTime = currentOddTime;
-                        //player.currentTime(lastTime);
 
+                    var changeQ = function () {
+                       let  lastTime = currentTime;
+                        setTimeout(() => {
+                            player.currentTime(parseInt(getCookie("currentTime")));
+                        }, 1500)
+                    };
 
-                          var data = new FormData();
-                    data.append("id", "@(ViewBag.ContentId)");
-                        data.append("token", getCookie("Token"));
-
-                    var xhr = new XMLHttpRequest();
-                    xhr.withCredentials = true;
-
-                    xhr.addEventListener("readystatechange", function () {
-                        if (this.readyState === 4) {
-                            console.log(this.responseText);
-                            player.currentTime(parseInt(this.responseText));
-                        }
-                    });
-
-                        xhr.open("post", "/getlastplayed");
-                        xhr.send(data);
-
-
-                    }, 1500)
-
-
-                };
 
                 setInterval(() => {
 
@@ -516,8 +465,8 @@
 
 
 
-                    } 
-                 
+                    }
+
 
 
 
@@ -527,7 +476,7 @@
 
             });
 
-        </script>
+</script>
     }
 
 

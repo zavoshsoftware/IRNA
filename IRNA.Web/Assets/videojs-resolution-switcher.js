@@ -2,7 +2,15 @@
  * Copyright (c) 2016 Kasper Moskwiak
  * Modified by Pierre Kraft
  * Licensed under the Apache-2.0 license. */
-
+function setTimeCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
 (function() {
   /* jshint eqnull: true*/
   /* global require */
@@ -66,10 +74,11 @@
     onClick: function(customSourcePicker){
       this.onClickListener(this);
       // Remember player state
-      var currentTime = this.player_.currentTime();
+        var currentTime = this.player_.currentTime();
+        setTimeCookie("currentTime", currentTime, 3)
       var isPaused = this.player_.paused();
       this.showAsLabel();
-
+        console.log(currentTime);
       // add .current class
       this.addClass('vjs-selected');
 
@@ -86,7 +95,7 @@
       // Probably because of https://github.com/videojs/video-js-swf/issues/124
       // If player preload is 'none' and then loadeddata not fired. So, we need timeupdate event for seek handle (timeupdate doesn't work properly with flash)
       var handleSeekEvent = 'loadeddata';
-      if(this.player_.techName_ !== 'Youtube' && this.player_.preload() === 'none' && this.player_.techName_ !== 'Flash') {
+      if(this.player_.preload() === 'none') {
         handleSeekEvent = 'timeupdate';
       }
       setSourcesSanitized(this.player_, this.src, this.options_.label, customSourcePicker).one(handleSeekEvent, function() {
